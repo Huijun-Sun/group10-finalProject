@@ -2,9 +2,41 @@ const mongoCollections = require('../config/mongoCollections');
 const universities = mongoCollections.universities;
 const { ObjectId } = require('mongodb');
 
-async function addUniversity(title, courses, category, programs, location, deadline, tuitionfees, rating, rank, livingexp, averagescore, websitelink,workexp,GPA)
+async function addUniversity(title, courses, category, programs, location, deadline, tuitionfees, rating, rank, livingexp, averagescore, websitelink,workexp,GPA,intake,papers)
 {
-   
+    if(!title)
+    throw "Title is required";
+    if(!courses)
+    throw "courses is required";
+    if(!category)
+    throw "category is required";
+    if(!programs)
+    throw "programs is required";
+    if(!location)
+    throw "location is required";
+    if(!deadline)
+    throw "deadline is required";
+    if(!tuitionfees)
+    throw "tuitionfees is required";
+    if(!rating)
+    throw "rating is required";
+    if(!rank)
+    throw "rank is required";
+    if(!livingexp)
+    throw "livingexp is required";
+    if(!averagescore)
+    throw "averagescore is required";
+    if(!websitelink)
+    throw "websitelink is required";
+    if(!workexp)
+    throw "workexp is required";
+    if(!GPA)
+    throw "GPA is required";
+    if(!intake)
+    throw "intake is required";
+    if(!papers)
+    throw "papers is required";
+
     const universityCollection = await universities();
     let newuv = {
         title: title,
@@ -21,89 +53,107 @@ async function addUniversity(title, courses, category, programs, location, deadl
         websitelink: websitelink,
         workexp: workexp,
         GPA: GPA,
-        intake: intake
+        intake: intake,
+        papers: papers
     };
     
     const insertInfo = await universityCollection.insertOne(newuv);
-        if (insertInfo.insertedCount === 0) 
-            throw 'Could not add university';
+    if (insertInfo.insertedCount === 0) 
+        throw 'Could not add university';
     const newId = insertInfo.insertedId;
-
-        let album = await this.getUniversity(newId);
-        
-       
-		return album;
+    let univ = await this.getUniversity(newId);        
+	return univ;
 
 }
 async function getAllUniversity()
 {
     const universityCollection = await universities();
 
-    const albumList = await universityCollection.find({}).toArray();
-    
-    return albumList;
+    const univList = await universityCollection.find({}).toArray();
+    if (univList === null || univList.length<1) throw 'No university list found';
+    return univList;
 }
 async function getUniversity(id)
 {
-   
-
     const universityCollection = await universities();
-        let objId=id;
-		const album = await universityCollection.findOne({ _id: objId });
-	
-		return album;
+    let objId=id;
+    if (typeof id == "string")
+        objId = ObjectId.createFromHexString(id);
+    const univ = await universityCollection.findOne({ _id: objId });
+    if (univ === null) throw 'No univ with that id';
+    return univ;
 }
 async function getDeadline(title,course,intake)
 {
-   
-
     const universityCollection = await universities();
-        if (title != null && course != null && intake !=null)
+        if(title)
+       title=title.toLowerCase();
+       if (course)
+       course=course.toLowerCase();
+       if (intake)
+       intake=intake.toLowerCase();
+        
+       if (title != null && course != null && intake !=null)
         {
-		const album = await universityCollection.find({ courses: course,intake: intake,title: title });
-        return album;
+            const univ = await universityCollection.find({ title: title,courses: course,intake: intake}).toArray();
+        if (univ === null || univ.length<1) throw 'No univ with that id';
+        return univ;
         }
         if (title != null && course != null )
         {
-		const album = await universityCollection.find({ courses: course,title: title });
-        return album;
+        const univ = await universityCollection.find({ courses: course,title: title }).toArray();
+        if (univ === null || univ.length<1) throw 'No univ with that id';
+        return univ;
         }
         if (title != null  && intake !=null)
         {
-		const album = await universityCollection.find({ intake: intake,title: title });
-        return album;
+        const univ = await universityCollection.find({ intake: intake,title: title }).toArray();
+        if (univ === null || univ.length<1) throw 'No univ with that id';
+        return univ;
         }
         if (course != null && intake !=null)
         {
-		const album = await universityCollection.find({ courses: course,intake: intake });
-        return album;
+        const univ = await universityCollection.find({ courses: course,intake: intake }).toArray();
+        if (univ === null || univ.length<1) throw 'No univ with that id';
+        return univ;
         }
         if (course != null )
         {
-		const album = await universityCollection.find({ courses: course });
-        return album;
+        const univ = await universityCollection.find({ courses: course }).toArray();
+        if (univ === null || univ.length<1) throw 'No univ with that id';
+        return univ;
         }
         if (intake !=null)
         {
-		const album = await universityCollection.find({intake: intake});
-        return album;
+            console.log("here");
+        const univ = await universityCollection.find({intake: intake}).toArray();
+        if (univ === null || univ.length<1) throw 'No univ with that id';
+        return univ;
         }
         if (title != null)
         {
-		const album = await universityCollection.find({ title: title });
-        return album;
+        const univ = await universityCollection.find({ title: title }).toArray();
+        if (univ === null || univ.length<1) throw 'No univ with that id';
+        return univ;
         }
 }
 async function getUniversity_finder(course,score,exp,gpa,papers)
 {
-
-
-    const universityCollection = await universities();
-        
-        
-		const album = await universityCollection.find({courses: course,averagescore:score,workexp: {$lte:exp},GPA:{$lte:gpa}}).toArray();
-	
-		return album;
+    if(!course)
+    throw "courses is required";
+    if(!score)
+    throw "score is required";
+    if(!exp)
+    throw "exp is required";
+    if(!gpa)
+    throw "gpa is required";
+    if(!papers)
+    throw "papers is required";
+    course=course.toLowerCase();
+    const universityCollection = await universities();  
+    const univ = await universityCollection.find({courses: course,averagescore:{$lte:score},workexp: {$lte:exp},GPA:{$lte:gpa},papers:{$lte:papers}}).toArray();
+    if (univ === null || univ.length<1) throw 'No univ with matching values';
+	return univ;
 }
 
 module.exports = {addUniversity,getAllUniversity,getUniversity,getUniversity_finder,getDeadline};

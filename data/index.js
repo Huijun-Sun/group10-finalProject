@@ -1,4 +1,4 @@
 const universityData = require('./universities');  
+const DiscussionData = require('./Discussion');  
 
-
-module.exports = {  universities: universityData};
+module.exports = {  universities: universityData,Discussion: DiscussionData};
