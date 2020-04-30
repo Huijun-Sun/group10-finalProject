@@ -1,0 +1,137 @@
+@import "./font.css";
+@import "./widget.css";
+@import "./nav.css";
+
+
+
+
+body {
+    background: #ffffff;
+    /* font-family: 'Baloo Bhaina 2', cursive; */
+
+    /*THIS IS NOT GONNA WORK, BECAUSE THIS IS THE OUTERMOST ELEMENT!!!*/
+    /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+div {
+    display: flex;
+}
+
+form {
+    display: flex;
+}
+
+figcaption {
+    font-family: "Elephant";
+    text-align: center;
+    font-size: 11px;
+    text-decoration-color: lightgrey;
+    font-weight: lighter;
+}
+ 
+fieldset {
+    width: 100%;
+    border: 0px;
+    padding: 15px;
+        box-shadow: 0 0 10px 1px #ddd;
+        background-color: #ffffff;
+
+}
+
+fieldset legend {
+    color: #e1262a;
+    padding: 5px 10px ;
+    background-color: #fcf8f7;
+    font-size: 32px;
+    border: none;
+    margin-left: 20px;
+    box-shadow: 0 0 5px 1px #ddd;
+}
+
+option{
+    margin: 20px;
+}
+
+
+input[type=text] {
+    font-size: 80%;
+    border: 0px;
+        outline: none;
+        height: 20px;
+        background-color: transparent;
+
+}
+
+.center-items {
+    display: flex;
+    align-items: center;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.white-background {
+    background: white;
+}
+
+.title-1 {
+    text-align: center;
+    font-size: 36px;
+    font-family: serif;
+}
+
+.title-2 {
+    text-align: center;
+    font-size: 24px;
+    font-family: sans-serif;
+    text-decoration: none;
+}
+
+.figure {
+    display: flex;
+    justify-content: center;
+    width: 65%;
+    margin: auto;
+}
+
+.txt-center {
+    text-align: center;
+}
+
+.clear {
+    float: none;
+    clear: both;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+
+.intro-banner {
+    font-size: 35px;
+    margin: 30px 50px;
+    
+    background-image: -webkit-linear-gradient(45deg, #911295 20%, #be108a 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
