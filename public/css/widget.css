@@ -1,21 +1,73 @@
 
 
-.search-box {
+.card {
     font-family: 'Baloo Bhaina 2', cursive;
-
     display: flex;
     flex-direction: row;
+    
+    box-shadow: 0px 4px 10px #e7e7e7;
+    border: 0px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.signup-card {
+    font-family: 'Baloo Bhaina 2', cursive;
+    display: flex;
+    flex-direction: row;
+    
+    margin-right: 50px;
+    box-shadow: 0px 4px 20px #222222;
+    border: 0px;
+    border-radius: 10px;
+    background-color: white;
+
+    width: 400px;
+    height: 600px;
+}
+
+.search-box {
+    /* inherit from card */
     flex-wrap: nowrap;  
     justify-content: space-around;  
 
     width: 90%;
     margin: 30px 40px;
     padding: 6px 0px;
-    box-shadow: 0px 4px 10px #e7e7e7;
-    border: 0px;
-    border-radius: 10px;
-
 }
+
+.search-box button {
+    font: inherit;
+    border: none;
+    color: white;
+    background-image: -webkit-linear-gradient(-45deg, #e20078 20%, #cf006f 50%); 
+    align-self: center;
+
+    margin: 0px 20px 0px 40px;
+    font-size: 16px;
+    height: 40px;
+    border-radius: 8px;
+    padding: 5px 15px 0px 15px;
+    text-align: center;
+    text-decoration: none;
+
+    /* -ms-transition: box-shadow 300ms linear;
+    transition: box-shadow 300ms linear; */
+}
+
+/* .search-box button:hover{
+    box-shadow: 0px 0px 5px #be77df;
+    background-color: #ad2fe7;
+
+    -webkit-transition: box-shadow 100ms linear;
+    transition: box-shadow 100ms linear;
+} */
+
+.search-box button a {
+    display: inline-flex;
+    vertical-align: middle;
+}
+
 
 .search-filter {
     font: inherit;
@@ -68,34 +120,3 @@
     font-size: 16px;
 }
 
-.search-box button {
-    font: inherit;
-    border: none;
-    color: white;
-    background-color: #d900ff; 
-    align-self: center;
-
-    margin: 0px 20px 0px 40px;
-    font-size: 16px;
-    height: 40px;
-    border-radius: 8px;
-    padding: 3px 15px 0px 15px;
-    text-align: center;
-    text-decoration: none;
-
-    /* -ms-transition: box-shadow 300ms linear;
-    transition: box-shadow 300ms linear; */
-}
-
-/* .search-box button:hover{
-    box-shadow: 0px 0px 5px #be77df;
-    background-color: #ad2fe7;
-
-    -webkit-transition: box-shadow 100ms linear;
-    transition: box-shadow 100ms linear;
-} */
-
-.search-box button a {
-    display: inline-flex;
-    vertical-align: middle;
-}
