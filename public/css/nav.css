@@ -85,16 +85,6 @@
     transition: border-bottom 0.5s; */
 }
 
-.footer{
-    display: flex;
-    background:#e1262a;
-    height: 100px;
-    color: white;
-    border-top: 3px #c1414b solid;
-    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75)
-}
-
-
 .nav .menu .signup-btn {
     border-radius: 30px;
     background-color: #ffffff;

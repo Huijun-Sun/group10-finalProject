@@ -2,6 +2,7 @@
 @import "./widget.css";
 @import "./nav.css";
 @import "./parallax.css";
+@import "./footer.css";
 
 
 
@@ -138,14 +139,6 @@ input[type=text] {
 
 /* index.html*/
 
-.intro-banner {
-    font-size: 35px;
-    margin: 30px 50px;
-    
-    background-image: -webkit-linear-gradient(45deg, #911295 20%, #be108a 50%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
 
 .parallax-home {
     background-image: url("../img/parallax-home.jpg");
@@ -158,18 +151,28 @@ input[type=text] {
     margin-left: 50px;
 }
 
-.intro_table {
+.intro-banner {
+    font-size: 35px;
+    margin: 30px 50px;
+    
+    background-image: -webkit-linear-gradient(45deg, #911295 20%, #be108a 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.intro-table {
     display: flex;
     flex-direction: column;
     align-items: flex-start;    
     justify-content: flex-start;
+    margin-bottom: 40px;
 }
 
-.intro_table img {
+.intro-table img {
     margin: 20px;
 }
 
-.intro_table ul {
+.intro-table ul {
     display: flex;
     align-items: flex-start;
     justify-content: space-around;
@@ -178,7 +181,7 @@ input[type=text] {
     width: 85%;
 }
 
-.intro_table li {
+.intro-table li {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -189,7 +192,7 @@ input[type=text] {
 
 }
 
-.intro_table h1 {
+.intro-table h1 {
     font-family: 'Baloo Bhaina 2', cursive;
     font-weight: normal ;
     color: #666666;
@@ -197,7 +200,7 @@ input[type=text] {
     margin: 0px;
 }
 
-.intro_table p {
+.intro-table p {
     font-family: 'Baloo Bhaina 2', cursive;
     font-weight: normal ;
     color: #666666;
