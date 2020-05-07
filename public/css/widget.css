@@ -1,4 +1,8 @@
 
+.material-icon {
+    text-decoration: none;
+    font-family: "Material Icons";
+}
 
 .card {
     font-family: 'Baloo Bhaina 2', cursive;
@@ -11,7 +15,7 @@
     background-color: white;
 }
 
-.signup-card {
+.reg-card {
     font-family: 'Baloo Bhaina 2', cursive;
     display: flex;
     flex-direction: row;
@@ -20,10 +24,112 @@
     box-shadow: 0px 4px 20px #222222;
     border: 0px;
     border-radius: 10px;
-    background-color: white;
+    background-color: #f6f6f6;
 
     width: 400px;
-    height: 600px;
+    height: 330px;
+}
+
+.reg-form {
+    display: flex;
+    width: 100%;
+    margin: 20px 20px;
+
+}
+
+.reg-form button {
+    margin: 10px 0px 10px 10px;
+    -webkit-transition: box-shadow 300ms linear;
+    -ms-transition: box-shadow 300ms linear;
+    transition: box-shadow 300ms linear;
+}
+
+.reg-form button:hover {
+    margin: 10px 0px 10px 10px;
+    box-shadow: 0px 0px 6px #dddddd;
+    -webkit-transition: box-shadow 100ms linear;
+    transition: box-shadow 100ms linear;
+}
+
+.reg-login-btn {
+    color: #222222;
+    background-color: transparent;  
+}
+
+.reg-signup-btn {
+    color: white;
+    background-image: -webkit-linear-gradient(-45deg, #e20078 20%, #cf006f 50%); 
+}
+
+.reg-logo {
+    display: flex;
+    align-self: center;
+}
+
+.reg-logo a {
+    display: flex;
+    align-self: center;
+
+    width: 100%;
+    white-space: nowrap;
+    text-align: center;
+    /*float: left;*/
+    font-weight: bold;
+    font-size: 30px;
+    color: rgb(228, 0, 114);
+}
+
+.reg-form input[type="text"] {
+    font: inherit;
+    font-size: 16px;
+    outline:0;
+    border: none;
+    border-radius: 8px;
+    margin: 5px 0px;
+    padding: 15px 15px 10px 15px;
+
+    background-color: white;
+    color: #666666;
+}
+
+.reg-form input[type="password"] {
+    font: inherit;
+    font-size: 16px;
+    outline:0;
+    border: none;    
+    border-radius: 8px;
+    padding: 10px 15px 5px 15px;
+    margin: 5px 0px;
+
+
+    background-color: white;
+    color: #666666;
+}
+
+.reg-btn-group{
+    margin-top: 50px;
+}
+
+.card-button {
+    font: inherit;
+    border: none;
+
+    align-self: center;
+
+    font-size: 16px;
+    height: 40px;
+    border-radius: 8px;
+    padding: 5px 15px 0px 15px;
+    text-align: center;
+    text-decoration: none;
+
+    /* -ms-transition: box-shadow 300ms linear;
+    transition: box-shadow 300ms linear; */
+}
+
+.card-button a {
+    display: inline-flex;
+    vertical-align: middle;
 }
 
 .search-box {
@@ -37,37 +143,10 @@
 }
 
 .search-box button {
-    font: inherit;
-    border: none;
-    color: white;
-    background-image: -webkit-linear-gradient(-45deg, #e20078 20%, #cf006f 50%); 
-    align-self: center;
-
-    margin: 0px 20px 0px 40px;
-    font-size: 16px;
-    height: 40px;
-    border-radius: 8px;
-    padding: 5px 15px 0px 15px;
-    text-align: center;
-    text-decoration: none;
-
-    /* -ms-transition: box-shadow 300ms linear;
-    transition: box-shadow 300ms linear; */
+        margin: 0px 20px 0px 40px;
+        color: white;
+        background-image: -webkit-linear-gradient(-45deg, #e20078 20%, #cf006f 50%); 
 }
-
-/* .search-box button:hover{
-    box-shadow: 0px 0px 5px #be77df;
-    background-color: #ad2fe7;
-
-    -webkit-transition: box-shadow 100ms linear;
-    transition: box-shadow 100ms linear;
-} */
-
-.search-box button a {
-    display: inline-flex;
-    vertical-align: middle;
-}
-
 
 .search-filter {
     font: inherit;
