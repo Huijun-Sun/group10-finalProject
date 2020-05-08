@@ -146,9 +146,17 @@ input[type=text] {
     margin-left: 50px;
 }
 
-.intro-banner {
+.heading-banner {
     font-size: 35px;
-    margin: 30px 50px;
+    margin: 30px 50px 0px 50px;
+    background-image: -webkit-linear-gradient(45deg, #911295 20%, #be108a 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sub-heading-banner {
+    font-size: 20px;
+    margin: 10px 50px 30px 50px;
     background-image: -webkit-linear-gradient(45deg, #911295 20%, #be108a 50%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -245,7 +253,7 @@ input[type=text] {
     padding: 20px 0px;
     text-align: left;
     line-height: 1.2;
-    font-size: 20px !important;
+    /* font-size: 20px !important; */
 }
 
 .event-item-hidden {
