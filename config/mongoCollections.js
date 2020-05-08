@@ -19,6 +19,7 @@ const getCollectionFn = collection => {
 module.exports = {
   universities: getCollectionFn("universities"),
   DiscussionTopic: getCollectionFn("DiscussionTopic"),
-  DiscussionComment: getCollectionFn("DiscussionComment")
+  DiscussionComment: getCollectionFn("DiscussionComment"),
+  user_Profile: getCollectionFn("user_Profile")
  
 };
