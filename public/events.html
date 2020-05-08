@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>dreamhigh</title>
+    <title>dreamhigh - Events</title>
     <link href="css/main.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- <link rel="icon" type="image/x-icon" href="img/logo.png"> -->
@@ -18,7 +18,7 @@
         <ul class="menu">
             <li><a href="#">Guides</a></li>
             <li><a href="#">Forum</a></li>
-            <li><a href="events.html">Events</a></li>
+            <li><a href="#">Events</a></li>
             <li><a href="#reg-form">Login</a></li>
             <li><a class="signup-btn" href="#reg-form">Sign Up</a></li>
 
@@ -56,45 +56,10 @@
     </div>
 
     <div class="column-container">
-        <p class="intro-banner">Finding a college should be easy.</p>
+        <p class="intro-banner">Get involved, and learn more about <br>your dream college!</p>
     </div>
 
-    <div class="intro-table center-items">
-        <ul>
-            <li>
-                <img src="./img/intro_college.svg" , height="50" , width="50">
-                <h1>University Finder</h1>
-                <p>All the information related to a university is displayed based on the user input and the user can
-                    navigate to a program of that university, where the program information and application materials
-                    required is displayed.</p>
-            </li>
-            <li>
-                <img src="./img/intro_data.svg" , height="50" , width="50">
-                <h1>Admission Data</h1>
-                <p>
-                    All the admits/rejects(user) for a course, university of past 4 years are displayed based on user
-                    input.
-                </p>
-            </li>
-
-        </ul>
-        <ul>
-            <li>
-                <img src="./img/intro_guide.svg" , height="50" , width="50">
-                <h1>Application Guides</h1>
-                <p>This page acts as a guide to different information related to application process ex: Exams (GRE,
-                    Toefl, IELTS, SAT, ACT), Courses (Computer Science, Data Science, Bio Medical etc), Finance (All
-                    about loans, scholarship).</p>
-            </li>
-            <li>
-                <img src="./img/intro_forum.svg" , height="50" , width="50">
-                <h1>Student Forum</h1>
-                <p>
-                    A Discussion Forum to seek help from fellow students. This page allows the user to ask queries and
-                    reply to others query. Also view other discussions going on.
-                </p>
-            </li>
-        </ul>
+    <div id="event-list" class="column event-list">
     </div>
 
     <div class="column-container">
@@ -153,5 +118,55 @@
     </div>
 
 </body>
+
+<script>
+    let eventCollection = [{
+        "_id": "4821c5f4-c203-4758-89d6-905725676d08",
+        "eventName": "150th Founder's Day: Graduate Celebration",
+        "university_Name": "Stevens Institute of Technology",
+
+        "introduction": "Join us as we celebrate the university's 150th anniversary!",
+        "startDate": "2020-02-21",
+        "endDate": "2020-02-25",
+        "eventType": "information",
+        "URL": "https://stevens150.com/"
+    }];
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        let listNode = document.getElementById('event-list');
+        for (const event of eventCollection) {
+            console.log(event.university_Name);
+            listNode.innerHTML += `<button id="${event._id}" class="event-item card column" onClick="onClicked(this.id)">
+                <div class="event-item-title">${event.eventName}</div>
+                <div class="event-item-detail">
+                    <p class="event-item-hidden event-item-intro">
+                        ${event.introduction}
+                    </p>
+                    <p class="material-align-center">
+                        <a class="material-icon">location_on</a>
+                        ${event.university_Name}
+                    </p>
+                    <p class="material-align-center">
+                        <a class="material-icon">query_builder</a>
+                        ${event.startDate} - ${event.endDate}
+                    </p>
+                    <p class="material-align-center event-item-hidden" >
+                        <a class="material-icon">link </a>
+                        <a href="${event.URL}">&nbsp${event.URL}</a>
+                    </p>
+                </div>
+            </button>`;
+        }
+    })
+
+    function onClicked(id) {
+        let cardNode = document.getElementById(id);
+        if (cardNode.classList.contains("event-item-expanded"))
+            cardNode.classList.remove("event-item-expanded")
+        else cardNode.classList.add("event-item-expanded")
+
+    }
+
+</script>
 
 </html>

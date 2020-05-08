@@ -13,6 +13,10 @@
     margin: 20px 0px;
 }
 
+.footer a {
+    color: #999999; 
+}
+
 .footer ul {
     display: flex;
     align-items: flex-start;

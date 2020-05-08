@@ -1,14 +1,18 @@
-
 .material-icon {
     text-decoration: none;
     font-family: "Material Icons";
+}
+
+.material-align-center a{
+    display: inline-flex;
+    vertical-align: middle;
+    align-self: center;
 }
 
 .card {
     font-family: 'Baloo Bhaina 2', cursive;
     display: flex;
     flex-direction: row;
-    
     box-shadow: 0px 4px 10px #e7e7e7;
     border: 0px;
     border-radius: 10px;
@@ -19,13 +23,11 @@
     font-family: 'Baloo Bhaina 2', cursive;
     display: flex;
     flex-direction: row;
-    
     margin-right: 50px;
     box-shadow: 0px 4px 20px #222222;
     border: 0px;
     border-radius: 10px;
     background-color: #f6f6f6;
-
     width: 400px;
     height: 330px;
 }
@@ -34,7 +36,6 @@
     display: flex;
     width: 100%;
     margin: 20px 20px;
-
 }
 
 .reg-form button {
@@ -53,12 +54,12 @@
 
 .reg-login-btn {
     color: #222222;
-    background-color: transparent;  
+    background-color: transparent;
 }
 
 .reg-signup-btn {
     color: white;
-    background-image: -webkit-linear-gradient(-45deg, #e20078 20%, #cf006f 50%); 
+    background-image: -webkit-linear-gradient(-45deg, #e20078 20%, #cf006f 50%);
 }
 
 .reg-logo {
@@ -69,7 +70,6 @@
 .reg-logo a {
     display: flex;
     align-self: center;
-
     width: 100%;
     white-space: nowrap;
     text-align: center;
@@ -82,12 +82,11 @@
 .reg-form input[type="text"] {
     font: inherit;
     font-size: 16px;
-    outline:0;
+    outline: 0;
     border: none;
     border-radius: 8px;
     margin: 5px 0px;
     padding: 15px 15px 10px 15px;
-
     background-color: white;
     color: #666666;
 }
@@ -95,69 +94,55 @@
 .reg-form input[type="password"] {
     font: inherit;
     font-size: 16px;
-    outline:0;
-    border: none;    
+    outline: 0;
+    border: none;
     border-radius: 8px;
     padding: 10px 15px 5px 15px;
     margin: 5px 0px;
-
-
     background-color: white;
     color: #666666;
 }
 
-.reg-btn-group{
+.reg-btn-group {
     margin-top: 50px;
 }
 
 .card-button {
     font: inherit;
     border: none;
-
     align-self: center;
-
     font-size: 16px;
     height: 40px;
     border-radius: 8px;
     padding: 5px 15px 0px 15px;
     text-align: center;
     text-decoration: none;
-
     /* -ms-transition: box-shadow 300ms linear;
     transition: box-shadow 300ms linear; */
 }
 
-.card-button a {
-    display: inline-flex;
-    vertical-align: middle;
-}
-
 .search-box {
     /* inherit from card */
-    flex-wrap: nowrap;  
-    justify-content: space-around;  
-
+    flex-wrap: nowrap;
+    justify-content: space-around;
     width: 95%;
     margin: 30px 40px;
     padding: 6px 0px;
 }
 
 .search-box button {
-        margin: 0px 20px 0px 40px;
-        color: white;
-        background-image: -webkit-linear-gradient(-45deg, #e20078 20%, #cf006f 50%); 
+    margin: 0px 20px 0px 40px;
+    color: white;
+    background-image: -webkit-linear-gradient(-45deg, #e20078 20%, #cf006f 50%);
 }
 
 .search-filter {
     font: inherit;
     align-self: center;
-
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    
     margin: 0px 5px 0px 35px;
-
 }
 
 .search-filter-spacer {
@@ -176,26 +161,23 @@
 .search-filter input[type="text"] {
     font: inherit;
     font-size: 16px;
-    outline:0;
-
+    outline: 0;
     color: #666666;
 }
+
 .search-filter select {
     font: inherit;
     font-size: 16px;
-
     color: #666666;
-    background-color: #ffffff; 
+    background-color: #ffffff;
     /* box-shadow: 0px 0px 10px #e2e2e2; */
     border: 0px;
     border-radius: 10px;
-    outline:0;
+    outline: 0;
 }
 
 .search-title {
     font: inherit;
-
     margin: 0px 0px 0px 0px;
     font-size: 16px;
 }
-

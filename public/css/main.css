@@ -3,14 +3,9 @@
 @import "./nav.css";
 @import "./parallax.css";
 @import "./footer.css";
-
-
-
-
 body {
     background: #ffffff;
     /* font-family: 'Baloo Bhaina 2', cursive; */
-
     /*THIS IS NOT GONNA WORK, BECAUSE THIS IS THE OUTERMOST ELEMENT!!!*/
     /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
     margin: 0px;
@@ -22,7 +17,13 @@ a {
 }
 
 button {
-    cursor:pointer;
+    cursor: pointer;
+    outline: none;
+}
+
+button a {
+    display: inline-flex;
+    vertical-align: middle;
 }
 
 div {
@@ -40,19 +41,18 @@ figcaption {
     text-decoration-color: lightgrey;
     font-weight: lighter;
 }
- 
+
 fieldset {
     width: 100%;
     border: 0px;
     padding: 15px;
-        box-shadow: 0 0 10px 1px #ddd;
-        background-color: #ffffff;
-
+    box-shadow: 0 0 10px 1px #ddd;
+    background-color: #ffffff;
 }
 
 fieldset legend {
     color: #e1262a;
-    padding: 5px 10px ;
+    padding: 5px 10px;
     background-color: #fcf8f7;
     font-size: 32px;
     border: none;
@@ -60,18 +60,16 @@ fieldset legend {
     box-shadow: 0 0 5px 1px #ddd;
 }
 
-option{
+option {
     margin: 20px;
 }
-
 
 input[type=text] {
     font-size: 80%;
     border: 0px;
-        outline: none;
-        height: 20px;
-        background-color: transparent;
-
+    outline: none;
+    height: 20px;
+    background-color: transparent;
 }
 
 .center-items {
@@ -135,10 +133,7 @@ input[type=text] {
     display: none;
 }
 
-
-
 /* index.html*/
-
 
 .parallax-home {
     background-image: url("../img/parallax-home.jpg");
@@ -154,7 +149,6 @@ input[type=text] {
 .intro-banner {
     font-size: 35px;
     margin: 30px 50px;
-    
     background-image: -webkit-linear-gradient(45deg, #911295 20%, #be108a 50%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -163,7 +157,7 @@ input[type=text] {
 .intro-table {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;    
+    align-items: flex-start;
     justify-content: flex-start;
     margin-bottom: 40px;
 }
@@ -176,7 +170,6 @@ input[type=text] {
     display: flex;
     align-items: flex-start;
     justify-content: space-around;
-
     list-style-type: none;
     width: 85%;
 }
@@ -187,14 +180,12 @@ input[type=text] {
     align-items: center;
     align-content: center;
     justify-content: center;
-
     width: 40%;
-
 }
 
 .intro-table h1 {
     font-family: 'Baloo Bhaina 2', cursive;
-    font-weight: normal ;
+    font-weight: normal;
     color: #666666;
     font-size: 25px;
     margin: 0px;
@@ -202,7 +193,66 @@ input[type=text] {
 
 .intro-table p {
     font-family: 'Baloo Bhaina 2', cursive;
-    font-weight: normal ;
+    font-weight: normal;
     color: #666666;
     margin: 0px;
+}
+
+/* Events.html */
+
+.event-list {
+    margin: 40px 0px 80px 0px;
+    display: flex;
+    align-content: center;
+}
+
+
+.event-item {
+    /* width: 600px; */
+    align-self: center;
+    padding: 0px 0px;
+}
+
+.event-item-title {
+    font-size: 24px;
+    color: white;
+    background-color: rgb(228, 0, 114);
+    width: 600px;
+    border-radius: 10px 10px 0px 0px;
+    padding: 5px 20px 0px 20px;
+}
+
+.event-item-detail {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    padding: 12px 20px 8px 20px;
+}
+
+.event-item-detail .material-icon {
+    padding-bottom: 6px;
+    padding-right: 5px;
+}
+
+.event-item-detail p {
+    align-self: flex-start;
+    font-size: 16px;
+    margin: 0px 0px;
+}
+
+.event-item-intro {
+    font-size: 20px !important;
+}
+
+.event-item-hidden {
+    display: none;
+}
+
+.event-item-expanded .event-item-detail {
+    flex-direction: column;
+}
+
+.event-item-expanded .event-item-hidden {
+    display: flex;
 }
