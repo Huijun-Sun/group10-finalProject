@@ -208,7 +208,7 @@ input[type=text] {
 
 
 .event-item {
-    /* width: 600px; */
+    width: 640px;
     align-self: center;
     padding: 0px 0px;
 }
@@ -242,6 +242,9 @@ input[type=text] {
 }
 
 .event-item-intro {
+    padding: 20px 0px;
+    text-align: left;
+    line-height: 1.2;
     font-size: 20px !important;
 }
 
