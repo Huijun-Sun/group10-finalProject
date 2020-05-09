@@ -52,23 +52,24 @@ async function newUser (username, password, firstName, lastName, email){
 
     const newuser = {
         username: username,
+        lowerusername:username.toLowerCase(),
         password: hashedpassword,
         firstName: firstName,
         lastName: lastName,
         email: email
     }
-
    
     const user_username= await usercollection.findOne({lowerusername:username.toLowerCase()});
     const user_email= await usercollection.findOne({email:email});
 
     if(user_username) throw `Username already exists`;
     if(user_email) throw `User with this Emailid already exists`;
-    console.log("Anuja");
 
      //Inserting the new user details into the database collection
      const insertInfo = await usercollection.insertOne(newuser);
      if (insertInfo.insertedCount === 0) throw 'Could not create user account';
+     let status = "User Account created successfully";
+     return status;
 
 }
 
@@ -81,7 +82,7 @@ async function userValidation(username, password){
     if(!typeof password !=="string") throw `Password should be of type string`;
 
     const usercollection= await userData();
-    const user= await usercollection.findOne({username:UserName})
+    const user= await usercollection.findOne({username:username})
     if(!user){
         throw "Incorrect Username/password entered"
     }
