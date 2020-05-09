@@ -20,6 +20,7 @@ module.exports = {
   universities: getCollectionFn("universities"),
   DiscussionTopic: getCollectionFn("DiscussionTopic"),
   DiscussionComment: getCollectionFn("DiscussionComment"),
+  user_Registration: getCollectionFn("user_Registration"),
   user_Profile: getCollectionFn("user_Profile")
  
 };
