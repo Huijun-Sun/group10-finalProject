@@ -1,5 +1,5 @@
 const universityData = require('./universities');  
-const DiscussionData = require('./Discussion');  
+const discussionData = require('./discussion');  
 const userProfileData = require('./userprofile'); 
 
-module.exports = {  universities: universityData,Discussion: DiscussionData,userprofile: userProfileData};
+module.exports = {  universities: universityData,discussion: discussionData,userprofile: userProfileData};

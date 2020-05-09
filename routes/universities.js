@@ -4,8 +4,7 @@ const data = require("../data");
 const univData = data.universities;
 
 router.get("/:id", async (req, res) => {
-  try {
-      
+  try {   
     const univ = await univData.getUniversity(req.params.id);
     res.json(univ);
   } catch (e) {
@@ -16,6 +15,15 @@ router.get("/:id", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const univList = await univData.getAllUniversity();
+    res.json(univList);
+  } catch (e) {
+    res.status(404).json({ message: e });
+  }
+});
+router.get("/top/topuniversities", async (req, res) => {
+  try {
+   
+    const univList = await univData.getTopTrendingUniv();
     res.json(univList);
   } catch (e) {
     res.status(404).json({ message: e });
@@ -93,14 +101,32 @@ router.get("/title/:title/course/:course/intake/:intake", async (req, res) => {
         res.status(404).json({ message: e });
     }
   });
+  router.get("/course/:course/name/:name", async (req, res) => {
+    try {
+        
+        
+      const univList = await univData.getUniversityFrontpageFinder(req.params.course,req.params.name);
+      res.json(univList);
+    } catch (e) {
+        res.status(404).json({ message: e });
+    }
+  });
   router.get("/:course/:score/:exp/:gpa/:papers", async (req, res) => {
     try {
         
-      const univList = await univData.getUniversity_finder(req.params.course,parseInt(req.params.score),parseInt(req.params.exp),parseInt(req.params.gpa),parseInt(req.params.papers));
+      const univList = await univData.getUniversityFinder(req.params.course,parseInt(req.params.score),parseInt(req.params.exp),parseInt(req.params.gpa),parseInt(req.params.papers));
       res.json(univList);
     } catch (e) {
       res.status(500).json({message: e});
     }
   });
-
+  router.get("/title/:title/score/:score", async (req, res) => {
+    try {
+        
+      const univch = await univData.getChances(req.params.title,parseInt(req.params.score));
+      res.json(univch);
+    } catch (e) {
+      res.status(500).json({message: e});
+    }
+  });
 module.exports = router;
