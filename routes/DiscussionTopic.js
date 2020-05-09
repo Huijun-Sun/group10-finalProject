@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const data = require("../data");
-const DiscussionData = data.Discussion;
+const discussionData = data.discussion;
 
 router.get("/:id", async (req, res) => {
   try {
-    const topic = await DiscussionData.getDiscussionTopic(req.params.id);
+    const topic = await discussionData.getDiscussionTopic(req.params.id);
     res.json(topic);
   } catch (e) {
     res.status(404).json({ message: "Topic not found" });
@@ -14,22 +14,21 @@ router.get("/:id", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const DTList = await DiscussionData.getAllTopics();
-    res.json(DTList);
+    const dtList = await discussionData.getAllTopics();
+    res.json(dtList);
   } catch (e) {
     res.status(500).send();
   }
 });
 
 router.post("/", async (req, res) => {
-  const DTDataa = req.body;
+  const dtDataa = req.body;
   try {
-    const { title } = DTDataa;
+    const { title } = dtDataa;
     if(!req.body.title)
-    throw "Invalid format";
-    const newDT = await DiscussionData.addDiscussionTopic(title);
-
-    res.status(200).json(newDT);
+    throw "Invalid post format";
+    const newdt = await discussionData.addDiscussionTopic(title);
+    res.status(200).json(newdt);
   } catch (e) {
     res.status(400).json({ error: e });
   }

@@ -18,6 +18,9 @@
     "express-handlebars": "^4.0.4",
     "express-session": "^1.17.1",
     "git": "^0.1.5",
-    "mongodb": "^3.5.4"
+    "mongodb": "^3.5.4",
+    "node-cron": "^2.0.3",
+    "nodemailer": "^6.4.6",
+    "password-hash": "^1.2.2"
   }
 }

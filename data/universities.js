@@ -75,6 +75,8 @@ async function getAllUniversity()
 }
 async function getUniversity(id)
 {
+    if(!id)
+    throw 'Id is required';
     const universityCollection = await universities();
     let objId=id;
     if (typeof id == "string")
@@ -86,6 +88,10 @@ async function getUniversity(id)
 async function getDeadline(title,course,intake)
 {
     const universityCollection = await universities();
+    if(title == null && course ==null && intake== null)
+    {
+        throw "Any one argument must be given to get deadline";
+    }
         if(title)
        title=title.toLowerCase();
        if (course)
@@ -125,7 +131,7 @@ async function getDeadline(title,course,intake)
         }
         if (intake !=null)
         {
-            console.log("here");
+          
         const univ = await universityCollection.find({intake: intake}).toArray();
         if (univ === null || univ.length<1) throw 'No univ with that id';
         return univ;
@@ -137,7 +143,7 @@ async function getDeadline(title,course,intake)
         return univ;
         }
 }
-async function getUniversity_finder(course,score,exp,gpa,papers)
+async function getUniversityFinder(course,score,exp,gpa,papers)
 {
     if(!course)
     throw "courses is required";
@@ -155,5 +161,49 @@ async function getUniversity_finder(course,score,exp,gpa,papers)
     if (univ === null || univ.length<1) throw 'No univ with matching values';
 	return univ;
 }
+async function getUniversityFrontpageFinder(course,name)
+{
+    if(!course)
+    throw "courses is required";
+    if(!name)
+    throw "name is required";
+   name=name.toLowerCase();
+    course=course.toLowerCase();
+    const universityCollection = await universities();  
+    const univ = await universityCollection.find({courses: course,title: name}).toArray();
+    if (univ === null || univ.length<1) throw 'No univ with matching values';
+	return univ;
+}
+async function getTopTrendingUniv()
+{
+    const universityCollection = await universities();  
+    const univ = await universityCollection.find({rank: {$lte:4}}).toArray();
+    return univ;
+}
 
-module.exports = {addUniversity,getAllUniversity,getUniversity,getUniversity_finder,getDeadline};
+async function getChances(title,score)
+{
+    if(!title)
+    throw "Title is required to get chances";
+    if(!score)
+    throw "Score is required to get chances";
+    const universityCollection = await universities();  
+    const univ = await universityCollection.findOne({title: title});
+    if (univ.averagescore<=score)
+    {
+        return "Safe";
+    }
+    else if(univ.averagescore>score)
+    {
+        if((univ.averagescore-score)<=9)
+        {
+            return "Moderate";
+        }
+        else{
+            return "Ambitious";
+        }
+    }
+}
+
+
+module.exports = {addUniversity,getAllUniversity,getUniversity,getUniversityFinder,getDeadline,getUniversityFrontpageFinder,getTopTrendingUniv,getChances};

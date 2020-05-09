@@ -3,6 +3,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const exphbs = require("express-handlebars");
 const session = require('express-session');
+const app = express();
+const configRoutes = require("./routes");
+const mail = require("./emailNotification");
 
 app.use(session({
   name: 'AuthCookie',
@@ -10,9 +13,6 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
-
-const app = express();
-const configRoutes = require("./routes");
 
 app.engine("hbs", exphbs({
   extname: 'hbs', defaultLayout: "main",
@@ -39,3 +39,4 @@ app.listen(3000, () => {
   console.log("We've now got a server!");
   console.log("Your routes will be running on http://localhost:3000");
 });
+
