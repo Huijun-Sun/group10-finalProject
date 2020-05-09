@@ -14,7 +14,7 @@ const userproData = data.userprofile;
   });
 
 //Async function to create a userprofile
-  router.post("/", async (req, res) => {
+  router.post("/:id", async (req, res) => {
     const userproInfo = req.body;
     
     if (!userproInfo) {
@@ -23,7 +23,7 @@ const userproData = data.userprofile;
       }
      // console.log(userproInfo.undergrad.college);
       try {
-        const createdUserPro = await userproData.createUserProfile(userproInfo.interestedin, userproInfo.undergrad, userproInfo.GRE_GMAT, userproInfo.TOEFL_IELTS_PTE);
+        const createdUserPro = await userproData.createUserProfile(req.params.id, userproInfo.interestedin, userproInfo.undergrad, userproInfo.GRE_GMAT, userproInfo.TOEFL_IELTS_PTE);
         res.status(200).json(createdUserPro);
       } catch (e) {
         res.status(500).json({error: e});
