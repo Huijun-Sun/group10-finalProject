@@ -90,7 +90,7 @@ async function createUserProfile(userid,interestedin, undergrad, GRE_GMAT, TOEFL
     return status;
 }
 
-async function sameStatusProfiles (university, course){
+async function sameStatusProfiles (university, course, status){
     const userproCollection = await userprofile();
 
     const userproList = await userproCollection.find({}).toArray();
@@ -99,7 +99,7 @@ async function sameStatusProfiles (university, course){
             const eachuser_info = [];
             let gre = parseInt(each_userpro.GRE_GMAT.verbal) + parseInt(each_userpro.GRE_GMAT.quant);
             for(let each_intappUni of each_userpro.int_app_university){
-                if(each_intappUni.uniName === university && each_intappUni.uniProgram === course && (each_intappUni.uniStatus==="Admit" ||each_intappUni.uniStatus==="Reject")){
+                if(each_intappUni.uniName === university && each_intappUni.uniProgram === course && each_intappUni.uniStatus=== status){
                 const eachuser_data = {
                   id: each_userpro.userid,  
                   uniName: each_intappUni.uniName,
@@ -137,7 +137,7 @@ async function addIntAppUniversity (id, uniName, uniProgram, uniStatus, comments
     if(!uniName) throw `University Name required`;
     if(!uniProgram) throw `Interested/Appied Program required`;
     if(!uniStatus) throw `Please provide the status of you application`;
-    const sameStatus = await sameStatusProfiles(uniName,uniProgram);
+    const sameStatus = await sameStatusProfiles(uniName,uniProgram, uniStatus);
 
     const userproCollection = await userprofile();
     const updateInfo = await userproCollection.updateOne(
