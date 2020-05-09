@@ -4,10 +4,12 @@ const DcRoutes = require("./DiscussionComment");
 const userproRoutes = require("./userprofile");
 const introRoutes = require("./intro")
 const eventsRoutes = require("./events")
+const forumRoutes = require("./forum")
 
 const constructorMethod = app => {
   app.use("/", introRoutes);
   app.use("/events", eventsRoutes);
+  app.use("/forum", forumRoutes);
 
 
   app.use("/universities", universitiesRoutes);
