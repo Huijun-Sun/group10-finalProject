@@ -16,28 +16,19 @@ router.get("/id/:id", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
+  const univList = await univData.getAllUniversity();
+    
   res.render("universityPage", {
     heading: "University Finder",
-    sub_heading: "Find your best college here!",
+    subHeading: "Find your best college here!",
     scripts: pageScripts,
     showSearch: false,
     showRegBanner: true,
+    univList: univList,
   });
 });
 
-router.get("/all", async (req, res) => {
-  try {
-    const univList = await univData.getAllUniversity();
-    console.log("univList");
-    console.log(univList);
-    res.json(univList);
-  } catch (e) {
-    res.status(404).json({ message: e });
-  }
-});
-
-
-router.get("/top/topuniversities", async (req, res) => {
+router.get("/top", async (req, res) => {
   try {
    
     const univList = await univData.getTopTrendingUniv();

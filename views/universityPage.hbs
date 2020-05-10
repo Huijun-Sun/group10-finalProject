@@ -1,2 +1,36 @@
 <div id="college-list" class="college-list row">
+    {{#each univList}}
+    <button class="college-item card column">
+        <div class="college-item-header">
+            <h3 class="college-item-title">{{title}}</h3>
+            <div class="college-item-rating material-align-center">
+                <p class="college-item-score">{{rating}}</p>
+                <a class="material-icon">star</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="college-item-detail column">
+                <p class="material-align-center">
+                    <a class="material-icon">assessment</a>
+                    Ranking: {{rank}}
+                </p>
+                <p class="material-align-center">
+                    <a class="material-icon">account_balance </a>
+                    <a>Type: {{category}} University</a>
+                </p>
+                <p class="material-align-center">
+                    <a class="material-icon">monetization_on</a>
+                    Tuition: {{tuitionfees}}
+                </p>
+
+                <p class="material-align-center">
+                    <a class="material-icon">location_on</a>
+                    Location: {{location}}
+                </p>
+            </div>
+            <div class="college-item-spacer"></div>
+        </div>
+    </button>
+    {{/each}}
+
 </div>
