@@ -26,6 +26,7 @@ async function getUser(id){
 
 //Async function to create an user account for dream high
 async function newUser (username, password, firstName, lastName, email){
+    
     if(!username) throw "username is undefined";
     if(typeof username!="string") throw "username is not of type string";
     if(username.length<6) throw "username should be of length 6 or more";

@@ -2,7 +2,7 @@ const mongoCollections = require('../config/mongoCollections');
 const universities = mongoCollections.universities;
 const { ObjectId } = require('mongodb');
 
-async function addUniversity(title, courses, category, programs, location, deadline, tuitionfees, rating, rank, livingexp, averagescore, websitelink,workexp,GPA,intake,papers)
+async function addUniversity(title, courses, category, programs, location, deadline, tuitionfees, rating, rank, livingexp, averagescore, websitelink,workexp,GPA,intake,papers,description,coursedesc)
 {
     if(!title)
     throw "Title is required";
@@ -36,6 +36,11 @@ async function addUniversity(title, courses, category, programs, location, deadl
     throw "intake is required";
     if(!papers)
     throw "papers is required";
+    if(!description)
+    throw "Description is required";
+    if(!coursedesc)
+    throw "Course Description is required";
+   
 
     const universityCollection = await universities();
     let newuv = {
@@ -54,7 +59,10 @@ async function addUniversity(title, courses, category, programs, location, deadl
         workexp: workexp,
         GPA: GPA,
         intake: intake,
-        papers: papers
+        papers: papers,
+        description: description,
+        coursedesc: coursedesc
+        
     };
     
     const insertInfo = await universityCollection.insertOne(newuv);
@@ -75,6 +83,7 @@ async function getAllUniversity()
 }
 async function getUniversity(id)
 {
+    
     if(!id)
     throw 'Id is required';
     const universityCollection = await universities();
@@ -87,6 +96,7 @@ async function getUniversity(id)
 }
 async function getDeadline(title,course,intake)
 {
+    
     const universityCollection = await universities();
     if(title == null && course ==null && intake== null)
     {
@@ -98,11 +108,12 @@ async function getDeadline(title,course,intake)
        course=course.toLowerCase();
        if (intake)
        intake=intake.toLowerCase();
-        
        if (title != null && course != null && intake !=null)
         {
-            const univ = await universityCollection.find({ title: title,courses: course,intake: intake}).toArray();
+         const univ = await universityCollection.find({ title: title,courses: course,intake: intake}).toArray();
+        
         if (univ === null || univ.length<1) throw 'No univ with that id';
+        
         return univ;
         }
         if (title != null && course != null )

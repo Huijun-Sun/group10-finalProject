@@ -43,16 +43,18 @@ router.get("/" ,async function(req,res){
 //Async function to create a userprofile
   router.post("/", async (req, res) => {
     const userInfo = req.body;
-    
+   
+  
     if (!userInfo) {
         res.status(400).json({error: 'You must provide data to to create user account'});
         return;
       }
       try {
+      
         const createdUser = await userData.newUser(userInfo.username, userInfo.password, userInfo.firstname, userInfo.lastname, userInfo.email);
         res.status(200).json(createdUser);
       } catch (e) {
-        res.status(500).json({error: e});
+        res.status(500).json({error: e.message});
       }
   });
 

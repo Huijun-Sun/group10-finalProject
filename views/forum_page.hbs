@@ -1,0 +1,17 @@
+
+   <div id="forum-list" class="column event-list">
+      {{#each dtList}}
+     <p> {{title}}</p>
+     <p> {{username}}</p>
+     {{#each comments}}
+     <p>{{Comments}}{{username}}</p>
+     {{/each}}
+    <form method="POST" action="/discussionComment" id="myform">
+    <label for="text_input"> <textarea id="text_input" name="Comments"> </textarea></label>
+    <input type="hidden" id="dtId" name="dtId" value={{_id}}>
+    <button class="submitButton" type="submit">Add Comment</button>
+    </form>
+   {{/each}}
+    </div>
+    
+  

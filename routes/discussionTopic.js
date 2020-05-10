@@ -5,6 +5,8 @@ const discussionData = data.discussion;
 
 router.get("/:id", async (req, res) => {
   try {
+    if(!req.params.id)
+    throw "Id is required";
     const topic = await discussionData.getDiscussionTopic(req.params.id);
     res.json(topic);
   } catch (e) {
@@ -15,19 +17,21 @@ router.get("/:id", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const dtList = await discussionData.getAllTopics();
-    res.json(dtList);
+    console.log(dtList);
+    res.render("forum_page",{dtList});
   } catch (e) {
-    res.status(500).send();
+    res.status(500).render(e);
   }
 });
+
 
 router.post("/", async (req, res) => {
   const dtDataa = req.body;
   try {
-    const { title } = dtDataa;
+    const { title,user } = dtDataa;
     if(!req.body.title)
     throw "Invalid post format";
-    const newdt = await discussionData.addDiscussionTopic(title);
+    const newdt = await discussionData.addDiscussionTopic(title,user);
     res.status(200).json(newdt);
   } catch (e) {
     res.status(400).json({ error: e });
