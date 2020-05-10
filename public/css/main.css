@@ -75,6 +75,7 @@ input[type=text] {
 .center-items {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .column {

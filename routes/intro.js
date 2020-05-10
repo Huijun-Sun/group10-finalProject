@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-	res.render("intro_page", {
+	res.render("introPage", {
         heading: "Finding a college should be easy.",
 
     });
