@@ -26,9 +26,8 @@ router.get("/" ,async function(req,res){
     // }
 
     res.render("authPage", {
-      heading: "Join us today!",
-      sub_heading: "Get help from thousands of aspirants just like you!",
       showSearch: false,
+      showRegBanner: false,
     });
     return;    
 });

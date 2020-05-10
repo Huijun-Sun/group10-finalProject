@@ -21,6 +21,7 @@ router.get("/", async (req, res) => {
     sub_heading: "Find your best college here!",
     scripts: pageScripts,
     showSearch: false,
+    showRegBanner: true,
   });
 });
 

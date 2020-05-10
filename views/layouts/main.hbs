@@ -15,11 +15,14 @@
   {{#if showSearch}}
   {{>search}}
   {{/if}}
-  {{>heading}}
+  
+    {{>heading}}
+    {{{body}}}
 
-  {{{body}}}
+  {{#if showRegBanner}}
+  {{>regBanner}}
+  {{/if}}
 
-  {{>reg_banner}}
   {{>footer}}
 
 </body>

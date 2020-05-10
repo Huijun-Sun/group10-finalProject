@@ -346,3 +346,10 @@ input[type=text] {
     height: 130px;
 } */
 
+
+
+/* signin */
+.signin {
+    margin-bottom: 70px;
+    justify-content: space-between;
+}

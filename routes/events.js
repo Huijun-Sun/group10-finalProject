@@ -9,6 +9,7 @@ router.get('/', async (req, res) => {
         sub_heading: "Get involved, and learn more about your dream college!",
         scripts: scripts,
         showSearch: true,
+        showRegBanner: true,
 
     });
 });
