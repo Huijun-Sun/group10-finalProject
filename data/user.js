@@ -56,11 +56,12 @@ async function newUser (username, password, firstName, lastName, email){
         password: hashedpassword,
         firstName: firstName,
         lastName: lastName,
-        email: email
+        email: email,
+        loweremail: email.toLowerCase()
     }
    
     const user_username= await usercollection.findOne({lowerusername:username.toLowerCase()});
-    const user_email= await usercollection.findOne({email:email});
+    const user_email= await usercollection.findOne({loweremail:email.toLowerCase()});
 
     if(user_username) throw `Username already exists`;
     if(user_email) throw `User with this Emailid already exists`;
