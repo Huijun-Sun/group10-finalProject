@@ -349,7 +349,17 @@ input[type=text] {
 
 
 /* signin */
-.signin {
+.signin-body {
     margin-bottom: 70px;
     justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.signin-headings {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.signin-card {
+    margin: 50px 50px 50px 50px !important;
 }
