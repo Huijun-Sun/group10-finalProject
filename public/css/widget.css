@@ -19,6 +19,7 @@
     background-color: white;
 }
 
+/* <button> */
 .card-btn, .card-highlight-btn {
     margin: 10px 0px 10px 10px;
     -webkit-transition: box-shadow 300ms linear;
@@ -129,8 +130,10 @@
     /* inherit from card */
     flex-wrap: nowrap;
     justify-content: space-around;
+    max-width: 1030px;
+    /* min-width: 815px; */
     width: 95%;
-    max-width: 930px;
+
     margin: 30px 40px;
     padding: 6px 0px;
 }
@@ -170,6 +173,16 @@
     color: #666666;
 }
 
+.search-filter input[type="number"] {
+    font: inherit;
+    font-size: 16px;
+    outline: 0;
+    color: #666666;
+    border:none;
+
+    max-width: 100px;
+}
+
 .search-filter select {
     font: inherit;
     font-size: 16px;
@@ -178,6 +191,7 @@
     /* box-shadow: 0px 0px 10px #e2e2e2; */
     border: 0px;
     border-radius: 10px;
+    margin-right: 20px;
     outline: 0;
 }
 

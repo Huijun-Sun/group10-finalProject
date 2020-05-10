@@ -3,6 +3,8 @@
 @import "./nav.css";
 @import "./parallax.css";
 @import "./footer.css";
+
+
 body {
     background: #ffffff;
     /* font-family: 'Baloo Bhaina 2', cursive; */
@@ -208,7 +210,6 @@ input[type=text] {
 }
 
 /* Events.html */
-
 .event-list {
     margin: 40px 0px 80px 0px;
     display: flex;
@@ -268,8 +269,8 @@ input[type=text] {
     display: flex;
 }
 
-/* college.html*/
 
+/* college.html*/
 .college-list {
     margin: 40px 30px 80px 30px;
     display: flex;
@@ -363,3 +364,5 @@ input[type=text] {
 .signin-card {
     margin: 50px 50px 50px 50px !important;
 }
+
+

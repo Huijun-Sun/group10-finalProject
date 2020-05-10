@@ -16,8 +16,7 @@ router.get("/id/:id", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  const univList = await univData.getAllUniversity();
-    
+  const univList = await univData.getAllUniversity();  
   res.render("universityPage", {
     heading: "University Finder",
     subHeading: "Find your best college here!",
@@ -30,7 +29,6 @@ router.get("/", async (req, res) => {
 
 router.get("/top", async (req, res) => {
   try {
-   
     const univList = await univData.getTopTrendingUniv();
     res.json(univList);
   } catch (e) {

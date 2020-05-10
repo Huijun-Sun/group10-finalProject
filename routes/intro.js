@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const pageScripts =  [{script: "/public/js/introPage.js"}];
+// const pageScripts =  [{script: "/public/js/introPage.js"}];
 
 
 router.get('/', async (req, res) => {
@@ -9,8 +9,17 @@ router.get('/', async (req, res) => {
         heading: "Finding a college should be easy.",
         showSearch: true,
         showRegBanner: true,
-        scripts: pageScripts,
+        // scripts: pageScripts,
     });
 });
+
+// router.get('/admit', async (req, res) => {
+// 	res.render("admitRejectPage", {
+//         heading: "Admitttttt",
+//         showSearch: false,
+//         showRegBanner: true,
+//         scripts: [],
+//     });
+// });
 
 module.exports = router;
