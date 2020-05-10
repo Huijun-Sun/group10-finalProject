@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const scripts = [{ script: "/public/js/events_page.js" }]
+const scripts = [{ script: "/public/js/eventsPage.js" }]
 
 router.get('/', async (req, res) => {
 	res.render("events_page", {
