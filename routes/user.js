@@ -18,19 +18,26 @@ router.get("/userlogin",async function(req,res){
 
 //If a user is logged in, then opens the website - login page shouldn't be displayed   
 router.get("/" ,async function(req,res){
-   // console.log(1)
-    if(req.session.isloggedin!==undefined && req.session.isloggedin==true){
-        //redirect to main page of dream high
-        res.redirect();
-        return;
-    }
+   console.log(1)
+    // if(req.session.isloggedin!==undefined && req.session.isloggedin==true){
+    //     //redirect to main page of dream high
+    //     res.redirect("/profile");
+    //     return;
+    // }
+
+    res.render("authPage", {
+      heading: "Join us today!",
+      sub_heading: "Get help from thousands of aspirants just like you!",
+      showSearch: false,
+    });
+    return;    
 });
 
 
 
    //Async route function to get a particular user detail
    //Be careful:: The userdetails include hashed password too
-   router.get("/:id", async (req, res) => {
+   router.get("/profile/:id", async (req, res) => {
     try {
       const user = await userData.getUser(req.params.id);
       res.status(200).json(user);
@@ -41,7 +48,7 @@ router.get("/" ,async function(req,res){
 
 
 //Async function to create a userprofile
-  router.post("/", async (req, res) => {
+  router.post("/signup", async (req, res) => {
     const userInfo = req.body;
     
     if (!userInfo) {

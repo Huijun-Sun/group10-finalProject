@@ -20,6 +20,7 @@ router.get("/", async (req, res) => {
     heading: "University Finder",
     sub_heading: "Find your best college here!",
     scripts: pageScripts,
+    showSearch: false,
   });
 });
 
@@ -145,3 +146,6 @@ router.get("/title/:title/course/:course/intake/:intake", async (req, res) => {
     }
   });
 module.exports = router;
+
+
+// 

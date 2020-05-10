@@ -8,6 +8,8 @@ router.get('/', async (req, res) => {
         heading: "Events",
         sub_heading: "Get involved, and learn more about your dream college!",
         scripts: scripts,
+        showSearch: true,
+
     });
 });
 
