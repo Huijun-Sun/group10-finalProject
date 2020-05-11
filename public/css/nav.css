@@ -29,6 +29,7 @@
 }
 
 .nav .menu a {
+    white-space: nowrap;
     font-size: 16px;
     margin: 0px;
     padding: 5px 20px 0px 20px;

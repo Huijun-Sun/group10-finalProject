@@ -52,7 +52,7 @@ async function main() {
        // console.log(await universities.getDeadline("Stevens Instituite of Technology","Computer Science","fall"));
         //console.log(await universities.getDeadline("Stevens Instituite of Technology","Computer Science"));
         //console.log(await universities.getDeadline(null,"Computer Science"));
-       // console.log(await Discussion.addDiscussionTopic("What is the deadline for NYC?"));
+      // await Discussion.addDiscussionTopic("What is the deadline for NYC?")
        // console.log(await Discussion.addDiscussionComment("For fall?","5ea0cedce1aa145fc46a333e"));
       //  console.log(await Discussion.addDiscussionComment("next week","5ea0cf5907a1306d146630ef"));
 

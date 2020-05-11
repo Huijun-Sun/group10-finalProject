@@ -1,0 +1,76 @@
+<div class="row center-items">
+    <form class="search-box card">
+        <div class="search-area">
+            <div class="search-filter">
+                <label class="search-title" for="search-course">COURSE</label>
+                <select name="search-course" id="search-course">
+                    <option value="grad">Masters</option>
+                    <option value="gradcert">MBA</option>
+                </select>
+            </div>
+            <div class="search-filter-spacer"></div>
+
+            <div class="search-filter">
+                <label class="search-title" for="search-gre">GRE SCORE</label>
+                <input type="number" name="search-gre" id="search-gre" size="24" maxlength="32" placeholder="4.0" />
+            </div>
+            <div class="search-filter-spacer"></div>
+
+            <div class="search-filter">
+                <label class="search-title" for="search-gpa">GPA</label>
+                <input type="number" name="search-gpa" id="search-gpa" size="24" maxlength="32" placeholder="4.0" />
+            </div>
+            <div class="search-filter-spacer"></div>
+
+            <div class="search-filter">
+                <label class="search-title" for="search-expense">EXPENSE</label>
+                <input type="number" name="search-expense" id="search-expense" size="24" maxlength="32"
+                    placeholder="10,000" />
+            </div>
+            <div class="search-filter-spacer"></div>
+            <div class="search-filter">
+                <label class="search-title" for="search-papers">PAPERS</label>
+                <input type="number" name="search-papers" id="search-papers" size="24" maxlength="32" placeholder="2" />
+            </div>
+
+        </div>
+        <button class="card-button"><a class="material-icon">search</a> search</button>
+    </form>
+</div>
+
+<div id="college-list" class="college-list row">
+    {{#each univList}}
+    <button class="college-item card column">
+        <div class="college-item-header">
+            <h3 class="college-item-title">{{title}}</h3>
+            <div class="college-item-rating material-align-center">
+                <p class="college-item-score">{{rating}}</p>
+                <a class="material-icon">star</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="college-item-detail column">
+                <p class="material-align-center">
+                    <a class="material-icon">assessment</a>
+                    Ranking: {{rank}}
+                </p>
+                <p class="material-align-center">
+                    <a class="material-icon">account_balance </a>
+                    <a>Type: {{category}} University</a>
+                </p>
+                <p class="material-align-center">
+                    <a class="material-icon">monetization_on</a>
+                    Tuition: {{tuitionfees}}
+                </p>
+
+                <p class="material-align-center">
+                    <a class="material-icon">location_on</a>
+                    Location: {{location}}
+                </p>
+            </div>
+            <div class="college-item-spacer"></div>
+        </div>
+    </button>
+    {{/each}}
+
+</div>

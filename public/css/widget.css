@@ -3,7 +3,7 @@
     font-family: "Material Icons";
 }
 
-.material-align-center a{
+.material-align-center a {
     display: inline-flex;
     vertical-align: middle;
     align-self: center;
@@ -19,47 +19,73 @@
     background-color: white;
 }
 
-.reg-card {
-    font-family: 'Baloo Bhaina 2', cursive;
-    display: flex;
-    flex-direction: row;
-    margin-right: 50px;
-    box-shadow: 0px 4px 20px #222222;
-    border: 0px;
-    border-radius: 10px;
-    background-color: #f6f6f6;
-    width: 400px;
-    height: 330px;
-}
-
-.reg-form {
-    display: flex;
-    width: 100%;
-    margin: 20px 20px;
-}
-
-.reg-form button {
+/* <button> */
+.card-btn, .card-highlight-btn {
     margin: 10px 0px 10px 10px;
     -webkit-transition: box-shadow 300ms linear;
     -ms-transition: box-shadow 300ms linear;
     transition: box-shadow 300ms linear;
 }
 
-.reg-form button:hover {
+.card-btn:hover, .card-highlight-btn:hover {
     margin: 10px 0px 10px 10px;
     box-shadow: 0px 0px 6px #dddddd;
     -webkit-transition: box-shadow 100ms linear;
     transition: box-shadow 100ms linear;
 }
 
-.reg-login-btn {
+.card-btn {
     color: #222222;
     background-color: transparent;
 }
 
-.reg-signup-btn {
+.card-highlight-btn {
     color: white;
     background-image: -webkit-linear-gradient(-45deg, #e20078 20%, #cf006f 50%);
+}
+
+.card-input[type="text"] {
+    font: inherit;
+    font-size: 16px;
+    outline: 0;
+    border: none;
+    border-radius: 8px;
+    margin: 5px 0px;
+    padding: 15px 15px 10px 15px;
+    background-color: white;
+    color: #666666;
+}
+
+.card-input[type="password"] {
+    font: inherit;
+    font-size: 16px;
+    outline: 0;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px 5px 15px;
+    margin: 5px 0px;
+    background-color: white;
+    color: #666666;
+}
+
+
+
+
+.reg-card {
+    font-family: 'Baloo Bhaina 2', cursive;
+    display: flex;
+    flex-direction: row;
+    margin-right: 50px;
+    box-shadow: 0px 4px 20px #22222230;
+    border: 0px;
+    border-radius: 10px;
+    background-color: #f6f6f6;
+}
+
+.reg-form {
+    display: flex;
+    width: 100%;
+    margin: 20px 20px;
 }
 
 .reg-logo {
@@ -77,30 +103,6 @@
     font-weight: bold;
     font-size: 30px;
     color: rgb(228, 0, 114);
-}
-
-.reg-form input[type="text"] {
-    font: inherit;
-    font-size: 16px;
-    outline: 0;
-    border: none;
-    border-radius: 8px;
-    margin: 5px 0px;
-    padding: 15px 15px 10px 15px;
-    background-color: white;
-    color: #666666;
-}
-
-.reg-form input[type="password"] {
-    font: inherit;
-    font-size: 16px;
-    outline: 0;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 15px 5px 15px;
-    margin: 5px 0px;
-    background-color: white;
-    color: #666666;
 }
 
 .reg-btn-group {
@@ -121,11 +123,17 @@
     transition: box-shadow 300ms linear; */
 }
 
+
+
+
 .search-box {
     /* inherit from card */
     flex-wrap: nowrap;
     justify-content: space-around;
+    max-width: 1030px;
+    /* min-width: 815px; */
     width: 95%;
+
     margin: 30px 40px;
     padding: 6px 0px;
 }
@@ -165,6 +173,16 @@
     color: #666666;
 }
 
+.search-filter input[type="number"] {
+    font: inherit;
+    font-size: 16px;
+    outline: 0;
+    color: #666666;
+    border:none;
+
+    max-width: 100px;
+}
+
 .search-filter select {
     font: inherit;
     font-size: 16px;
@@ -173,6 +191,7 @@
     /* box-shadow: 0px 0px 10px #e2e2e2; */
     border: 0px;
     border-radius: 10px;
+    margin-right: 20px;
     outline: 0;
 }
 

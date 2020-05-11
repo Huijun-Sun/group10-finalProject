@@ -3,7 +3,10 @@ const router = express.Router();
 const data = require("../data");
 const univData = data.universities;
 
-router.get("/:id", async (req, res) => {
+
+const pageScripts =  [{script: "/public/js/universityPage.js"}];
+
+router.get("/id/:id", async (req, res) => {
   try {   
     
     if(!req.params.id)
@@ -16,16 +19,19 @@ router.get("/:id", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  try {
-    const univList = await univData.getAllUniversity();
-    res.json(univList);
-  } catch (e) {
-    res.status(404).json({ message: e });
-  }
+  const univList = await univData.getAllUniversity();  
+  res.render("universityPage", {
+    heading: "University Finder",
+    subHeading: "Find your best college here!",
+    scripts: pageScripts,
+    showSearch: false,
+    showRegBanner: true,
+    univList: univList,
+  });
 });
-router.get("/top/topuniversities", async (req, res) => {
+
+router.get("/top", async (req, res) => {
   try {
-   
     const univList = await univData.getTopTrendingUniv();
     res.json(univList);
   } catch (e) {
@@ -164,3 +170,6 @@ router.get("/title/:title/course/:course/intake/:intake", async (req, res) => {
     }
   });
 module.exports = router;
+
+
+// 

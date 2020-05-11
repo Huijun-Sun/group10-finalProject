@@ -36,6 +36,7 @@ async function getDiscussionTopic(Id)
     if (dt.Comments!=null)
     {
     const commentDetail =await getDiscussionCommentTopicId(Id);
+    if(commentDetail)
     dt.comments=commentDetail;}
     return dt;
 }
@@ -84,7 +85,7 @@ async function getDiscussionCommentTopicId(Id)
     const discussionCommentCollection = await discussionComment();
     let objId=Id;
     const dt = await discussionCommentCollection.find({dtId: objId }).toArray();
-    if (dt === null || dt.length<1) throw 'No Discussion comment  with matching topic id';
+   // if (dt === null || dt.length<1) throw 'No Discussion comment  with matching topic id';
     return dt;
 }
 async function getAllTopics()
@@ -92,13 +93,14 @@ async function getAllTopics()
     
     const discussionTopicCollection = await discussionTopic();
     const dtList = await discussionTopicCollection.find({}).toArray();
+    if(dtList){
     for (var i=0;i<dtList.length;i++)
     {
         const commentDetail = await getDiscussionCommentTopicId(dtList[i]._id.toString());
         dtList[i].comments=commentDetail;
         
-    }
-    if (dtList === null || dtList.length<1) throw 'No Discussion Topic with matching values';
+    }}
+ //   if (dtList === null || dtList.length<1) throw 'No Discussion Topic with matching values';
     return dtList;
 }
 async function getAllComments()

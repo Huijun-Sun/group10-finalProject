@@ -2,27 +2,35 @@
 <html lang="en-US">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>dreamhigh</title>
-    <link href="/public/css/main.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- <link rel="icon" type="image/x-icon" href="img/logo.png"> -->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>dreamhigh</title>
+  <link href="/public/css/main.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- <link rel="icon" type="image/x-icon" href="img/logo.png"> -->
 </head>
 
 
 <body>
-    {{>nav}}
-    {{>search}}
-    {{>heading}}
+  {{>nav}}
+  
+  {{#if showSearch}}
+  {{>search}}
+  {{/if}}
 
-    {{{body}}}
+  {{>heading}}
 
-    {{>reg_banner}}
-    {{>footer}}
+  {{{body}}}
+
+  {{#if showRegBanner}}
+  {{>regBanner}}
+  {{/if}}
+
+  {{>footer}}
 
 </body>
 
 {{#each scripts}}
-  <script src="{{script}}"></script>
+<script src="{{script}}"></script>
 {{/each}}
+
 </html>

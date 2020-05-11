@@ -5,7 +5,9 @@ const userproRoutes = require("./userprofile");
 const introRoutes = require("./intro")
 const eventsRoutes = require("./events")
 //const forumRoutes = require("./forum")
-const userRoutes = require("./user");
+//const userRoutes = require("./user");
+//const forumRoutes = require("./forum")
+const authRoutes = require("./user");
 
 const constructorMethod = app => {
   app.use("/", introRoutes);
@@ -15,7 +17,7 @@ const constructorMethod = app => {
   app.use("/userprofile", userproRoutes);
   app.use("/discussionTopic", dtRoutes);
   app.use("/discussionComment", dcRoutes);
-  app.use("/user", userRoutes);
+  app.use("/auth", authRoutes);
   app.use("*", (req, res) => {
   
     res.status(404).json({ error: "Not found" });

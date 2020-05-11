@@ -17,7 +17,7 @@ router.get("/:id", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const dtList = await discussionData.getAllTopics();
-    console.log(dtList);
+    
     res.render("forum_page",{dtList});
   } catch (e) {
     res.status(500).render(e);
@@ -27,12 +27,14 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const dtDataa = req.body;
+ // dtDataa.user='5eb735d2ed3b004d14543f5a';
   try {
     const { title,user } = dtDataa;
+    
     if(!req.body.title)
     throw "Invalid post format";
-    const newdt = await discussionData.addDiscussionTopic(title,user);
-    res.status(200).json(newdt);
+    const newdt = await discussionData.addDiscussionTopic(title,req.session.user);
+    res.status(200).redirect('/discussionTopic');
   } catch (e) {
     res.status(400).json({ error: e });
   }
