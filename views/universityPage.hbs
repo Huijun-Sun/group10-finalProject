@@ -1,36 +1,39 @@
 <div class="row center-items">
-    <form class="search-box card">
+    <form action="/universities/search" method="POST" class="search-box card">
         <div class="search-area">
             <div class="search-filter">
-                <label class="search-title" for="search-course">COURSE</label>
-                <select name="search-course" id="search-course">
-                    <option value="grad">Masters</option>
-                    <option value="gradcert">MBA</option>
+                <label class="search-title" for="course">COURSE</label>
+                <select name="course" value="{{query.course}}">
+                    <option value="computer science">Computer Science</option>
+                    <option value="information systems">Information Systems</option>
+                    <option value="financial engineering">Financial Engineering</option>
+                    <option value="business intelligent & analytics">Business intelligent & Analytics</option>
+                    <option value="construction management">Construction Management</option>
                 </select>
             </div>
             <div class="search-filter-spacer"></div>
-
             <div class="search-filter">
-                <label class="search-title" for="search-gre">GRE SCORE</label>
-                <input type="number" name="search-gre" id="search-gre" size="24" maxlength="32" placeholder="4.0" />
+                <label class="search-title" for="score">GRE SCORE</label>
+                <input type="number" name="score" size="24" maxlength="32" placeholder="4.0" min="0" max="340"
+                    value="{{query.score}}" />
             </div>
             <div class="search-filter-spacer"></div>
 
             <div class="search-filter">
-                <label class="search-title" for="search-gpa">GPA</label>
-                <input type="number" name="search-gpa" id="search-gpa" size="24" maxlength="32" placeholder="4.0" />
+                <label class="search-title" for="gpa">GPA</label>
+                <input type="number" name="gpa" size="24" maxlength="32" placeholder="4.0" step="0.1" min="0" max="4"
+                    value="{{query.gpa}}" />
             </div>
             <div class="search-filter-spacer"></div>
 
             <div class="search-filter">
-                <label class="search-title" for="search-expense">EXPENSE</label>
-                <input type="number" name="search-expense" id="search-expense" size="24" maxlength="32"
-                    placeholder="10,000" />
+                <label class="search-title" for="exp">EXPENSE</label>
+                <input type="number" name="exp" size="24" maxlength="32" placeholder="10,000" value="{{query.exp}}" />
             </div>
             <div class="search-filter-spacer"></div>
             <div class="search-filter">
-                <label class="search-title" for="search-papers">PAPERS</label>
-                <input type="number" name="search-papers" id="search-papers" size="24" maxlength="32" placeholder="2" />
+                <label class="search-title" for="papers">PAPERS</label>
+                <input type="number" name="papers" size="24" maxlength="32" placeholder="2" value="{{query.papers}}" />
             </div>
 
         </div>
@@ -39,6 +42,9 @@
 </div>
 
 <div id="college-list" class="college-list row">
+    {{#if error}}
+    <h1 class="search-not-found">{{error}}</h1>
+    {{/if}}
     {{#each univList}}
     <button class="college-item card column">
         <div class="college-item-header">

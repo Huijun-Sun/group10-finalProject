@@ -200,3 +200,11 @@
     margin: 0px 0px 0px 0px;
     font-size: 16px;
 }
+
+.search-not-found {
+    width: 100%;
+    align-self: center;
+    text-align: center;
+    font-family: 'Baloo Bhaina 2', cursive;
+    color: #989898;
+}

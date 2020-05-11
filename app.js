@@ -14,6 +14,11 @@ app.use(session({
   saveUninitialized: true
 }))
 
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json());
+
 app.engine("hbs", exphbs({
   extname: 'hbs', defaultLayout: "main",
   layoutsDir: __dirname + '/views/layouts/',
