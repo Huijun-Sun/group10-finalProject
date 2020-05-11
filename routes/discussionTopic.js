@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
   const dtDataa = req.body;
  // dtDataa.user='5eb735d2ed3b004d14543f5a';
   try {
-    const { title,user } = dtDataa;
+    const { title } = dtDataa;
     
     if(!req.body.title)
     throw "Invalid post format";

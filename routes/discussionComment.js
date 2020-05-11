@@ -41,9 +41,9 @@ router.post("/", async (req, res) => {
       throw "Comments is required in json";
       if(!req.body.dtId)
       throw "Discussion topic is required in json";
-      dtDataa.user='5eb735d2ed3b004d14543f5a';
-    const { Comments,dtId,user } = dtDataa;
-    const newdt = await discussionData.addDiscussionComment(Comments,dtId,user);
+  //    dtDataa.user='5eb735d2ed3b004d14543f5a';
+    const { Comments,dtId} = dtDataa;
+    const newdt = await discussionData.addDiscussionComment(Comments,dtId,req.session.user);
   
     res.status(200).redirect('/discussionTopic');
   } catch (e) {

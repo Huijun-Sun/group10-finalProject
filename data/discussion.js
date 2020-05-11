@@ -42,7 +42,7 @@ async function getDiscussionTopic(Id)
 }
 async function addDiscussionComment(Comments,dtId,username)
 {
-   
+   console.log(username);
     if(!Comments)
     throw "Discussion Comments is required";
     if(!dtId)
