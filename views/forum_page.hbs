@@ -1,0 +1,30 @@
+ <p class="heading-banner">Discussion Board</p>
+ {{#each dtList}}
+  <div id="Main-forum-list">
+      
+  <div id="forum-list" class="column forum-list">
+      <p id="header_topic"><i>@  {{username}}</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <b>{{title}}</b></p>
+    
+     <div class="row">
+  </div>
+      {{#each comments}}
+      <div>
+    <p ><i>@  {{username}}</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    {{Comments}}</p>
+     </div>
+     {{/each}}
+    <form method="POST" action="/discussionComment" id="myform" class="myform">
+    <label for="text_input"> <textarea id="text_input" name="Comments" class="mytextarea"> </textarea></label>
+    <input type="hidden" id="dtId" name="dtId" value={{_id}}>
+    <button id="commentbutton" class="submitButton" type="submit">Add Comment</button>
+    </form>    
+    </div>
+    </div>
+    {{/each}}
+     <div id="topic">
+    <form method="POST" action="/discussionTopic" id="topicForm" class="topicForm">
+    <label for="topic_input"> <textarea id="topic_input" name="title" class="mytextarea" > </textarea></label>
+    <button id="topicbutton" class="submitButton" type="submit">Add Discussion Topic</button>
+    </form>  
+    </div>  

@@ -3,14 +3,18 @@ const discussionTopic = mongoCollections.discussionTopic;
 const discussionComment = mongoCollections.discussionComment;
 const { ObjectId } = require('mongodb');
 
-async function addDiscussionTopic(title)
+async function addDiscussionTopic(title,username)
 {
    if(!title)
     throw "Discussion Topic is required";
+    if(!username)
+    throw "username is required";
     const discussionTopicCollection = await discussionTopic();
     let newDt = {
         title: title,
-        comments: []    
+        comments: [],
+        username: username 
+           
     };  
     const insertInfo = await discussionTopicCollection.insertOne(newDt);
     if (insertInfo.insertedCount === 0) 
@@ -32,20 +36,24 @@ async function getDiscussionTopic(Id)
     if (dt.Comments!=null)
     {
     const commentDetail =await getDiscussionCommentTopicId(Id);
+    if(commentDetail)
     dt.comments=commentDetail;}
     return dt;
 }
-async function addDiscussionComment(Comments,dtId)
+async function addDiscussionComment(Comments,dtId,username)
 {
    
     if(!Comments)
     throw "Discussion Comments is required";
     if(!dtId)
     throw "Discussion Topic Id is required";
+    if(!username)
+    throw "username is required";
     const discussionCommentCollection = await discussionComment();
     let newDt = {
         Comments: Comments,
-        dtId: dtId
+        dtId: dtId,
+        username: username
        
     };
     const insertInfo = await discussionCommentCollection.insertOne(newDt);
@@ -77,7 +85,7 @@ async function getDiscussionCommentTopicId(Id)
     const discussionCommentCollection = await discussionComment();
     let objId=Id;
     const dt = await discussionCommentCollection.find({dtId: objId }).toArray();
-    if (dt === null || dt.length<1) throw 'No Discussion comment  with matching topic id';
+   // if (dt === null || dt.length<1) throw 'No Discussion comment  with matching topic id';
     return dt;
 }
 async function getAllTopics()
@@ -85,13 +93,14 @@ async function getAllTopics()
     
     const discussionTopicCollection = await discussionTopic();
     const dtList = await discussionTopicCollection.find({}).toArray();
+    if(dtList){
     for (var i=0;i<dtList.length;i++)
     {
         const commentDetail = await getDiscussionCommentTopicId(dtList[i]._id.toString());
         dtList[i].comments=commentDetail;
         
-    }
-    if (dtList === null || dtList.length<1) throw 'No Discussion Topic with matching values';
+    }}
+ //   if (dtList === null || dtList.length<1) throw 'No Discussion Topic with matching values';
     return dtList;
 }
 async function getAllComments()
