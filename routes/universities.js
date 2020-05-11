@@ -27,6 +27,8 @@ router.get("/", async (req, res) => {
     showSearch: false,
     showRegBanner: true,
     univList: univList,
+    query: {course: "computer science", score:"315", exp:"4000", gpa:"3.5", papers:"3"},
+
   });
 });
 
@@ -139,22 +141,31 @@ router.get("/title/:title/course/:course/intake/:intake", async (req, res) => {
         res.status(404).json({ message: e });
     }
   });
-  router.get("/:course/:score/:exp/:gpa/:papers", async (req, res) => {
+  router.post("/search", async (req, res) => {
     try {
-      if(!req.params.score)
-      throw "score is required";
-      if(!req.params.course)
-      throw "Course is required";
-      if(!req.params.exp)
-      throw "exp is required";
-      if(!req.params.gpa)
-      throw "gpa is required";
-      if(!req.params.papers)
-      throw "papers is required";
-      const univList = await univData.getUniversityFinder(req.params.course,parseInt(req.params.score),parseInt(req.params.exp),parseInt(req.params.gpa),parseInt(req.params.papers));
-      res.json(univList);
+        console.log(req.body);
+      const univList = await univData.getUniversityFinder(req.body.course,parseInt(req.body.score),parseInt(req.body.exp),parseInt(req.body.gpa),parseInt(req.body.papers));
+      res.render("universityPage", {
+        heading: "University Finder",
+        subHeading: "Find your best college here!",
+        scripts: pageScripts,
+        showSearch: false,
+        showRegBanner: true,
+        univList: univList,
+        query: req.body,
+      });
+
     } catch (e) {
-      res.status(500).json({message: e});
+      res.render("universityPage", {
+        heading: "University Finder",
+        subHeading: "Find your best college here!",
+        scripts: pageScripts,
+        showSearch: false,
+        showRegBanner: true,
+        error: "ops, no university found with given criteria",
+        univList: [],
+        query: req.body,
+      });
     }
   });
   router.get("/title/:title/score/:score", async (req, res) => {
