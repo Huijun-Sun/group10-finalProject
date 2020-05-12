@@ -1,6 +1,7 @@
 .material-icon {
     text-decoration: none;
     font-family: "Material Icons";
+    color: black;
 }
 
 .material-align-center a {
@@ -138,6 +139,7 @@
     padding: 5px 15px 0px 15px;
     text-align: center;
     text-decoration: none;
+    
     /* -ms-transition: box-shadow 300ms linear;
     transition: box-shadow 300ms linear; */
 }
