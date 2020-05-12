@@ -1,2 +1,29 @@
-    <div id="event-list" class="column event-list">
-    </div>
+<div id="event-list" class="column event-list">
+    {{#if error}}
+    <h1 class="search-not-found">{{error}}</h1>
+    {{/if}}
+
+    {{#each eventList}}
+    <button id="{{_id}}" class="event-item card column" onClick="onClicked(this.id)">
+        <div class="event-item-title">{{title}}</div>
+        <div class="event-item-detail">
+            <p class="event-item-hidden event-item-intro">
+                {{description}}
+            </p>
+            <p class="material-align-center">
+                <a class="material-icon">location_on</a>
+                {{address}}
+            </p>
+            <p class="material-align-center">
+                <a class="material-icon">query_builder</a>
+                {{start_date}} - {{end_date}}
+            </p>
+            <p class="material-align-center event-item-hidden">
+                <a class="material-icon">link </a>
+                <a href="{{event_link}}">&nbsp{{event_link}}</a>
+            </p>
+        </div>
+    </button>
+    {{/each}}
+
+</div>

@@ -21,6 +21,6 @@ function onClicked(id) {
 
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    // init();
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//     // init();
+// });

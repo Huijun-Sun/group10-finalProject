@@ -13,6 +13,9 @@ module.exports={
     async getAllEvents(){
         const eventCollection= await events();
         let eventList= await eventCollection.find({}).toArray();
+        if(!eventList.length)
+            throw "No events found!";
+
         eventList.sort(this.myCompare("end_date"));
 
         for(let i=0;i<eventList.length;i++)
