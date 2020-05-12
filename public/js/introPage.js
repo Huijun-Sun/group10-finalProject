@@ -1,21 +1,21 @@
 var collegeCollection = [];
 
-function init() {
+var initIntro = function () {
     fetch('/universities/top').then(async function (response) {
         // The API call was successful!
         collegeCollection = await response.json();
-        refresh();
+        refreshIntro();
     }).catch(function (err) {
         // There was an error
         console.warn('Something went wrong.', err);
     });
 }
 
-function refresh() {
+var refreshIntro = function () {
     let listNode = document.getElementById('college-list');
     listNode.innerHTML = "";
     for (const college of collegeCollection) {
-        console.log(college.title);
+        console.log(college);
         listNode.innerHTML += `<button class="college-item card column">
         <div class="college-item-header">
             <h3 class="college-item-title">${college.title}</h3>
@@ -49,16 +49,3 @@ function refresh() {
     </button>`;
     }
 }
-
-function onClicked(id) {
-    let cardNode = document.getElementById(id);
-    if (cardNode.classList.contains("event-item-expanded"))
-        cardNode.classList.remove("event-item-expanded")
-    else cardNode.classList.add("event-item-expanded")
-
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    init();
-    refresh();
-});

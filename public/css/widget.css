@@ -109,6 +109,25 @@
     margin-top: 50px;
 }
 
+.reg-error {
+    color: indianred;
+    padding: 5px;
+}
+
+#reg-name {
+    justify-content: space-between;
+}
+
+#reg-fstname {
+    width: 90px;
+}
+
+#reg-lstname {
+    width: 90px;
+    margin-left: 20px;
+}
+
+
 .card-button {
     font: inherit;
     border: none;

@@ -1,17 +1,17 @@
 var collegeNames = [];
 
-function init() {
+function initNav() {
     fetch('/universities/names').then(async function (response) {
         // The API call was successful!
         collegeNames = await response.json();
-        refresh();
+        refreshNav();
     }).catch(function (err) {
         // There was an error
         console.warn('Something went wrong.', err);
     });
 }
 
-function refresh() {
+function refreshNav() {
     let selectNode = document.getElementById('search-college-name');
     selectNode.innerHTML = "";
     for (const name of collegeNames) {
@@ -29,6 +29,9 @@ function onClicked(id) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    init();
-    refresh();
+    initNav();
+    
+    if(initIntro) {
+        initIntro();
+    }
 });
