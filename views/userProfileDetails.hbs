@@ -1,0 +1,34 @@
+<div class="parallax parallax-home" id="reg-card">
+  <div class="reg-card">
+     <form class="column reg-form">
+       <div class="reg-logo">
+                <a href="#">Profile Details </a>
+        </div>
+        <h2>Welcome {{this.firstName}} {{this.lastName}}</h2>
+        <h2>Interested to pursue {{userProInfo.intMastersMba}} in {{userProInfo.intProgram}} for {{userProInfo.intTerm}} {{userProInfo.intYear}}</h2>
+        <h2>Studied in {{userProInfo.underGradProgram}} at {{userProInfo.underGradCollege}}.</h2>
+        <h2>Entarnce Exams:</h2>
+        <h2>GRE Scores: Verbal: {{userProInfo.greVerbal}}  Quant: {{userProInfo.greQuant}}  AWA: {{userProInfo.greAwa}}</h2>
+        <h2>GMAT Scores: {{userProInfo.gmatScore}}</h2>
+        <h2>TOEFL Scores: {{userProInfo.toeflScore}}</h2>
+         <a href="/userprofile/edituserprofile/{{userProInfo.userid}}">Edit Profile Details </a>
+         </form>
+         </br></br>
+      <div class="column"> 
+        <h2>Interested/Applied University</h2>
+           <a href="/userprofile/addUniversity/{{userProInfo.userid}}">Add University </a>
+             <a href="/userprofile/editUniversity/{{userProInfo.userid}}">Edit University </a> 
+         {{#each intAppUniList}}
+         <label for="uniName">University: </label>
+            <h4>{{uniName}}</h4>
+          <label for="uniProgram">Program: </label>   
+            <h4>{{uniProgram}}</h4>
+          <label for="uniStatus">Status: </label>     
+             <h4>{{uniStatus}}</h4>
+           <label for="comments">Comments: </label>    
+             <h4>{{comments}}</h4>
+         {{/each}}    
+       </div>  
+        
+    </div>
+</div>  

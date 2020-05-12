@@ -1,0 +1,104 @@
+<!--
+    <div class="row">
+        <h2>Want to check some profiles?</h2>
+    </div>
+-->    
+<div class="row center-items">
+    <form action="/userprofile/pastadmitreject/" method="POST" class="search-box card">
+        <div class="search-area">
+            <div class="search-filter">
+                <label class="search-title" for="university">university</label>
+                <select name="university" value="{{university}}">
+                    <option value=''>University</option>
+                    <option value="Massachusetts Instituite of Technology">Massachusetts Instituite of Technology</option>
+                    <option value="Columbia University">Columbia University</option>
+                    <option value="NYU">NYU</option>
+                    <option value="Stevens Institute of Technology">Stevens Institute of Technology</option>
+                    <option value="Rutgers State University">rutgers state university</option>
+                    <option value="New Jersey Institute of Technology">New Jersey Institute of Technology</option>
+                    <option value="UT Dallas">UT Dallas</option>
+                    <option value="University of Illinois">University of Illinois</option>
+                    <option value="Purdue">Purdue</option>
+                    <option value="Carnegie Mellon">Carnegie Mellon</option>
+                </select>
+            </div>
+            <div class="search-filter-spacer"></div>
+   
+            <div class="search-filter">
+                <label class="search-title" for="course">COURSE</label>
+                <select name="course" value="{{course}}">
+                     <option value=''>Course</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Information Systems">Information Systems</option>
+                    <option value="Financial Engineering">Financial Engineering</option>
+                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                    <option value="Business Intelligent & Analytics">Business intelligent & Analytics</option>
+                    <option value="Construction Management">Construction Management</option>
+                </select>
+            </div>
+            <div class="search-filter-spacer"></div>
+         <div class="search-filter">
+            <label class="search-title" for="course">STATUS</label>
+            <select name="status" id="status" value="{{status}}">
+                    <option value=''>Status</option>
+                    <option value="Interested">Interested</option>
+                    <option value="Applied">Applied</option>
+                    <option value="Admit">Admit</option>
+                    <option value="Reject">Reject</option>
+                </select>
+            </div>
+        <div class="search-filter-spacer"></div>
+            
+        </div>
+        <button class="card-button"><a class="material-icon">search</a> search</button>
+    </form>
+</div>
+
+<div id="college-list" class="college-list row">
+    {{#if hasErrors}}
+    <h1 class="search-not-found">{{error}}</h1>
+    {{/if}}
+    {{#if isEmpty}}
+    <h1 class="search-not-found">Oops No Profile found</h1>
+    {{/if}}
+
+    {{#each pastProfileList}}
+    <div>{{@uni}}</div>
+        {{#each uni}}
+    <button class="college-item card column">
+        <div class="college-item-header">
+           <!-- <h3 class="college-item-title">{{this.username}}</h3>-->
+            <a href="/userprofile/{{id}}">{{username}}</h3>
+            <div class="college-item-rating material-align-center">
+            <h3>{{uniName}}</h3>
+               
+            </div>
+        </div>
+        <div class="row">
+            <div class="college-item-detail column">
+                <p class="material-align-center">
+                    <a class="material-icon">assessment</a>
+                    Year: {{year}}
+                </p>
+                <p class="material-align-center">
+                    <a class="material-icon">account_balance </a>
+                    <a>Status: {{status}} </a>
+                </p>
+                <p class="material-align-center">
+                    <a class="material-icon">monetization_on</a>
+                    GRE: {{gre}}
+                </p>
+
+                <p class="material-align-center">
+                    <a class="material-icon">location_on</a>
+                    TOEFL: {{toefl}}
+                </p>
+            </div>
+            <div class="college-item-spacer"></div>
+        </div>
+    </button>
+    {{/each}}
+ {{/each}}
+</div>
+
+</div>
