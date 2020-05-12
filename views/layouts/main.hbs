@@ -21,7 +21,7 @@
 
   {{{body}}}
 
-  {{#if showRegBanner}}
+  {{#if loggedOut}}
   {{>regBanner}}
   {{/if}}
 
@@ -34,5 +34,6 @@
 {{/each}}
 
 <script src="/public/js/index.js"></script>
+<script>console.log({{loggedOut}});</script>
 
 </html>

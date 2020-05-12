@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
 	res.render("introPage", {
         heading: "Finding a college should be easy.",
         showSearch: true,
-        showRegBanner: !req.session.isloggedin,
+        loggedOut: !req.session.isloggedin,
         scripts: pageScripts,
     });
 });

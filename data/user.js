@@ -78,10 +78,10 @@ async function newUser (username, password, firstName, lastName, email){
 //Function to validate user login
 async function userValidation(username, password){   
     if(!username) throw `Please provide the username`;
-    if(!typeof username !=="string") throw `Username should be of type string`;
+    if(typeof username !=="string") throw `Username should be of type string`;
 
     if(!password) throw `Please provide the password`;
-    if(!typeof password !=="string") throw `Password should be of type string`;
+    if(typeof password !=="string") throw `Password should be of type string`;
 
     const usercollection= await userData();
     const user= await usercollection.findOne({username:username})
