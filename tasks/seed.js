@@ -1,7 +1,7 @@
 const universities = require("../data/universities");
 const Discussion = require("../data/discussion");
 const connection = require('../config/mongoConnection');
-
+const data = require("../data");
 async function main() {
     try{
        // var dt = {date: new Date(2020,05,07)};
@@ -59,8 +59,8 @@ async function main() {
      //cd    console.log(await Discussion.getAllTopics());
    
    // events seed start
-   const db = await dbConnection();
-   await db.dropDatabase();
+   //const db = await dbConnection();
+   //await db.dropDatabase();
    
    const events = data.events;
    let date1=new Date();
@@ -180,14 +180,14 @@ async function main() {
    let e=await events.addEvent(event5.title,event5.start_date,event5.end_date,event5.lasting_time,event5.address,event5.description,event5.event_link,event5.img_url);
    
    
-   await db.serverConfig.close();
+   //await db.serverConfig.close();
      
 }
     catch(e)
     {
         console.log(e);
 
-        db.serverConfig.close();
+        //db.serverConfig.close();
     }
 }
 
