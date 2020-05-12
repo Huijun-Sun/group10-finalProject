@@ -1,22 +1,27 @@
+{{#if loggedOut}}
 <div class="parallax parallax-home" id="reg-card">
     <p class="paralax-title-welcome"><b>Welcome to dreamhigh!</b> <br />Sign up and get help from thousands of aspirants
         just like you!</p>
     <div class="reg-card">
-        <form id="reg-form" class="column reg-form">
+        <form action="/auth/signup" method="POST" id="reg-form" class="column reg-form">
             <div class="reg-logo">
                 <a href="/">dreamhigh</a>
             </div>
-            <input class="card-input" type="text" name="reg-fstname" id="reg-fstname" size="24" maxlength="32"
-                placeholder="First Name" />
-            <input class="card-input" type="text" name="reg-lstname" id="reg-lstname" size="24" maxlength="32"
-                placeholder="Last Name" />
-            <input class="card-input" type="text" name="reg-email" id="reg-email" size="24" maxlength="32"
+            <div class="row">
+                <input class="card-input" type="text" name="firstname" id="reg-fstname" size="24" maxlength="32"
+                    placeholder="First Name" />
+                <input class="card-input" type="text" name="lastname" id="reg-lstname" size="24" maxlength="32"
+                    placeholder="Last Name" />
+            </div>
+            <input class="card-input" type="text" name="username" id="reg-usrname" size="24" maxlength="32"
+                placeholder="User Name" />
+            <input class="card-input" type="text" name="email" id="reg-email" size="24" maxlength="32"
                 placeholder="Email address" />
-            <input class="card-input" type="password" name="reg-pswd" id="reg-pswd" size="24" maxlength="32"
+            <input class="card-input" type="password" name="password" id="reg-pswd" size="24" maxlength="32"
                 placeholder="Password" />
+            <a class="reg-error">{{regrror}}</a>
             <div class="row align-right reg-btn-group">
                 <button class="card-btn card-button" onclick="location.href = '/auth';">switch to login</button>
-
                 <button class="card-highlight-btn card-button">sign up</button>
             </div>
 
@@ -24,3 +29,4 @@
         </form>
     </div>
 </div>
+{{/if}}

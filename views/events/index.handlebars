@@ -1,0 +1,16 @@
+
+<div>
+     {{#each eventList}}
+     <ul>
+        <li> {{this.title}}</li>
+        <li> {{this.start_date}}</li>
+        <li> {{this.end_date}}</li>
+        <li> {{this.lasting_time}}</li>
+        <li> {{this.address}}</li>
+        <li> {{this.description}}</li>
+        <li> {{this.start_hour}}</li>
+        <a href="{{this.event_link}}">learn more</a>
+        <img src="{{this.img_url}}"/>
+    </ul>
+     {{/each}}
+</div>

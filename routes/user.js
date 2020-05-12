@@ -3,6 +3,8 @@ const router = express.Router();
 const data = require("../data");
 const userData = data.user;
 
+const pageScripts =  [{script: "/public/js/introPage.js"}];
+
 //Async function to check if a user is logged in
 router.get("/userlogin",async function(req,res){
     if(req.session.isloggedin===true){
@@ -56,11 +58,24 @@ router.get("/" ,async function(req,res){
         return;
       }
       try {
-      
         const createdUser = await userData.newUser(userInfo.username, userInfo.password, userInfo.firstname, userInfo.lastname, userInfo.email);
-        res.status(200).json(createdUser);
+        res.render("introPage", {
+          loggedOut: true,
+          heading: "Finding a college should be easy.",
+          showSearch: true,
+          showRegBanner: true,
+          scripts: pageScripts,
+        });
       } catch (e) {
-        res.status(500).json({error: e.message});
+        console.log(e)
+        res.render("introPage", {
+          loggedOut: false,
+          heading: "Finding a college should be easy.",
+          showSearch: true,
+          showRegBanner: true,
+          scripts: pageScripts,
+          regError: e,
+      });
       }
   });
 

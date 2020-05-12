@@ -1,10 +1,15 @@
 <div class="row center-items">
-    <form class="search-box card">
+    <form action="/universities/simpleSearch" method="POST" class="search-box card">
         <div class="search-area">
             <div class="search-filter">
-                <label class="search-title" for="search-major">NAME</label>
-                <input type="text" name="search-major" id="search-major" size="24" maxlength="32"
-                    placeholder="University Name" />
+                <label class="search-title" for="name">NAME</label>
+                <select name="name" id="search-college-name">
+                    <option value="computer science">Computer Science</option>
+                    <option value="information systems">Information Systems</option>
+                    <option value="financial engineering">Financial Engineering</option>
+                    <option value="business intelligent & analytics">Business intelligent & Analytics</option>
+                    <option value="construction management">Construction Management</option>
+                </select>
             </div>
             <div class="search-filter-spacer"></div>
             <div class="search-filter">
