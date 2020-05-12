@@ -1,0 +1,54 @@
+
+    <div class="reg-card signin-card">
+        <form method="POST" action="/userprofile/adduniversity/{{userid}}" id="reg-form" class="column reg-form">
+            <div class="reg-logo">
+                <h2>Add interested/applied university</h2>
+           </div>
+            
+             
+             <select name="uniName" value="{{uniName}}" required>
+                    <option value=''>University</option>
+                    <option value="Massachusetts Instituite of Technology">Massachusetts Instituite of Technology</option>
+                    <option value="Columbia University">Columbia University</option>
+                    <option value="NYU">NYU</option>
+                    <option value="Stevens Institute of Technology">Stevens Institute of Technology</option>
+                    <option value="Rutgers State University">rutgers state university</option>
+                    <option value="New Jersey Institute of Technology">New Jersey Institute of Technology</option>
+                    <option value="UT Dallas">UT Dallas</option>
+                    <option value="University of Illinois">University of Illinois</option>
+                    <option value="Purdue">Purdue</option>
+                    <option value="Carnegie Mellon">Carnegie Mellon</option>
+                </select>
+            <select name="uniProgram" value="{{uniProgram}}" required>
+                     <option value=''>Course</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Information Systems">Information Systems</option>
+                    <option value="Financial Engineering">Financial Engineering</option>
+                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                    <option value="Business Intelligent & Analytics">Business intelligent & Analytics</option>
+                    <option value="Construction Management">Construction Management</option>
+                </select>
+
+            <select name="uniStatus" id="uniStatus" required>
+                    <option value=''>Status</option>
+                    <option value="Interested">Interested</option>
+                    <option value="Applied">Applied</option>
+                    <option value="Admit">Admit</option>
+                    <option value="Reject">Reject</option>
+                </select>
+              <script>
+            document.getElementById("uniStatus").value = {{uniStatus}};
+             </script>  
+            <input class="card-input" type="text" name="comments" id="comments" size="24" maxlength="32" placeholder="Comments"  />
+            <div class="row align-right reg-btn-group">
+                <button type="submit"  class="card-highlight-btn card-button">Add</button>
+            </div>
+
+
+        </form>
+         
+
+</div>
+   {{#if hasErrors}}
+      <h3 class="search-not-found">{{errors}}</h3>
+    {{/if}}
