@@ -9,6 +9,10 @@ async function addDiscussionTopic(title,username)
     throw "Discussion Topic is required";
     if(!username)
     throw "username is required";
+    if(typeof title != 'string')
+    throw "Topic title should be string";
+    if(typeof username != 'string')
+    throw "username must be string"
     const discussionTopicCollection = await discussionTopic();
     let newDt = {
         title: title,
@@ -42,13 +46,21 @@ async function getDiscussionTopic(Id)
 }
 async function addDiscussionComment(Comments,dtId,username)
 {
-   console.log(username);
+  
+
     if(!Comments)
     throw "Discussion Comments is required";
     if(!dtId)
     throw "Discussion Topic Id is required";
     if(!username)
     throw "username is required";
+    if(typeof Comments != 'string')
+    throw "Topic title should be string";
+    if(typeof username != 'string')
+    throw "username must be string";
+  
+    if(typeof dtId != 'string')
+    throw "Id must be string";
     const discussionCommentCollection = await discussionComment();
     let newDt = {
         Comments: Comments,
@@ -83,6 +95,7 @@ async function getDiscussionCommentTopicId(Id)
     if(!Id)
     throw "Discussion Topic Id is required";
     const discussionCommentCollection = await discussionComment();
+   
     let objId=Id;
     const dt = await discussionCommentCollection.find({dtId: objId }).toArray();
    // if (dt === null || dt.length<1) throw 'No Discussion comment  with matching topic id';

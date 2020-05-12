@@ -6,41 +6,93 @@ async function addUniversity(title, courses, category, programs, location, deadl
 {
     if(!title)
     throw "Title is required";
+    if(typeof title != 'string')
+    throw "Title must be string";
+
     if(!courses)
     throw "courses is required";
+    if(typeof courses != 'object' || courses.length<=0 )
+    throw "course must be array";
+
     if(!category)
     throw "category is required";
+    if(typeof category != 'string')
+    throw "category must be string";
+
     if(!programs)
     throw "programs is required";
+    if(typeof programs != 'object' || programs.length<=0 )
+    throw "programs must be array";
+
     if(!location)
     throw "location is required";
+    if(typeof location != 'string')
+    throw "location must be string";
+
     if(!deadline)
     throw "deadline is required";
+    if(typeof deadline != 'object')
+    throw "deadline must be object";
+
     if(!tuitionfees)
     throw "tuitionfees is required";
+    if(typeof tuitionfees != 'string')
+    throw "tuitionfees must be string";
+
     if(!rating)
     throw "rating is required";
+    if(typeof rating != 'float' && typeof rating !='number')
+    throw "rating must be float";
+
     if(!rank)
     throw "rank is required";
+    if(typeof rank != 'number')
+    throw "rank must be number";
+
     if(!livingexp)
     throw "livingexp is required";
+    if(typeof livingexp != 'string')
+    throw "livingexp must be string";
+
     if(!averagescore)
     throw "averagescore is required";
+    if((typeof averagescore != 'number') || (averagescore<280 || averagescore>320))
+    throw "score must be number >280 and lessthan 320";
+
     if(!websitelink)
     throw "websitelink is required";
+    if(typeof websitelink != 'string')
+    throw "websitelink must be string";
+
     if(!workexp)
     throw "workexp is required";
+    if(typeof workexp != 'number')
+    throw "workexp must be number";
+
     if(!GPA)
     throw "GPA is required";
+    if((typeof GPA != 'float' && typeof GPA !='number') || (GPA<0 || GPA>4))
+    throw "GPA must be number >0 and less than 4";
+
     if(!intake)
     throw "intake is required";
+    if(typeof intake != 'object' || intake.length<=0 )
+    throw "intake must be array";
+
     if(!papers)
     throw "papers is required";
+    if(typeof papers != 'number')
+    throw "papers must be number";
+
     if(!description)
     throw "Description is required";
+    if(typeof description != 'string')
+    throw "description must be string";
+
     if(!coursedesc)
     throw "Course Description is required";
-   
+    if(typeof coursedesc != 'string')
+    throw "coursedesc must be string";
 
     const universityCollection = await universities();
     let newuv = {
@@ -103,11 +155,25 @@ async function getDeadline(title,course,intake)
         throw "Any one argument must be given to get deadline";
     }
         if(title)
+        {
        title=title.toLowerCase();
+       if(typeof title != 'string')
+        throw "Title must be string";
+        }
        if (course)
+       {
        course=course.toLowerCase();
+       if(typeof course != 'string')
+       throw "Course must be string";
+       
+       }
        if (intake)
+       {
+        if(typeof title != 'string')
+        throw "Title must be string";
        intake=intake.toLowerCase();
+       }
+       
        if (title != null && course != null && intake !=null)
         {
          const univ = await universityCollection.find({ title: title,courses: course,intake: intake}).toArray();
@@ -156,19 +222,38 @@ async function getDeadline(title,course,intake)
 }
 async function getUniversityFinder(course,score,exp,gpa,papers)
 {
+    
     if(!course)
     throw "courses is required";
+    if(typeof course != 'string')
+    throw "Course must be string";
+    
     if(!score)
     throw "score is required";
+   
+    if((typeof score != 'number') || (score<280 || score>320))
+    throw "score must be number >280 and lessthan 320";
+    
     if(!exp)
     throw "exp is required";
+    if(typeof exp != 'number')
+    throw "exp must be number";
+    
     if(!gpa)
     throw "gpa is required";
+    if((typeof gpa != 'float' && typeof gpa !='number') || (gpa<0 || gpa>4))
+    throw "GPA must be number >0 and less than 4";
+    
+   
     if(!papers)
     throw "papers is required";
+    if(typeof papers != 'number')
+    throw "papers must be number";
+    
     course=course.toLowerCase();
     const universityCollection = await universities();  
     const univ = await universityCollection.find({courses: course,averagescore:{$lte:score},workexp: {$lte:exp},GPA:{$lte:gpa},papers:{$lte:papers}}).toArray();
+    
     if (univ === null || univ.length<1) throw 'No univ with matching values';
 	return univ;
 }
@@ -178,7 +263,11 @@ async function getUniversityFrontpageFinder(course,name)
     throw "courses is required";
     if(!name)
     throw "name is required";
-   name=name.toLowerCase();
+    if(typeof course != 'string')
+    throw "course must be string";
+    if(typeof name != 'string')
+    throw "Title must be string";
+     name=name.toLowerCase();
     course=course.toLowerCase();
     const universityCollection = await universities();  
     const univ = await universityCollection.find({courses: course,title: name}).toArray();
@@ -198,6 +287,11 @@ async function getChances(title,score)
     throw "Title is required to get chances";
     if(!score)
     throw "Score is required to get chances";
+    if(typeof title != 'string')
+    throw "Title must be string";
+    if((typeof score != 'number') || (score<280 || score>320))
+    throw "score must be number >280 and lessthan 320";
+    
     const universityCollection = await universities();  
     const univ = await universityCollection.findOne({title: title});
     if (univ.averagescore<=score)

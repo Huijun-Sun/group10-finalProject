@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 const univData = data.universities;
-
+const xss=require("XSS");
 
 const pageScripts =  [{script: "/public/js/universityPage.js"}];
 
@@ -31,12 +31,13 @@ router.get("/id/:id", async (req, res) => {
     const univ = await univData.getUniversity(req.params.id);
     res.json(univ);
   } catch (e) {
-    res.status(404).json({ message: e.message });
+    res.status(404).json({ error: e.message });
   }
 });
 
 router.get("/", async (req, res) => {
   const univList = await univData.getAllUniversity();  
+  try{
   res.render("universityPage", {
     heading: "University Finder",
     subHeading: "Find your best college here!",
@@ -45,8 +46,13 @@ router.get("/", async (req, res) => {
     showRegBanner: true,
     univList: univList,
     query: {course: "computer science", score:"315", exp:"4000", gpa:"3.5", papers:"3"},
-
+    
   });
+}
+catch(e)
+{
+res.status(400).render("error",{error: e.message});
+}
 });
 
 router.get("/names", async (req, res) => {
@@ -64,7 +70,7 @@ router.get("/top", async (req, res) => {
     res.json(univList);
     console.log(univList);
   } catch (e) {
-    res.status(404).json({ message: e });
+    res.status(404).render("error",{ error: e.message });
   }
 });
 
@@ -77,10 +83,10 @@ router.get("/title/:title/course/:course/intake/:intake", async (req, res) => {
         throw "Course is required";
         if(!req.params.intake)
         throw "Intake is required";
-      const univList = await univData.getDeadline(req.params.title,req.params.course,req.params.intake);
+      const univList = await univData.getDeadline(xss(req.params.title),xss(req.params.course),xss(req.params.intake));
       res.json(univList);
     } catch (e) {
-        res.status(404).json({ message: e });
+        res.status(404).render("error",{ error: e.message });
     }
   });
   router.get("/course/:course/intake/:intake", async (req, res) => {
@@ -90,10 +96,10 @@ router.get("/title/:title/course/:course/intake/:intake", async (req, res) => {
       throw "Course is required";
       if(!req.params.intake)
       throw "Intake is required";
-      const univList = await univData.getDeadline(null,req.params.course,req.params.intake);
+      const univList = await univData.getDeadline(null,xss(req.params.course),xss(req.params.intake));
       res.json(univList);
     } catch (e) {
-        res.status(404).json({ message: e });
+        res.status(404).render("error",{ error: e.message });
     }
   });
   router.get("/title/:title/intake/:intake", async (req, res) => {
@@ -103,10 +109,10 @@ router.get("/title/:title/course/:course/intake/:intake", async (req, res) => {
       throw "Title is required";
       if(!req.params.intake)
       throw "Intake is required"; 
-      const univList = await univData.getDeadline(req.params.title,null,req.params.intake);
+      const univList = await univData.getDeadline(xss(req.params.title),null,xss(req.params.intake));
       res.json(univList);
     } catch (e) {
-        res.status(404).json({ message: e });
+        res.status(404).render("error",{ error: e.message });
     }
   });
   
@@ -115,10 +121,10 @@ router.get("/title/:title/course/:course/intake/:intake", async (req, res) => {
     
       if(!req.params.intake)
       throw "Intake is required";
-      const univList = await univData.getDeadline(null,null,req.params.intake);
+      const univList = await univData.getDeadline(null,null,xss(req.params.intake));
       res.json(univList);
     } catch (e) {
-        res.status(404).json({ message: e });
+        res.status(404).render("error",{ error: e.message });
     }
   });
   router.get("/title/:title/course/:course", async (req, res) => {
@@ -128,10 +134,10 @@ router.get("/title/:title/course/:course/intake/:intake", async (req, res) => {
       throw "Title is required";
       if(!req.params.course)
       throw "Course is required";
-      const univList = await univData.getDeadline(req.params.title,req.params.course,null);
+      const univList = await univData.getDeadline(xss(req.params.title),xss(req.params.course),null);
       res.json(univList);
     } catch (e) {
-        res.status(404).json({ message: e });
+        res.status(404).render("error",{ error: e.message });
     }
   });
 
@@ -154,10 +160,10 @@ router.get("/title/:title/course/:course/intake/:intake", async (req, res) => {
      
       if(!req.params.title)
       throw "Title is required";
-      const univList = await univData.getDeadline(req.params.title,null,null);
+      const univList = await univData.getDeadline(xss(req.params.title),null,null);
       res.json(univList);
     } catch (e) {
-        res.status(404).json({ message: e });
+        res.status(404).render("error",{ error: e.message });
     }
   });
   router.get("/course/:course", async (req, res) => {
@@ -165,10 +171,10 @@ router.get("/title/:title/course/:course/intake/:intake", async (req, res) => {
       
       if(!req.params.course)
       throw "Course is required";
-      const univList = await univData.getDeadline(null,req.params.course,null);
+      const univList = await univData.getDeadline(null,xss(req.params.course),null);
       res.json(univList);
     } catch (e) {
-        res.status(404).json({ message: e });
+        res.status(404).render("error",{ error: e.message });
     }
   });
   router.get("/course/:course/name/:name", async (req, res) => {
@@ -177,17 +183,19 @@ router.get("/title/:title/course/:course/intake/:intake", async (req, res) => {
       throw "Title is required";
       if(!req.params.course)
       throw "Course is required";   
-      const univList = await univData.getUniversityFrontpageFinder(req.params.course,req.params.name);
+      const univList = await univData.getUniversityFrontpageFinder(xss(req.params.course),xss(req.params.name));
       res.json(univList);
     } catch (e) {
-        res.status(404).json({ message: e });
+        res.status(404).render("error",{ error: e.message });
     }
   });
   router.post("/search", async (req, res) => {
     try {
-        console.log(req.body);
-      const univList = await univData.getUniversityFinder(req.body.course,parseInt(req.body.score),parseInt(req.body.exp),parseInt(req.body.gpa),parseInt(req.body.papers));
+
+        
+      const univList = await univData.getUniversityFinder(xss(req.body.course),parseInt(req.body.score),parseInt(req.body.exp),parseFloat(req.body.gpa),parseInt(req.body.papers));
       res.render("universityPage", getPageConfig(req.body, univList));
+
 
     } catch (e) {
       res.render("universityPage", getPageConfig(req.body, []));
@@ -199,10 +207,10 @@ router.get("/title/:title/course/:course/intake/:intake", async (req, res) => {
       throw "score is required";
       if(!req.params.title)
       throw "Title is required";
-      const univch = await univData.getChances(req.params.title,parseInt(req.params.score));
+      const univch = await univData.getChances(xss(req.params.title),parseInt(req.params.score));
       res.json(univch);
     } catch (e) {
-      res.status(500).json({message: e});
+      res.status(500).render("error",{error: e.message});
     }
   });
 module.exports = router;

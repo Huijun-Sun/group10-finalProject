@@ -367,6 +367,12 @@ async function pastAdmitsRejects(university, course, status){
     } 
     return all_userpro;
 }
+async function getAllUsersProfile(){
+    const userproCollection = await userprofile();
+    const userproList = await userproCollection.find({}).toArray();
+    if (userproList === null) throw 'No user with that id exists';
+    return userproList;
+}
 module.exports = {
     getUserProfile,
     createUserProfile,
@@ -376,5 +382,6 @@ module.exports = {
     addTechPaper,
     addExtraCurriculars,
     editUserProfile,
-    pastAdmitsRejects
+    pastAdmitsRejects,
+    getAllUsersProfile
 };

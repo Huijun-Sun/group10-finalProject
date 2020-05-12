@@ -1,3 +1,4 @@
+
  <p class="heading-banner">Discussion Board</p>
  {{#each dtList}}
   <div id="Main-forum-list">
@@ -16,7 +17,7 @@
      {{/each}}
     <form method="POST" action="/discussionComment" id="myform" class="myform">
     <label for="text_input"> <textarea id="text_input" name="Comments" class="mytextarea"> </textarea></label>
-    <input type="hidden" id="dtId" name="dtId" value={{_id}}>
+    <input type="hidden" id="dtId" name="dtId" value={{_id}} required>
     <button id="commentbutton" class="submitButton" type="submit">Add Comment</button>
     </form>    
     </div>
@@ -24,7 +25,7 @@
     {{/each}}
      <div id="topic">
     <form method="POST" action="/discussionTopic" id="topicForm" class="topicForm">
-    <label for="topic_input"> <textarea id="topic_input" name="title" class="mytextarea" > </textarea></label>
+    <label for="topic_input"> <textarea id="topic_input" name="title" class="mytextarea" required> </textarea></label>
     <button id="topicbutton" class="submitButton" type="submit">Add Discussion Topic</button>
     </form>  
-    </div>  
+    </div> 
