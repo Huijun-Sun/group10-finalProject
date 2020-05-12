@@ -29,7 +29,7 @@ router.get("/" ,async function(req,res){
 
     res.render("authPage", {
       showSearch: false,
-      showRegBanner: false,
+      loggedOut: !req.session.isloggedin,
     });
     return;    
 });
@@ -59,23 +59,22 @@ router.get("/" ,async function(req,res){
       }
       try {
         const createdUser = await userData.newUser(userInfo.username, userInfo.password, userInfo.firstname, userInfo.lastname, userInfo.email);
-        res.render("introPage", {
-          loggedOut: true,
-          heading: "Finding a college should be easy.",
-          showSearch: true,
-          showRegBanner: true,
-          scripts: pageScripts,
-        });
+        res.redirect("/auth");
+        // res.render("introPage", {
+        //   heading: "Finding a college should be easy.",
+        //   showSearch: true,
+        //   loggedOut: !req.session.isloggedin,
+        //   scripts: pageScripts,
+        // });
       } catch (e) {
         console.log(e)
         res.render("introPage", {
-          loggedOut: false,
           heading: "Finding a college should be easy.",
           showSearch: true,
-          showRegBanner: true,
+          loggedOut: !req.session.isloggedin,
           scripts: pageScripts,
           regError: e,
-      });
+        });
       }
   });
 
@@ -83,7 +82,9 @@ router.get("/" ,async function(req,res){
     let formData = req.body;
     try{
         //Checking the validity of login credentials
+        console.log(`/login: user name: ${formData.username}`);
         let result = await userData.userValidation(formData.username, formData.password);
+        console.log(result);
         if(result === "Success"){
             //req.session.users = curr_user;
             //Setting the AuthCookie
@@ -93,13 +94,21 @@ router.get("/" ,async function(req,res){
         }
         else{
             //Redirect to login page 
-            res.render("Add login Page Path here" , {
-                error: "User not found"
-            })
+            res.render("authPage", {
+              showSearch: false, 
+              loginError: "User not found" 
+            });
         }    
     }catch(e){
+      console.log(req.body);
+      console.log(`/login: ${e}`);
+
+      
         //When the user credentials are incorrect or does not exist
-        res.status(401).render("Add login Page Path here" , {error: "Usename/Password is invalid" })
+        res.render("authPage", {
+          showSearch: false, 
+          loginError: "Usename/Password is invalid" 
+        });
     }
 });
 
@@ -107,9 +116,7 @@ router.get("/logout", async (req, res) => {
     //Deleting the Authcookie and informing the user of logout
     res.clearCookie('AuthCookie');
     //Logout Path
-    res.render("Add logout path here" , {
-        logout :" You have successfully logged out"
-    })
+    res.redirect("/auth")
 });
 
      //Exporting the route module

@@ -5,12 +5,13 @@
     </div>
 
     <div class="reg-card signin-card">
-        <form id="reg-form" class="column reg-form">
+        <form action="/auth/login" method="POST" id="reg-form" class="column reg-form">
             <div class="reg-logo">
                 <a href="/">dreamhigh</a>
             </div>
-            <input class="card-input" type="text" name="reg-email" id="reg-email" size="24" maxlength="32" placeholder="Email address" />
-            <input class="card-input" type="password" name="reg-pswd" id="reg-pswd" size="24" maxlength="32" placeholder="Password" />
+            <input class="card-input" type="text" name="username" id="reg-email" size="24" maxlength="32" placeholder="Username" />
+            <input class="card-input" type="password" name="password" id="reg-pswd" size="24" maxlength="32" placeholder="Password" />
+            <a class="reg-error">{{loginError}}</a>
             <div class="row align-right reg-btn-group">
                 <button class="card-highlight-btn card-button">log in</button>
             </div>

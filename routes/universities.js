@@ -2,19 +2,18 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 const univData = data.universities;
-const xss=require("XSS");
+const xss=require("xss");
 
 const pageScripts =  [{script: "/public/js/universityPage.js"}];
 
-function getPageConfig(query, univList) {
+function getPageConfig(req, univList) {
   let pageConfig = {
     heading: "University Finder",
     subHeading: "Find your best college here!",
     scripts: pageScripts,
-    showSearch: false,
-    showRegBanner: true,
+    loggedOut: !req.session.isloggedin,
     univList: univList,
-    query: query,
+    query: req.body,
   }
 
   if(univList == [] || univList == undefined) {
@@ -43,7 +42,7 @@ router.get("/", async (req, res) => {
     subHeading: "Find your best college here!",
     scripts: pageScripts,
     showSearch: false,
-    showRegBanner: true,
+    loggedOut: !req.session.isloggedin,
     univList: univList,
     query: {course: "computer science", score:"315", exp:"4000", gpa:"3.5", papers:"3"},
     
@@ -68,7 +67,7 @@ router.get("/top", async (req, res) => {
   try {
     const univList = await univData.getTopTrendingUniv();
     res.json(univList);
-  //  console.log(univList);
+
   } catch (e) {
     res.status(404).render("error",{ error: e });
   }
@@ -149,9 +148,9 @@ router.get("/title/:title/course/:course/intake/:intake", async (req, res) => {
       if(!req.body.course)
       throw "Course is required";
       const univList = await univData.getUniversityFrontpageFinder(req.body.course, req.body.name);
-      res.render("universityPage", getPageConfig(req.body, univList));
+      res.render("universityPage", getPageConfig(req, univList));
     } catch (e) {
-      res.render("universityPage", getPageConfig(req.body, []));
+      res.render("universityPage", getPageConfig(req, []));
     }
   });
 
@@ -193,11 +192,13 @@ router.get("/title/:title/course/:course/intake/:intake", async (req, res) => {
     try {
 
         
+
       const univList = await univData.getUniversityFinder(xss(req.body.course),parseInt(xss(req.body.score)),parseInt(xss(req.body.exp)),parseFloat(xss(req.body.gpa)),parseInt(xss(req.body.papers)));
       res.render("universityPage", getPageConfig(req.body, univList));
 
+
     } catch (e) {
-      res.render("universityPage", getPageConfig(req.body, []));
+      res.render("universityPage", getPageConfig(req, []));
     }
   });
   router.get("/title/:title/score/:score", async (req, res) => {

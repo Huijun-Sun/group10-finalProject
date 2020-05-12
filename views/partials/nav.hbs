@@ -9,10 +9,10 @@
         <li><a href="/events">Events</a></li>
         <li><a href="/events">Admits & Rejects</a></li>
         {{#if loggedOut}}
-        <li><a href="/auth">Log Out</a></li>
-        {{else}}
         <li><a href="/auth">Log In</a></li>
         <li><a class="signup-btn" href="/#reg-card">Sign Up</a></li>
+        {{else}}
+        <li><a href="/auth/logout">Log Out</a></li>
         {{/if}}
     </ul>
 </nav>

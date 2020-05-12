@@ -5,10 +5,11 @@ const pageScripts =  [{script: "/public/js/introPage.js"}];
 
 
 router.get('/', async (req, res) => {
+    console.log(!req.session.isloggedin);
 	res.render("introPage", {
         heading: "Finding a college should be easy.",
         showSearch: true,
-        showRegBanner: true,
+        loggedOut: !req.session.isloggedin,
         scripts: pageScripts,
     });
 });

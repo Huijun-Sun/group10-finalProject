@@ -14,21 +14,39 @@ async function getUserProfile(id) {
     if(typeof id === "object"){
         obj_Id = mongodb.ObjectID(id);
     }   
-
+    
     const upCollection = await userprofile();
     const userpro = await upCollection.findOne({ userid: obj_Id });
-    if (userpro === null) throw 'No user profile with that id';
-
+    if (userpro === null) throw 'No user profile found for your id';
+    //returning the userprofile details
     return userpro;
   }
 
 
 //Function to create user profile  
-async function createUserProfile(userid,interestedin, undergrad, GRE_GMAT, TOEFL_IELTS_PTE){
-    if(!interestedin.program) throw `Program of interest required`;
-    if(!interestedin.masters_mba) throw 'Interested degree required';
-    if(!interestedin.year) throw 'Interested to year to apply required';
- 
+async function createUserProfile(userid,intMastersMba,intProgram, intTerm, intYear, underGradCollege, underGradProgram, greVerbal, greQuant, greAwa, gmatScore, toeflScore){
+    if(!intProgram) throw `Program of interest required`;
+    if(!intMastersMba) throw `Interested degree required`;
+    if(!intYear) throw `Interested to year to apply required`;
+    if(!intTerm) throw `Interested Term required`;
+    if(!underGradCollege) throw `Undergrad College required`;
+    if(!underGradProgram) throw `UnderGrad Program required`;
+    //If scores are not given, setting it to not appeared or not applicable
+    if(greVerbal==='' || greVerbal === null){
+        greVerbal="NA";
+    }
+    if(greQuant===''|| greQuant===null){
+        greQuant="NA"; 
+    }
+    if(greAwa===''|| greAwa===null){
+        greAwa="NA";
+    }
+    if(gmatScore===''||gmatScore===null){
+        gmatScore="NA";
+    }
+    if(toeflScore===''||toeflScore===null){
+        toeflScore="NA";
+    }
     if(typeof userid !== "object" && typeof userid !== "string") throw `User Id should of type Object or string`;
     var obj_Id;
     if(typeof userid === "string"){
@@ -37,39 +55,22 @@ async function createUserProfile(userid,interestedin, undergrad, GRE_GMAT, TOEFL
     if(typeof userid === "object"){
         obj_Id = mongodb.ObjectID(userid);
     }  
-    
-  //  if(typeof undergrad.college !== "text") throw `Please provide the college name in text format`;
-   // if(typeof undergrad.aggregate !== "number") throw `Aggregate should be of type number`;
-  
-    //All the remaining fields should have a drop down list to choose from ensuring the correct type of field
+     
     const userproCollection = await userprofile();
 
     let newUserProfile = {
         userid: obj_Id,
-        interestedin: {
-            masters_mba: interestedin.masters_mba,
-            program: interestedin.program,
-            term: interestedin.term,
-            year: interestedin.year
-        },
-        undergrad: {
-            college: undergrad.college,
-            program: undergrad.program,
-            aggregate: undergrad.aggregate
-        },
-        GRE_GMAT: {
-                gre_gmat_exam: GRE_GMAT.gre_gmat_exam,
-                date_appeared: GRE_GMAT.date_appeared,
-                verbal: GRE_GMAT.verbal,
-                quant: GRE_GMAT.quant,
-                awa: GRE_GMAT.awa,
-                ir: GRE_GMAT.ir 
-            },
-        TOEFL_IELTS_PTE: {
-            toefl_ielts_pte_exam: TOEFL_IELTS_PTE.toefl_ielts_pte_exam,
-            date_appeared: TOEFL_IELTS_PTE.date_appeared,
-            scores: TOEFL_IELTS_PTE.scores
-        },
+        intMastersMba: intMastersMba,
+        intProgram: intProgram,
+        intTerm: intTerm,
+        intYear: intYear,
+        underGradCollege: underGradCollege,
+        underGradProgram: underGradProgram,
+        greVerbal: greVerbal,
+        greQuant: greQuant,
+        greAwa: greAwa,
+        gmatScore: gmatScore, 
+        toeflScore: toeflScore,
         int_app_university: [],
         work_exp:[],
         projects:[],
@@ -78,39 +79,44 @@ async function createUserProfile(userid,interestedin, undergrad, GRE_GMAT, TOEFL
         blogs:[]
     };
 
-    let status;
+    
     //Inserting the new user profile into the database collection
     const insertInfo = await userproCollection.insertOne(newUserProfile);
     if (insertInfo.insertedCount === 0){
         throw 'Could not create userprofile';
     }
-    else{
-       status = "UserProfile Created Successfully";   
-    }
-    return status;
+    
+    const insertedProfile = await this.getUserProfile(obj_Id);
+    return insertedProfile;
 }
 
+//Async function to display same status profiles on the update
 async function sameStatusProfiles (university, course, status){
+
     const userproCollection = await userprofile();
 
     const userproList = await userproCollection.find({}).toArray();
     const all_userpro=[];
     for(let each_userpro of userproList){
             const eachuser_info = [];
-            let gre = parseInt(each_userpro.GRE_GMAT.verbal) + parseInt(each_userpro.GRE_GMAT.quant);
+            let gre;
+            if(each_userpro.greVerbal != null && each_userpro.greQuant != null){
+              gre = parseInt(each_userpro.greVerbal) + parseInt(each_userpro.greQuant);
+            }
             for(let each_intappUni of each_userpro.int_app_university){
                 if(each_intappUni.uniName === university && each_intappUni.uniProgram === course && each_intappUni.uniStatus=== status){
                 const eachuser_data = {
                   id: each_userpro.userid,  
                   uniName: each_intappUni.uniName,
-                  year:each_userpro.interestedin.year,
+                  year:each_userpro.intYear,
                   status:each_intappUni.uniStatus,
                   gre:gre,
-                  toefl:each_userpro.TOEFL_IELTS_PTE.scores
+                  toefl:each_userpro.toeflScore
                 }
                 eachuser_info.push(eachuser_data);
              }  
             }
+            
             const user_data = {
                 uni: eachuser_info
             }
@@ -121,6 +127,73 @@ async function sameStatusProfiles (university, course, status){
     } 
     return all_userpro;
 }
+
+//Async function to edit status of interested universities
+async function editIntAppUniversity(id, university, course, Status, Comments){
+    if (!id) throw 'User Id required to add interested/applied university';
+    if(typeof id !== "object" && typeof id !== "string") throw `Input Id should of type Object or string`;
+    var obj_Id;
+    if(typeof id === "string"){
+          obj_Id = mongodb.ObjectID.createFromHexString(id); 
+    }
+    if(typeof id === "object"){
+        obj_Id = mongodb.ObjectID(id);
+    }   
+    if(!university) throw `Please provide the university name you wish to update status for:`;
+    if(!course) throw `Please provide the program name you wish to update status for:`;
+    if(!Status) throw `Please provide the status of you application`;
+    if(typeof Comments !== "string") thow `Comments should be of type string`;
+    if(typeof uniName !=="string" || typeof uniProgram !=="string" || typeof uniStatus !== "string"){
+        throw `Input for search should be of type string`;
+     } 
+    //Checking whether the university and course exists in the profile  
+    const userpro = await this.getUserProfile(obj_Id);
+       let found = 0;
+       for(let each_intappUni of userpro.int_app_university){
+        if(each_intappUni.uniName == university && each_intappUni.uniProgram == course ){
+             found = 1;
+        }
+    }
+    if(found === 0){
+        throw `University and course not found in your profile. Please add it`;
+    }
+   
+   const sameStatus = await sameStatusProfiles(university, course, Status);
+   const status_info = [];
+           
+            for(let each_intappUni of userpro.int_app_university){
+                if(each_intappUni.uniName === university && each_intappUni.uniProgram === course ){
+                const updateStatus = {
+				  uniName: each_intappUni.uniName,
+                  uniProgram: each_intappUni.uniProgram,
+                  uniStatus: Status,
+                  comments: Comments
+                }
+                status_info.push(updateStatus);
+             }
+              else{
+			         const oldData = {
+					    uniName: each_intappUni.uniName,
+                       uniProgram: each_intappUni.uniProgram,
+                       uniStatus: each_intappUni.uniStatus,
+                       comments: each_intappUni.comments
+					 }
+					 status_info.push(oldData);
+			  }
+               let updateData = {
+			      int_app_university:status_info
+			   }
+			    const userproCollection = await userprofile();
+             const updateInfo = await userproCollection.updateOne(
+            {userid: obj_Id},{$set: updateData});
+      
+            if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
+              throw `Could not edit the university`;
+          }   
+    }
+    return sameStatus;          
+}
+
 
 
 //Async function to add interested/applied university to userprofile
@@ -134,11 +207,14 @@ async function addIntAppUniversity (id, uniName, uniProgram, uniStatus, comments
     if(typeof id === "object"){
         obj_Id = mongodb.ObjectID(id);
     }   
+    
     if(!uniName) throw `University Name required`;
     if(!uniProgram) throw `Interested/Appied Program required`;
     if(!uniStatus) throw `Please provide the status of you application`;
-    const sameStatus = await sameStatusProfiles(uniName,uniProgram, uniStatus);
-
+    if(typeof comments !== "string") throw `Comments should be of type string`;
+    if(typeof uniName !=="string" || typeof uniProgram !=="string" || typeof uniStatus !== "string"){
+        throw `Input for search should be of type string`;
+     } 
     const userproCollection = await userprofile();
     const updateInfo = await userproCollection.updateOne(
         {userid: obj_Id},
@@ -148,132 +224,17 @@ async function addIntAppUniversity (id, uniName, uniProgram, uniStatus, comments
       if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
           throw `Could not add the university`;
       }
-
-      return sameStatus;
+       
+      const userProUni = await this.getUserProfile(obj_Id);
+      return userProUni;
+      //@MonishaCall your function here - %chances
+      //Return a statement about it 
 }
 
-//Async function to add work exp to userprofile
-async function addWorkExp (id, orgName, startDate, endDate, position, location, description){
-    if (!id) throw 'User Id required to add interested/applied university';
-    if(typeof id !== "object" && typeof id !== "string") throw `Input Id should of type Object or string`;
-    var obj_Id;
-    if(typeof id === "string"){
-          obj_Id = mongodb.ObjectID.createFromHexString(id); 
-    }
-    if(typeof id === "object"){
-        obj_Id = mongodb.ObjectID(id);
-    }
 
-    if(!orgName) throw `Organization Name required`;
-    if(!startDate) throw `Start date of work required`;
-    //Need to add option for currently working 
-    if(!endDate) throw `End date required`;
-    if(!position) throw `Please provide your role at the organization`;
-    if(!location) throw `Please provide the place of work`;
-
-    const userproCollection = await userprofile();
-    const updateInfo = await userproCollection.updateOne(
-        {userid: obj_Id},
-        {$addToSet: {work_exp: {orgName: orgName, startDate: startDate, endDate:endDate, position: position, location:location, description:description}}}
-      );
-  
-      if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
-          throw `Could not add the work exp`;
-      }
-
-      const userworkex = await this.getUserProfile(obj_Id);
-      return userworkex.work_exp;
-}    
-
-//Async function to add technical papers info to userprofile
-async function addTechPaper (id, title, description, link){
-    if (!id) throw 'User Id required to add interested/applied university';
-    if(typeof id !== "object" && typeof id !== "string") throw `Input Id should of type Object or string`;
-    var obj_Id;
-    if(typeof id === "string"){
-          obj_Id = mongodb.ObjectID.createFromHexString(id); 
-    }
-    if(typeof id === "object"){
-        obj_Id = mongodb.ObjectID(id);
-    }
-
-    if(!title) throw `Please provide Technical Paper name`;
-    if(!description) throw `Please provide Technical Paper description`;
-    if(!link) throw `Please provide a link to the paper`;
-    const userproCollection = await userprofile();
-    const updateInfo = await userproCollection.updateOne(
-        {userid: obj_Id},
-        {$addToSet: {tech_papers: {title: title, description: description, link:link}}}
-      );
-  
-      if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
-          throw `Could not add the paper`;
-      }
-
-      const userTechPaper = await this.getUserProfile(obj_Id);
-      return userTechPaper.tech_papers;
-}
-
-//Async function to add projects info to userprofile
-async function addProject (id, title, description){
-    if (!id) throw 'User Id required to add interested/applied university';
-    if(typeof id !== "object" && typeof id !== "string") throw `Input Id should of type Object or string`;
-    var obj_Id;
-    if(typeof id === "string"){
-          obj_Id = mongodb.ObjectID.createFromHexString(id); 
-    }
-    if(typeof id === "object"){
-        obj_Id = mongodb.ObjectID(id);
-    }
-
-    if(!title) throw `Please provide Project name`;
-    if(!description) throw `Please provide Project description`;
-    const userproCollection = await userprofile();
-    const updateInfo = await userproCollection.updateOne(
-        {userid: obj_Id},
-        {$addToSet: {projects: {title: title, description: description}}}
-      );
-  
-      if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
-          throw `Could not add the project`;
-      }
-
-      const userProject = await this.getUserProfile(obj_Id);
-      return userProject.projects;
-}
-
-//Async function to add extracurriculars to the profile
-async function addExtraCurriculars (id, title, description){
-    if (!id) throw 'User Id required to add extracurriculars to the profile';
-    if(typeof id !== "object" && typeof id !== "string") throw `Input Id should of type Object or string`;
-    var obj_Id;
-    if(typeof id === "string"){
-          obj_Id = mongodb.ObjectID.createFromHexString(id); 
-    }
-    if(typeof id === "object"){
-        obj_Id = mongodb.ObjectID(id);
-    }
-
-    if(!title) throw `Please provide the title`;
-    if(!description) throw `Please provide the description`;
-    const userproCollection = await userprofile();
-    const updateInfo = await userproCollection.updateOne(
-        {userid: obj_Id},
-        {$addToSet: {extracurriculars: {title: title, description: description}}}
-      );
-  
-      if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
-          throw `Could not add the extracurricular info`;
-      }
-
-      const userExtracurricular = await this.getUserProfile(obj_Id);
-      return userExtracurricular.extracurriculars;
-}
-
-   
 
 //Async function to update userprofile
-async function editUserProfile(id,interestedin, undergrad, GRE_GMAT, TOEFL_IELTS_PTE,int_app_university,work_exp,projects,tech_papers,extracurriculars){
+async function editUserProfile(id, intMastersMba,intProgram, intTerm, intYear, underGradCollege, underGradProgram, greVerbal, greQuant, greAwa, gmatScore, toeflScore){
     if (!id) throw 'User Id required to add extracurriculars to the profile';
     if(typeof id !== "object" && typeof id !== "string") throw `Input Id should of type Object or string`;
     var obj_Id;
@@ -283,40 +244,23 @@ async function editUserProfile(id,interestedin, undergrad, GRE_GMAT, TOEFL_IELTS
     if(typeof id === "object"){
         obj_Id = mongodb.ObjectID(id);
     }
-    if(!interestedin.program) throw `Program of interest required`;
-    if(!interestedin.masters_mba) throw 'Interested degree required';
-    if(!interestedin.year) throw 'Interested to year to apply required';
+    if(!intProgram) throw `Program of interest required`;
+    if(!intMastersMba) throw 'Interested degree required';
+    if(!intYear) throw 'Interested to year to apply required';
+
     const userproCollection = await userprofile();
     let updatedUserProfile = {
-        interestedin: {
-            masters_mba: interestedin.masters_mba,
-            program: interestedin.program,
-            term: interestedin.term,
-            year: interestedin.year
-        },
-        undergrad: {
-            college: undergrad.college,
-            program: undergrad.program,
-            aggregate: undergrad.aggregate
-        },
-        GRE_GMAT: {
-                gre_gmat_exam: GRE_GMAT.gre_gmat_exam,
-                date_appeared: GRE_GMAT.date_appeared,
-                verbal: GRE_GMAT.verbal,
-                quant: GRE_GMAT.quant,
-                awa: GRE_GMAT.awa,
-                ir: GRE_GMAT.ir 
-            },
-        TOEFL_IELTS_PTE: {
-            toefl_ielts_pte_exam: TOEFL_IELTS_PTE.toefl_ielts_pte_exam,
-            date_appeared: TOEFL_IELTS_PTE.date_appeared,
-            scores: TOEFL_IELTS_PTE.scores
-        },
-        int_app_university: int_app_university,
-        work_exp:work_exp,
-        projects:projects,
-        tech_papers:tech_papers,
-        extracurriculars:extracurriculars
+        intMastersMba: intMastersMba,
+        intProgram: intProgram,
+        intTerm: intTerm,
+        intYear: intYear,
+        underGradCollege: underGradCollege,
+        underGradProgram: underGradProgram,
+        greVerbal: greVerbal,
+        greQuant: greQuant,
+        greAwa: greAwa,
+        gmatScore: gmatScore, 
+        toeflScore: toeflScore
     };
     
     //Updting the fields in the database collection
@@ -337,26 +281,35 @@ function isEmptyObject(obj) {
   }
 //Async function for past admits rejects   
 async function pastAdmitsRejects(university, course, status){
+    if(!university) throw `University Name required`;
+    if(!course) throw `Course required`;
+    if(!status) throw `Status required`;
+    if(typeof university !=="string" && typeof course !=="string" && typeof status !== "string"){
+       throw `Input for search should be of type string`;
+    }   
     const userproCollection = await userprofile();
-
     const userproList = await userproCollection.find({}).toArray();
     const all_userpro=[];
     for(let each_userpro of userproList){
             const eachuser_info = [];
-            let gre = parseInt(each_userpro.GRE_GMAT.verbal) + parseInt(each_userpro.GRE_GMAT.quant);
+            let gre;
+            if(each_userpro.greVerbal != "NA" && each_userpro.greQuant != "NA"){
+              gre = parseInt(each_userpro.greVerbal) + parseInt(each_userpro.greQuant);
+            }
             for(let each_intappUni of each_userpro.int_app_university){
-                if(each_intappUni.uniName === university && each_intappUni.uniProgram === course && each_intappUni.uniStatus===status){
-                const eachuser_data = {
+                if(each_intappUni.uniName === university && each_intappUni.uniProgram === course && each_intappUni.uniStatus=== status){
+                    const eachuser_data = {
                   id: each_userpro.userid,  
                   uniName: each_intappUni.uniName,
-                  year:each_userpro.interestedin.year,
-                  status:status,
+                  year:each_userpro.intYear,
+                  status:each_intappUni.uniStatus,
                   gre:gre,
-                  toefl:each_userpro.TOEFL_IELTS_PTE.scores
+                  toefl:each_userpro.toeflScore
                 }
                 eachuser_info.push(eachuser_data);
              }  
             }
+            
             const user_data = {
                 uni: eachuser_info
             }
@@ -367,6 +320,7 @@ async function pastAdmitsRejects(university, course, status){
     } 
     return all_userpro;
 }
+
 async function getAllUsersProfile(){
     const userproCollection = await userprofile();
     const userproList = await userproCollection.find({}).toArray();
@@ -377,11 +331,8 @@ module.exports = {
     getUserProfile,
     createUserProfile,
     addIntAppUniversity,
-    addWorkExp,
-    addProject,
-    addTechPaper,
-    addExtraCurriculars,
     editUserProfile,
+    editIntAppUniversity,
     pastAdmitsRejects,
     getAllUsersProfile
 };

@@ -1,0 +1,47 @@
+
+<div class="reg-logo">
+                <a href="#">Do you want to have a look at other Profiles with Same Status </a>
+            </div>
+<div id="college-list" class="college-list row">
+  {{#if isEmpty}}
+    <h1 class="search-not-found">Oops No Profile found</h1>
+    {{/if}}
+
+{{#each sameStatusList}}
+    <div>{{@uni}}</div>
+        {{#each uni}}
+    <button class="college-item card column">
+        <div class="college-item-header">
+           <!-- <h3 class="college-item-title">{{this.username}}</h3>-->
+            <a href="/userprofile/{{id}}">{{username}}</h3>
+            <div class="college-item-rating material-align-center">
+            <h3>{{uniName}}</h3>
+               
+            </div>
+        </div>
+        <div class="row">
+            <div class="college-item-detail column">
+                <p class="material-align-center">
+                    <a class="material-icon">assessment</a>
+                    Year: {{year}}
+                </p>
+                <p class="material-align-center">
+                    <a class="material-icon">account_balance </a>
+                    <a>Status: {{status}} </a>
+                </p>
+                <p class="material-align-center">
+                    <a class="material-icon">monetization_on</a>
+                    GRE: {{gre}}
+                </p>
+
+                <p class="material-align-center">
+                    <a class="material-icon">location_on</a>
+                    TOEFL: {{toefl}}
+                </p>
+            </div>
+            <div class="college-item-spacer"></div>
+        </div>
+    </button>
+    {{/each}}
+ {{/each}}
+</div>
