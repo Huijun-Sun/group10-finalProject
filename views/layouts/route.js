@@ -1,0 +1,1 @@
+require('../../public/img/event_1.jpg')
