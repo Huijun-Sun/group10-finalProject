@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 const univData = data.universities;
-const xss=require("XSS");
+const xss=require("xss");
 
 const pageScripts =  [{script: "/public/js/universityPage.js"}];
 

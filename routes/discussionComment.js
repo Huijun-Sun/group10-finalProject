@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 const discussionData = data.discussion;
-const xss=require("XSS");
+const xss=require("xss");
 
 router.get("/:id", async (req, res) => {
   try {
