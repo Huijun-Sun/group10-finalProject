@@ -68,7 +68,6 @@ router.get("/top", async (req, res) => {
   try {
     const univList = await univData.getTopTrendingUniv();
     res.json(univList);
-    console.log(univList);
   } catch (e) {
     res.status(404).render("error",{ error: e.message });
   }

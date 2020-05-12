@@ -60,19 +60,17 @@ router.get("/" ,async function(req,res){
       try {
         const createdUser = await userData.newUser(userInfo.username, userInfo.password, userInfo.firstname, userInfo.lastname, userInfo.email);
         res.render("introPage", {
-          loggedOut: true,
           heading: "Finding a college should be easy.",
           showSearch: true,
-          showRegBanner: true,
+          showRegBanner: !req.session.isloggedin,
           scripts: pageScripts,
         });
       } catch (e) {
         console.log(e)
         res.render("introPage", {
-          loggedOut: false,
           heading: "Finding a college should be easy.",
           showSearch: true,
-          showRegBanner: true,
+          showRegBanner: !req.session.isloggedin,
           scripts: pageScripts,
           regError: e,
       });
@@ -93,7 +91,7 @@ router.get("/" ,async function(req,res){
         }
         else{
             //Redirect to login page 
-            res.render("Add login Page Path here" , {
+            res.render("/auth" , {
                 error: "User not found"
             })
         }    
