@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 const discussionData = data.discussion;
+const xss=require("XSS");
 
 router.get("/:id", async (req, res) => {
   try {
@@ -17,26 +18,28 @@ router.get("/:id", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const dtList = await discussionData.getAllTopics();
-    
     res.render("forum_page",{dtList});
   } catch (e) {
-    res.status(500).render(e);
+    res.status(500).render('error',{error: e});
   }
 });
 
 
 router.post("/", async (req, res) => {
   const dtDataa = req.body;
- // dtDataa.user='5eb735d2ed3b004d14543f5a';
+ // user='5eb735d2ed3b004d14543f5a';
   try {
+    //console.log("hi");
     const { title } = dtDataa;
-    
+    if(!req.session.user)
+    throw "Please Login to add Discussion Topic";
     if(!req.body.title)
     throw "Invalid post format";
-    const newdt = await discussionData.addDiscussionTopic(title,req.session.user);
+  console.log(req.body);
+    const newdt = await discussionData.addDiscussionTopic(xss(title),req.session.username);
     res.status(200).redirect('/discussionTopic');
   } catch (e) {
-    res.status(400).json({ error: e });
+    res.status(400).render('error',{ error: e.message });
   }
 });
 

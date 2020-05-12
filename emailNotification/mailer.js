@@ -1,9 +1,11 @@
-const nodemailer = require('./node_modules/nodemailer');
-       // const defaultMailingList = "example1@vultr.com,example2@vultr.com";
-        const senderEmail = "moni0810.selvam@gmail.com";
+const nodemailer = require('nodemailer');
+
+       
+        const senderEmail = "thyagumoni.yeshu@gmail.com";
         const senderPassword = "Yeshu@0107"; // gmail app password
+
         module.exports = {
-            sendMail: async () => {
+            sendMail: async (toaddress) => {
                 try {
                 const transporter = nodemailer.createTransport({
                     service: 'Gmail',
@@ -15,7 +17,7 @@ const nodemailer = require('./node_modules/nodemailer');
 
                 const message = {
                     from: `report sender <${senderEmail}>`,
-                    to:senderEmail,
+                    to:toaddress,
                     subject:"Hi deadline of your intrested university is approaching"
                    // text: subject
                    // html: text,

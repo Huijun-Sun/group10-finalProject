@@ -1,25 +1,57 @@
 const universities = require("../data/universities");
+const userdata=require('../data/user');
+const userprofile=require('../data/userprofile');
 async function main1() {
 try
 {
-
-deadline = await universities.getDeadline("Stevens Institute of Technology","Computer Science","Fall");
-month=deadline[0].deadline.getMonth();
-day=deadline[0].deadline.getDate();
-if (month==(new Date()).getMonth())
-{
-if(day+1==(new Date()).getDate() || day+7==(new Date()).getDate())
-{
-const {sendMail} = require('./mailer');
-console.log('sending email...');
-sendMail(tomailid);
-console.log('email sent ✓');
-}
-}
+    let mail=[];
+    let newobj={
+       
+        intuniv: '',
+        email: ''
+    };
+    userinfo=await userprofile.getAllUsersProfile();
+    userinfo.forEach(async element => {
+        let userid=element.userid;
+        element.int_app_university.forEach(async element1 => {
+        intuniv=element1.uniName ;
+        
+        uid=await userdata.getUser(userid);
+        email=uid.email;
+        
+        newobj={
+            email: email,
+            intuniv: intuniv
+    
+        };
+        
+    deadline = await universities.getDeadline(newobj.intuniv,null,null);
+    month=deadline[0].deadline.getMonth();
+    day=deadline[0].deadline.getDate();
+    if (month==(new Date()).getMonth())
+    {
+    if(day==((new Date()).getDate()+1) || day==((new Date()).getDate())+7)
+    {
+    const {sendMail} = require('./mailer');
+    console.log('sending email...');
+    sendMail(newobj.email);
+    console.log('email sent ✓');
+    }
+    }
+        
+    });
+    
+    });
 }
 catch(e)
 {
     throw(e);
 
 }}
-//main1();
+
+
+async function main2()
+{
+   await main1();
+}
+main2();
