@@ -11,7 +11,7 @@ router.get("/:id", async (req, res) => {
     const topic = await discussionData.getDiscussionTopic(req.params.id);
     res.json(topic);
   } catch (e) {
-    res.status(404).json({ message: "Topic not found" });
+    res.status(404).json({ error: "Topic not found" });
   }
 });
 
@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
   const dtDataa = req.body;
  // user='5eb735d2ed3b004d14543f5a';
   try {
-    //console.log("hi");
+  
     const { title } = dtDataa;
     if(!req.session.user)
     throw "Please Login to add Discussion Topic";
@@ -39,7 +39,8 @@ router.post("/", async (req, res) => {
     const newdt = await discussionData.addDiscussionTopic(xss(title),req.session.username);
     res.status(200).redirect('/discussionTopic');
   } catch (e) {
-    res.status(400).render('error',{ error: e.message });
+   
+    res.status(400).render('error',{ error: e });
   }
 });
 

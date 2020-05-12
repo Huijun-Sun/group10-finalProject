@@ -313,6 +313,7 @@ input[type=text] {
     margin: 0px;
     padding: 3px 3px 0px 0px;
     font-size: 20px;
+    color:black;
   }
 
 .college-item-score::first-letter {
