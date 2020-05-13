@@ -24,3 +24,27 @@ function onCollegeClicked(id) {
 // document.addEventListener('DOMContentLoaded', () => {
 //     // init();
 // });
+
+
+
+let newuv = {
+    // title: title,
+    courses: courses,
+    // category: category,
+    programs: programs,
+    // location: location,
+    deadline: deadline,
+    // tuitionfees: tuitionfees,
+    // rating: rating,
+    // rank: rank,
+    livingexp: livingexp,
+    // averagescore: averagescore,
+    // websitelink: websitelink,
+    // workexp: workexp,
+    // GPA: GPA,
+    intake: intake,
+    papers: papers,
+    description: description,
+    coursedesc: coursedesc
+    
+}
