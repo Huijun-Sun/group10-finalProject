@@ -347,6 +347,7 @@ input[type=text] {
 }
 
 .college-item-title {
+    font-size: 26px;
     align-self: flex-start;
     padding: 15px 20px;
     margin: 0px;
