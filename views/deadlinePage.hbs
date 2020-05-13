@@ -1,0 +1,72 @@
+<div class="row center-items">
+    <form action="/deadlines" method="POST" class="search-box card">
+        <div class="search-area">
+            <div class="search-filter">
+                <label class="search-title" for="name">NAME</label>
+                <select name="name" class="college-name-select">
+                </select>
+            </div>
+            <div class="search-filter-spacer"></div>
+            <div class="search-filter">
+                <label class="search-title" for="course">COURSE</label>
+                <select name="course" value="{{query.course}}">
+                    <option value="computer science">Computer Science</option>
+                    <option value="information systems">Information Systems</option>
+                    <option value="financial engineering">Financial Engineering</option>
+                    <option value="business intelligent & analytics">Business intelligent & Analytics</option>
+                    <option value="construction management">Construction Management</option>
+                </select>
+            </div>
+            <div class="search-filter-spacer"></div>
+            <div class="search-filter">
+                <label class="search-title" for="intake">INTAKE</label>
+                <select name="intake" value="{{query.course}}">
+                    <option value="spring">Spring</option>
+                    <option value="fall">Fall</option>
+                </select>
+            </div>
+
+        </div>
+        <button class="card-button"><a class="material-icon">search</a> search</button>
+    </form>
+</div>
+
+<div id="college-list" class="college-list row">
+    {{#if error}}
+    <h1 class="search-not-found">{{error}}</h1>
+    {{/if}}
+    {{#each univList}}
+    <button class="college-item card column">
+        <div class="college-item-header">
+            <p class="college-item-title">{{title}}</p>
+            <div class="college-item-rating material-align-center">
+                <p class="college-item-score">{{rating}}</p>
+                <a class="material-icon">star</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="college-item-detail column">
+                <p class="material-align-center">
+                    <a class="material-icon">assessment</a>
+                    Ranking: {{rank}}
+                </p>
+                <p class="material-align-center">
+                    <a class="material-icon">account_balance </a>
+                    <a>Type: {{category}} University</a>
+                </p>
+                <p class="material-align-center">
+                    <a class="material-icon">monetization_on</a>
+                    Tuition: {{tuitionfees}}
+                </p>
+
+                <p class="material-align-center">
+                    <a class="material-icon">location_on</a>
+                    Location: {{location}}
+                </p>
+            </div>
+            <div class="college-item-spacer"></div>
+        </div>
+    </button>
+    {{/each}}
+
+</div>

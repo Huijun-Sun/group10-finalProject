@@ -54,9 +54,9 @@ router.get("/pastadmitreject/",async function(req,res){
       if(!xss(req.body.college)){
         error.push('You must provide the college you studied or are studyin in');
       }
-      if(!xss(req.body.verbal) || !xss(req.body.quant) || !xss(req.body.awa)){
-        if(!xss(req.body.quant) === '' || !xss(req.body.awa) === ''|| !xss(req.body.gre)===''){
-          error.push('You must provide all the three gre, quant & awa scores');
+     if(xss(req.body.verbal) || xss(req.body.quant) || xss(req.body.awa)) {
+        if(xss(req.body.quant) === '' || xss(req.body.awa) === '' || xss(req.body.verbal) === ''){
+          error.push('You must provide provide all the three scores for gre');
         }
       }
      

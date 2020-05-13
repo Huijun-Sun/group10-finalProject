@@ -222,15 +222,18 @@ input[type=text] {
     width: 640px;
     align-self: center;
     padding: 0px 0px;
+    margin: 10px 0px;
 }
 
 .event-item-title {
+    line-height: 1.2;
+    text-align: left;
     font-size: 24px;
     color: white;
     background-color: rgb(228, 0, 114);
     width: 600px;
     border-radius: 10px 10px 0px 0px;
-    padding: 5px 20px 0px 20px;
+    padding: 15px 20px 10px 20px;
 }
 
 .event-item-detail {
@@ -369,3 +372,28 @@ input[type=text] {
 }
 
 
+/* guides */
+.guides-list {
+    margin: 100px 0px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.guides-card {
+    
+    padding: 20px 40px;
+    margin: 20px 40px;
+    font-size: 26px;
+    width: 600px;
+    
+    color: #f4f4f4;
+}
+
+.guides-card-purple{
+    background-image: -webkit-linear-gradient(45deg, #8b4ac8 20%, #a94bc0 50%);
+}
+
+.guides-card-red{
+    background-image: -webkit-linear-gradient(45deg, #911295 20%, #be108a 50%);
+
+}
