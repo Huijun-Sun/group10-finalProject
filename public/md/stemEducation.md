@@ -1,6 +1,6 @@
-# What is STEM Education?
+![STEM-blog](/public/img/guide_stem0.png)
 
-![STEM-blog](C:\Users\huiju\Desktop\546data\STEM-blog.png)
+# What is STEM Education?
 
 STEM is a curriculum based on the idea of educating students in four specific disciplines — science, technology, engineering and mathematics — in an interdisciplinary and applied approach. Rather than teach the four disciplines as separate and discrete subjects, STEM integrates them into a cohesive learning paradigm based on real-world applications.
 
@@ -75,4 +75,4 @@ There are many types of master’s programs (NRC, 2008), just as there are many 
 
 ------
 
-![stem-foot-1](C:\Users\huiju\Desktop\546data\stem-foot-1.jpg)
+![stem-foot-1](/public/img/guide_stem1.jpg)

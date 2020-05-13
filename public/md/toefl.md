@@ -2,7 +2,8 @@
 
 # TOEFL Structure And Exam Pattern
 
-![toefl](C:\Users\huiju\Desktop\546data\toefl.png)
+<!-- ![toefl](C:\Users\huiju\Desktop\546data\toefl.png) -->
+
 
 Taking the TOEFL test is a very important part of your journey to studying in an English-speaking country or program. Here's a basic overview to help you learn more about the test.
 

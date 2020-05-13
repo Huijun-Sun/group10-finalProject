@@ -1,6 +1,6 @@
 var collegeCollection = [];
 
-var initIntro = function () {
+function initIntro() {
     fetch('/universities/top').then(async function (response) {
         // The API call was successful!
         collegeCollection = await response.json();
@@ -11,7 +11,7 @@ var initIntro = function () {
     });
 }
 
-var refreshIntro = function () {
+function refreshIntro() {
     let listNode = document.getElementById('college-list');
     listNode.innerHTML = "";
     for (const college of collegeCollection) {
@@ -49,3 +49,8 @@ var refreshIntro = function () {
     </button>`;
     }
 }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    initIntro();
+});

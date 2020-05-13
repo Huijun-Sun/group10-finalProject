@@ -86,22 +86,26 @@ router.get("/" ,async function(req,res){
         //console.log(`/login: user name: ${formData.username}`);
         let result = await userData.userValidation(formData.username, formData.password);
 
-    
+        if(result) {
+          req.session.AuthCookie = req.sessionID;
+          req.session.isloggedin = true;
+        }
         //req.session.users = curr_user;
         //Setting the AuthCookie
-        req.session.AuthCookie = req.sessionID;
-        req.session.isloggedin = true;
+
         //redirect to main page of dream high
         res.status(200).redirect("/");
 
     }catch(e){
     //  console.log(req.body);
-      //console.log(`/login: ${e}`);
+    console.log(`/login: ${e}`);
+    console.log(`/login: ${req.session.isloggedin}`);
 
       
         //When the user credentials are incorrect or does not exist
         res.render("authPage", {
           showSearch: false, 
+          loggedOut: !req.session.isloggedin,
           loginError: "Usename/Password is invalid" 
         });
     }

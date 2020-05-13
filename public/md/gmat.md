@@ -1,6 +1,8 @@
+
+![GMAT](public/img/guide_gmat.png)
+
 # What is GMAT?
 
-![GMAT](C:\Users\huiju\Desktop\546data\GMAT.png)
 
 Any student planning to pursue an MBA abroad (and more recently, certain management or finance, related fields) has to take the GMAT - Graduate Management Admission Test. All top business schools use the test as a criterion for admission into a wide range of graduate management programs, including MBA, Master of Accountancy, and Master of Finance programs.
 

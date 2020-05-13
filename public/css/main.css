@@ -4,6 +4,7 @@
 @import "./parallax.css";
 @import "./footer.css";
 @import "./discussion.css";
+@import "./markdown.css";
 
 body {
     background: #ffffff;
@@ -142,13 +143,12 @@ input[type=text] {
     background-image: url("../img/parallax-home.jpg");
     padding-top: 100px;
     padding-bottom: 100px;
-    
 }
 
 .paralax-title-welcome {
     font-size: 35px !important;
     margin-left: 50px;
-    color:deeppink;
+    color: deeppink;
 }
 
 .heading-banner {
@@ -212,6 +212,7 @@ input[type=text] {
 }
 
 /* Events.html */
+
 .event-list {
     margin: 40px 0px 80px 0px;
     display: flex;
@@ -274,8 +275,8 @@ input[type=text] {
     display: flex;
 }
 
-
 /* college.html*/
+
 .college-list {
     margin: 40px 30px 80px 30px;
     display: flex;
@@ -299,7 +300,6 @@ input[type=text] {
 .college-item-header {
     display: flex;
     justify-content: space-between;
-
     margin: 0px;
     width: 400px;
     height: 160px;
@@ -314,16 +314,17 @@ input[type=text] {
     align-self: flex-end;
     margin-right: 20px;
 }
+
 .college-item-score {
     margin: 0px;
     padding: 3px 3px 0px 0px;
     font-size: 20px;
-    color:black;
-  }
+    color: black;
+}
 
 .college-item-score::first-letter {
     font-size: 150%;
-  }
+}
 
 .college-item-title {
     align-self: flex-start;
@@ -353,9 +354,8 @@ input[type=text] {
     height: 130px;
 } */
 
-
-
 /* signin */
+
 .signin-body {
     margin-bottom: 70px;
     justify-content: space-between;
@@ -371,8 +371,8 @@ input[type=text] {
     margin: 50px 50px 50px 50px !important;
 }
 
-
 /* guides */
+
 .guides-list {
     margin: 100px 0px;
     align-items: flex-start;
@@ -380,20 +380,70 @@ input[type=text] {
 }
 
 .guides-card {
-    
     padding: 20px 40px;
     margin: 20px 40px;
     font-size: 26px;
     width: 600px;
-    
     color: #f4f4f4;
 }
 
-.guides-card-purple{
+.guides-card-purple {
     background-image: -webkit-linear-gradient(45deg, #8b4ac8 20%, #a94bc0 50%);
 }
 
-.guides-card-red{
+.guides-card-red {
     background-image: -webkit-linear-gradient(45deg, #911295 20%, #be108a 50%);
+}
 
+.overlay {
+    visibility: hidden;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background-color: #fcf8f7ee;
+    overflow-x: hidden;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.overlay-title-bar{
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;    
+    height: 80px;
+    width: 80%;
+}
+
+.overlay .close-btn {
+    font-size: 60px;
+    color: #555555;
+}
+
+.overlay .close-btn:hover {
+    color: #222222;
+}
+
+.overlay-content {
+    display: initial;
+    /* all: initial; */
+    width: 80%;
+    visibility: inherit;
+    margin-bottom: 100px;
+}
+
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+
+@media screen and (max-height: 450px) {
+    .overlay a {
+        font-size: 20px
+    }
+    .overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
 }

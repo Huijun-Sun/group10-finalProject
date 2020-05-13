@@ -1,5 +1,6 @@
 <div class="parallax parallax-home" id="reg-card">
-    <p class="paralax-title-welcome" style="color:deeppink"><b>Welcome to dreamhigh!</b> <br />Sign up and get help from thousands of aspirants
+    <p class="paralax-title-welcome" style="color:deeppink"><b>Welcome to dreamhigh!</b> <br />Sign up and get help from
+        thousands of aspirants
         just like you!</p>
     <div class="reg-card">
         <form action="/auth/signup" method="POST" id="reg-form" class="column reg-form">
@@ -7,27 +8,28 @@
                 <a href="/">dreamhigh</a>
             </div>
             <div class="row">
-                <label for="reg-fstname"> 
-                <input class="card-input" type="text" name="firstname" id="reg-fstname" size="24" maxlength="32"
-                    placeholder="First Name" />
-                     <label for="reg-lstname"> 
-                <input class="card-input" type="text" name="lastname" id="reg-lstname" size="24" maxlength="32"
-                    placeholder="Last Name" />
+                <label for="reg-fstname">
+                    <input class="card-input" type="text" name="firstname" id="reg-fstname" size="24" maxlength="32"
+                        placeholder="First Name" />
+                    <label for="reg-lstname">
+                        <input class="card-input" type="text" name="lastname" id="reg-lstname" size="24" maxlength="32"
+                            placeholder="Last Name" />
             </div>
-            <label for="reg-usrname"> 
+            <label for="reg-usrname"></label>
             <input class="card-input" type="text" name="username" id="reg-usrname" size="24" maxlength="32"
                 placeholder="User Name" />
-                <label for="reg-email"> 
+            <label for="reg-email"></label>
             <input class="card-input" type="text" name="email" id="reg-email" size="24" maxlength="32"
                 placeholder="Email address" />
-                <label for="reg-pswd"> 
+            <label for="reg-pswd"></label>
             <input class="card-input" type="password" name="password" id="reg-pswd" size="24" maxlength="32"
                 placeholder="Password" />
-                {{#if regError}}
+            {{#if regError}}
             <a class="reg-error">{{regError}}</a>
             {{/if}}
             <div class="row align-right reg-btn-group">
-                <button type="button" class="card-btn card-button" onclick="location.href = '/auth';">switch to login</button>
+                <button type="button" class="card-btn card-button" onclick="location.href = '/auth';">switch
+                    to login</button>
                 <button class="card-highlight-btn card-button" style="color:black">sign up</button>
             </div>
 
