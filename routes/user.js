@@ -30,6 +30,7 @@ router.get("/" ,async function(req,res){
     res.render("authPage", {
       showSearch: false,
       loggedOut: !req.session.isloggedin,
+      hideRegBanner: true
     });
     return;    
 });
@@ -85,20 +86,13 @@ router.get("/" ,async function(req,res){
         console.log(`/login: user name: ${formData.username}`);
         let result = await userData.userValidation(formData.username, formData.password);
         console.log(result);
-        if(result === "Success"){
-            //req.session.users = curr_user;
-            //Setting the AuthCookie
-            req.session.AuthCookie = req.sessionID;
-            //redirect to main page of dream high
-            res.status(200).redirect();
-        }
-        else{
-            //Redirect to login page 
-            res.render("authPage", {
-              showSearch: false, 
-              loginError: "User not found" 
-            });
-        }    
+    
+        //req.session.users = curr_user;
+        //Setting the AuthCookie
+        req.session.AuthCookie = req.sessionID;
+        req.session.isloggedin = true;
+        //redirect to main page of dream high
+        res.status(200).redirect("/");
     }catch(e){
       console.log(req.body);
       console.log(`/login: ${e}`);
@@ -114,6 +108,7 @@ router.get("/" ,async function(req,res){
 
 router.get("/logout", async (req, res) => {
     //Deleting the Authcookie and informing the user of logout
+    res.clearCookie('isloggedin');
     res.clearCookie('AuthCookie');
     //Logout Path
     res.redirect("/auth")

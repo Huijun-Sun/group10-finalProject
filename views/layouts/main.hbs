@@ -12,7 +12,7 @@
 
 <body>
   {{>nav}}
-  
+
   {{#if showSearch}}
   {{>search}}
   {{/if}}
@@ -21,9 +21,12 @@
 
   {{{body}}}
 
+  {{#unless hideRegBanner}}
   {{#if loggedOut}}
   {{>regBanner}}
   {{/if}}
+  {{/unless}}
+
 
   {{>footer}}
 
@@ -34,6 +37,6 @@
 {{/each}}
 
 <script src="/public/js/index.js"></script>
-<script>console.log({{loggedOut}});</script>
+<script>console.log({{ loggedOut }});</script>
 
 </html>
