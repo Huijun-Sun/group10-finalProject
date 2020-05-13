@@ -19,6 +19,7 @@ function getPageConfig(req, univList) {
   if(univList == [] || univList == undefined) {
     pageConfig["error"] = "ops, no university found with given criteria";   
   }
+  console.log("returning");
   return pageConfig;
 }
 
@@ -190,13 +191,9 @@ router.get("/title/:title/course/:course/intake/:intake", async (req, res) => {
   });
   router.post("/search", async (req, res) => {
     try {
-
-        
-
       const univList = await univData.getUniversityFinder(xss(req.body.course),parseInt(xss(req.body.score)),parseInt(xss(req.body.exp)),parseFloat(xss(req.body.gpa)),parseInt(xss(req.body.papers)));
-      res.render("universityPage", getPageConfig(req.body, univList));
 
-
+      res.render("universityPage", getPageConfig(req, univList));
     } catch (e) {
       res.render("universityPage", getPageConfig(req, []));
     }
