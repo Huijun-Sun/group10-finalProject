@@ -18,7 +18,7 @@ var refreshIntro = function () {
         console.log(college);
         listNode.innerHTML += `<button class="college-item card column">
         <div class="college-item-header">
-            <h3 class="college-item-title">${college.title}</h3>
+            <h2 class="college-item-title">${college.title}</h2>
             <div class="college-item-rating material-align-center">
                 <p class="college-item-score">${college.rating}</p>
                 <a class="material-icon">star</a>
