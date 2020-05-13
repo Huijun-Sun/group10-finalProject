@@ -12,12 +12,20 @@ function initNav() {
 }
 
 function refreshNav() {
+<<<<<<< HEAD
     let selectNodes = document.getElementsByClassName('college-name-select');
     for (const node of selectNodes) {
         node.innerHTML = "";
         for (const name of collegeNames) {
             node.innerHTML += `<option value="${name}">${name}</option>`;
         }
+=======
+    let selectNode = document.getElementById('search-college-name');
+    selectNode.innerHTML = "";
+    for (const name of collegeNames) {
+      //  console.log(name);
+        selectNode.innerHTML += `<option value="${name}">${name}</option>`;
+>>>>>>> monisha_branch
     }
 }
 

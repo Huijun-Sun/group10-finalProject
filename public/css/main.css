@@ -142,11 +142,13 @@ input[type=text] {
     background-image: url("../img/parallax-home.jpg");
     padding-top: 100px;
     padding-bottom: 100px;
+    
 }
 
 .paralax-title-welcome {
     font-size: 35px !important;
     margin-left: 50px;
+    color:deeppink;
 }
 
 .heading-banner {
