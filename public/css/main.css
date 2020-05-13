@@ -143,6 +143,7 @@ input[type=text] {
     background-image: url("../img/parallax-home.jpg");
     padding-top: 100px;
     padding-bottom: 100px;
+    background-color: black;
 }
 
 .paralax-title-welcome {
@@ -306,7 +307,7 @@ input[type=text] {
     border-radius: 10px 10px 0px 0px;
     font-size: 20px;
     color: white;
-    background-color: rgb(243, 31, 102);
+    background-color: rgb(228, 27, 94);
 }
 
 .college-item-rating {
@@ -319,7 +320,6 @@ input[type=text] {
     margin: 0px;
     padding: 3px 3px 0px 0px;
     font-size: 20px;
-    color: black;
 }
 
 .college-item-score::first-letter {
@@ -389,10 +389,12 @@ input[type=text] {
 
 .guides-card-purple {
     background-image: -webkit-linear-gradient(45deg, #8b4ac8 20%, #a94bc0 50%);
+    background-color: black;
 }
 
 .guides-card-red {
     background-image: -webkit-linear-gradient(45deg, #911295 20%, #be108a 50%);
+    background-color: black;
 }
 
 .overlay {

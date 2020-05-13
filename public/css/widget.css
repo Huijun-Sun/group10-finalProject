@@ -1,7 +1,6 @@
 .material-icon {
     text-decoration: none;
     font-family: "Material Icons";
-    color: black;
 }
 
 .material-align-center a {
@@ -18,6 +17,21 @@
     border: 0px;
     border-radius: 10px;
     background-color: white;
+}
+
+.card-button {
+    font: inherit;
+    border: none;
+    align-self: center;
+    font-size: 16px;
+    height: 40px;
+    border-radius: 8px;
+    padding: 5px 15px 0px 15px;
+    text-align: center;
+    text-decoration: none;
+    
+    /* -ms-transition: box-shadow 300ms linear;
+    transition: box-shadow 300ms linear; */
 }
 
 /* <button> */
@@ -43,6 +57,7 @@
 .card-highlight-btn {
     color: white;
     background-image: -webkit-linear-gradient(-45deg, #e20078 20%, #cf006f 50%);
+    background-color: black;
 }
 
 .card-input[type="text"] {
@@ -129,25 +144,6 @@
     margin-left: 20px;
 }
 
-
-.card-button {
-    font: inherit;
-    border: none;
-    align-self: center;
-    font-size: 16px;
-    height: 40px;
-    border-radius: 8px;
-    padding: 5px 15px 0px 15px;
-    text-align: center;
-    text-decoration: none;
-    
-    /* -ms-transition: box-shadow 300ms linear;
-    transition: box-shadow 300ms linear; */
-}
-
-
-
-
 .search-box {
     /* inherit from card */
     flex-wrap: nowrap;
@@ -163,7 +159,8 @@
 .search-box button {
     margin: 0px 20px 0px 40px;
     color: white;
-    background-image: -webkit-linear-gradient(-45deg, #e20078 20%, #cf006f 50%);
+    background-image: -webkit-linear-gradient(-45deg, #d41079 20%, #cf006f 50%);
+    background-color: black;
 }
 
 .search-filter {
