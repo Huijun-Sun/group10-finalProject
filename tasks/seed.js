@@ -5,7 +5,7 @@ const data = require("../data");
 async function main() {
     try{
        // var dt = {date: new Date(2020,05,07)};
-     /*  let dt =new Date(2020,04,15);
+      let dt =new Date(2020,04,15);
          await universities.addUniversity("massachusetts instituite of technology",["computer science","information systems"],"Private",["Masters","UnderGraduate","Graduate Certication"],
          "Boston,MA",dt,"$50000",4.2,10,"$5500",300,"www.mit.edu",2,3.4,["spring","fall"],1,"Although it’ll no doubt be fascinating and highly inspiring to read about MIT, it could also give you a serious inferiority complex because Massachusetts Institute of Technology is perhaps the best overall college in the world. It makes sure its students are no less. To get into MIT, you need to be excellent in everything, and even that probably won’t be enough.MIT is absolutely top-notch in everything, from infrastructure to faculty to extracurriculars to placements to alumni. An interesting bit of trivia: the aggregated revenues of companies founded by MIT alumni would rank as the eleventh largest economy in the world. Now, that's MIT.We associate only one word with MIT USA - WOW.","GRE TOEFL/IELTS required");
 
@@ -47,7 +47,7 @@ async function main() {
         await universities.addUniversity("carnegie mellon",["computer science","information systems"],"public",["Masters","UnderGraduate","Graduate Certication"],
         "Pittsburg,pa",dt,"$40000",4.8,1,"$4000",320,"cambridge.edu",3,3.9,["spring","fall"],4,"Carnegie Mellon University is a private research university based in Pittsburgh, Pennsylvania. Founded in 1900 by Andrew Carnegie as the Carnegie Technical Schools, the university became the Carnegie Institute of Technology in 1912 and began granting four-year degrees.","GRE GMAT TOEFL IELTS any 3 needed");
         
-        console.log("done");*/
+        console.log("done");
         //console.log(await universities.getUniversity_finder("Computer Science",300,5,3.1,2));
        // console.log(await universities.getDeadline("Stevens Instituite of Technology","Computer Science","fall"));
         //console.log(await universities.getDeadline("Stevens Instituite of Technology","Computer Science"));
