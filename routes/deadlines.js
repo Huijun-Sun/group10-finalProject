@@ -33,8 +33,10 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    console.log("wowowo")
     const univList = await univData.getDeadline(xss(req.body.name), xss(req.body.course), xss(req.body.intake));
+
+    // xss checked above, no need to check again, 
+    // handle bar will only use those checked fields anyways.
     res.render("deadlinePage", getPageConfig(req, univList, req.body));
   } catch (e) {
     res.render("deadlinePage", getPageConfig(req, [], req.body, e));

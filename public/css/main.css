@@ -370,3 +370,28 @@ input[type=text] {
 }
 
 
+/* guides */
+.guides-list {
+    margin: 100px 0px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.guides-card {
+    
+    padding: 20px 40px;
+    margin: 20px 40px;
+    font-size: 26px;
+    width: 600px;
+    
+    color: #f4f4f4;
+}
+
+.guides-card-purple{
+    background-image: -webkit-linear-gradient(45deg, #8b4ac8 20%, #a94bc0 50%);
+}
+
+.guides-card-red{
+    background-image: -webkit-linear-gradient(45deg, #911295 20%, #be108a 50%);
+
+}
