@@ -1,0 +1,89 @@
+
+<div class="parallax parallax-home" id="reg-card">
+  <div class="reg-card">
+    <form method="POST" id="reg-form" class="column reg-form" action="/userprofile/edituserprofile/{{userProInfo.userid}}" >
+            <div class="reg-logo">
+                <a href="#">Edit your profile details </a>
+            </div>
+        <h2>Interested In</h2>
+          <div class="search-user"></br>
+           <label for="degree">Degree: </label>
+        <select name="intMastersMba" id="degree">
+            <option value="{{userProInfo.intMastersMba}}">{{userProInfo.intMastersMba}}</option> 
+             <option value="Masters">Masters</option>
+             <option value="MBA">MBA</option>
+        </select>
+        <script>
+            document.getElementById("degree").value = {{userProInfo.intMastersMba}};
+        </script>  
+         </div>    
+         
+         <div class="search-user"></br>
+            <label for="program">Program: </label>
+             <select name="intProgram" required >
+                    <option value="{{userProInfo.intProgram}}">{{userProInfo.intProgram}}</option> 
+                    <option value="computer science">Computer Science</option>
+                    <option value="information systems">Information Systems</option>
+                    <option value="financial engineering">Financial Engineering</option>
+                    <option value="mechanical engineering">Mechanical Engineering</option>
+                    <option value="business intelligent & analytics">Business intelligent & Analytics</option>
+                    <option value="construction management">Construction Management</option>
+                </select>
+            </div>
+            
+        <div class="search-user"></br>
+         <label for="intTerm">Term: </label>
+             <select name="intTerm" id="intTerm">
+                     <option value="{{userProInfo.intTerm}}">{{userProInfo.intTerm}}</option> 
+                    <option value="Fall">Fall</option>
+                    <option value="Spring">Spring</option>
+                </select>
+              <script>
+            document.getElementById("intTerm").value = {{userProInfo.intTerm}};
+             </script>  
+          </div>   
+           <div class="search-user"></br>
+            <label for="program">Year: </label>
+              <select name="intYear" id="intYear">
+                    <option value="{{userProInfo.intYear}}">{{userProInfo.intYear}}</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                </select>
+              <script>
+            document.getElementById("intYear").value = {{userProInfo.intYear}};
+             </script> 
+         </div>
+
+        <h2>Undergrad details </h2>  
+         <label for="underGradCollege">Undergrad University: </label>
+                 <input class="card-input" id="underGradCollege" name='underGradCollege' type="text" value="{{userProInfo.underGradCollege}}"><br/>
+        <label for="underGradProgram">Undergrad Program: </label>
+                 <input class="card-input" id="underGradProgram" name='underGradProgram' type="text" value="{{userProInfo.underGradProgram}}"><br/><br/>
+                                                       
+          <h2> Exams </h2> 
+          <label for="greVerbal">GRE-Verbal: </label>
+                 <input class="card-input" id="greVerbal" name='greVerbal' type="number"  min="130" max="170" value="{{userProInfo.greVerbal}}"><br/><br/>
+            <label for="greQuant">GRE -Quant: </label>
+                 <input class="card-input" id="greQuant" name='greQuant' type="number" min="130" max="170"value="{{userProInfo.greQuant}}"><br/><br/> 
+            <label for="greAwa">GRE-AWA: </label>
+                 <input class="card-input" id="greAwa" name='greAwa' type="float" min="0" max="6"value="{{userProInfo.greAwa}}"><br/><br/>
+
+             <label for="gmatScore">GMAT Score: </label>
+                 <input class="card-input" id="gmatScore" name='gmatScore' type="number" min="200" max="800" value="{{userProInfo.gmatScore}}"><br/><br/>  
+             
+             <label for="toeflScore"> TOEFL Score: </label>
+                 <input class="card-input" id="toeflScore" name='toeflScore' type="number" min="79" max="120" value="{{userProInfo.toeflScore}}"><br/><br/>    
+         
+          
+                <button type="submit" value="Save"  class="card-highlight-btn card-button" >Save</button>
+           {{#if hasErrors}}
+              <h3 class="center-items">{{errors}}</h3>
+           {{/if}} 
+    </form>
+  </div>
+  
+</div>  

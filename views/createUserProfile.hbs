@@ -1,0 +1,79 @@
+
+<div class="parallax parallax-home" id="reg-card">
+  <div class="reg-card">
+    <form method="POST" id="reg-form" class="column reg-form" action="/userprofile" >
+            <div class="reg-logo">
+                <a href="#">Add your details, so that we know you a bit better! </a>
+            </div>      
+       <h2>Interested In</h2>
+      <div class="search-user"></br>
+        <select required name="masters_mba" id="degree">
+                    <option value="">Degree</option>
+                    <option value="Masters">Masters</option>
+                    <option value="MBA">MBA</option>
+                </select>
+              <script>
+               document.getElementById("degree").value = {{masters_mba}};
+             </script>    
+      </div>
+     <div class="search-user"></br>
+             <select required name="program" value="{{program}}">
+                    <option value="">Program</option>
+                    <option value="computer science">Computer Science</option>
+                    <option value="information systems">Information Systems</option>
+                    <option value="financial engineering">Financial Engineering</option>
+                    <option value="mechanical engineering">Mechanical Engineering</option>
+                    <option value="business intelligent & analytics">Business intelligent & Analytics</option>
+                    <option value="construction management">Construction Management</option>
+                </select>
+            </div>
+              <div class="search-user"></br>
+                        <select id="term" name="term" required>
+                             <option value="">Term</option>
+                             <option value="Fall">Fall</option>
+                             <option value="Spring">Spring</option>
+                        </select>
+                        <script>
+                           document.getElementById("term").value = {{term}};
+                        </script>   
+               </div>
+       <div class="search-user"></br>
+            <select required name="year" id="year">
+                    <option value="">Year</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+            </select>
+              <script>
+            document.getElementById("year").value = {{year}};
+             </script> 
+        </div>
+
+        <h2>Undergrad details </h2>  
+                 <input class="card-input" required id="college" name='college' placeholder="Undergrad University" type="text" value="{{college}}"><br/>
+                 <input class="card-input" required id="undergradProgram" placeholder="Undergrad Program" name='undergradProgram' type="text" value="{{undergradProgram}}"><br/><br/>
+                                                       
+          <h2> Exams - If not appeared, you can update the scores later</h2> 
+                 <input class="card-input"  id="verbal" name='verbal' type="number" min="130" max="170" placeholder="GRE-Verbal" value="{{verbal}}"><br/>
+                 <input class="card-input" id="quant" name='quant' type="number"  min="130" max="170" placeholder="GRE-Quant" value="{{quant}}"><br/>
+                 <input class="card-input" id="awa" name='awa' type="float" min="0" max="6" placeholder="GRE-AWA" value="{{awa}}"><br/>
+
+                 <input class="card-input" id="gmatScore" name='gmatScore' type="number" min="200" max="800" placeholder="GMAT-Score" value="{{gmatScore}}"><br/>
+                 <input class="card-input" id="toeflScore" name='toeflScore' type="number" min="79" max="120" placeholder="TOEFL-Score" value="{{toeflScore}}"><br/>  
+         
+         
+                <button  type="submit" value="Create"  class="card-highlight-btn card-button" >Create</button> 
+             {{#if hasErrors}}
+                {{#each errors}}
+                 <h3 class="center-items">{{this}}</h3>
+              {{/each}}
+           {{/if}}
+       </form>
+      </div> 
+  </div> 
+  
+  
+
