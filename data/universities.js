@@ -227,33 +227,33 @@ async function getUniversityFinder(course,score,exp,gpa,papers)
     throw "courses is required";
     if(typeof course != 'string')
     throw "Course must be string";
-    
+  
     if(!score)
     throw "score is required";
    
     if((typeof score != 'number') || (score<280 || score>320))
     throw "score must be number >280 and lessthan 320";
-    
+  
     if(!exp)
     throw "exp is required";
     if(typeof exp != 'number')
     throw "exp must be number";
-    
+  
     if(!gpa)
     throw "gpa is required";
     if((typeof gpa != 'float' && typeof gpa !='number') || (gpa<0 || gpa>4))
     throw "GPA must be number >0 and less than 4";
+  
     
-   
     if(!papers)
     throw "papers is required";
     if(typeof papers != 'number')
     throw "papers must be number";
-    
+  
     course=course.toLowerCase();
     const universityCollection = await universities();  
     const univ = await universityCollection.find({courses: course,averagescore:{$lte:score},workexp: {$lte:exp},GPA:{$lte:gpa},papers:{$lte:papers}}).toArray();
-    
+  
     if (univ === null || univ.length<1) throw 'No univ with matching values';
 	return univ;
 }

@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-
+    
     min-height: 400px;
     box-shadow: 0px 10px 20px 0px #00000040 inset;
     min-height: 100%;

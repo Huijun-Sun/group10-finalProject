@@ -7,6 +7,7 @@ const xss=require("xss");
 const pageScripts =  [{script: "/public/js/universityPage.js"}];
 
 function getPageConfig(req, univList) {
+  //console.log(univList[0]);
   let pageConfig = {
     heading: "University Finder",
     subHeading: "Find your best college here!",
@@ -15,10 +16,11 @@ function getPageConfig(req, univList) {
     univList: univList,
     query: req.body,
   }
-
+//console.log(pageConfig);
   if(univList == [] || univList == undefined) {
     pageConfig["error"] = "ops, no university found with given criteria";   
   }
+  //console.log(pageConfig);
   return pageConfig;
 }
 
@@ -44,7 +46,7 @@ router.get("/", async (req, res) => {
     showSearch: false,
     loggedOut: !req.session.isloggedin,
     univList: univList,
-    query: {course: "computer science", score:"315", exp:"4000", gpa:"3.5", papers:"3"},
+    query: {course: "computer science", score:"315", exp:"3", gpa:"3.5", papers:"3"},
     
   });
 }
@@ -162,6 +164,8 @@ router.get("/title/:title/score/:score", async (req, res) => {
 //   router.get("/title/:title/course/:course", async (req, res) => {
 //     try {
      
+
+
 //       if(!req.params.title)
 //       throw "Title is required";
 //       if(!req.params.course)
@@ -175,6 +179,7 @@ router.get("/title/:title/score/:score", async (req, res) => {
 
 //   router.get("/title/:title", async (req, res) => {
 //     try {
+
      
 //       if(!req.params.title)
 //       throw "Title is required";

@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
     throw "Please Login to add Discussion Topic";
     if(!req.body.title)
     throw "Invalid post format";
-  console.log(req.body);
+//  console.log(req.body);
     const newdt = await discussionData.addDiscussionTopic(xss(title),req.session.username);
     res.status(200).redirect('/discussionTopic');
   } catch (e) {
