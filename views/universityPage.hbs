@@ -14,30 +14,30 @@
             <div class="search-filter-spacer"></div>
             <div class="search-filter">
                 <label class="search-title" for="score">GRE SCORE</label>
-                <input type="number" name="score" size="24" maxlength="32" placeholder="4.0" min="280" max="340"
+                <input type="number" id="score" name="score" size="24" maxlength="32" placeholder="4.0" min="280" max="340"
                     value="{{query.score}}" />
             </div>
             <div class="search-filter-spacer"></div>
 
             <div class="search-filter">
                 <label class="search-title" for="gpa">GPA</label>
-                <input type="number" name="gpa" size="24" maxlength="32" placeholder="4.0" step="0.1" min="0" max="4"
+                <input type="number" id="gpa" name="gpa" size="24" maxlength="32" placeholder="4.0" step="0.1" min="0" max="4"
                     value="{{query.gpa}}" />
             </div>
             <div class="search-filter-spacer"></div>
 
             <div class="search-filter">
-                <label class="search-title" for="exp">EXPENSE</label>
-                <input type="number" name="exp" size="24" maxlength="32" placeholder="10,000" value="{{query.exp}}" />
+                <label class="search-title" for="exp">WORK EXP</label>
+                <input type="number" id="exp" name="exp" size="24" maxlength="32" placeholder="20" min="0" max="20" value="{{query.exp}}" />
             </div>
             <div class="search-filter-spacer"></div>
             <div class="search-filter">
                 <label class="search-title" for="papers">PAPERS</label>
-                <input type="number" name="papers" size="24" maxlength="32" placeholder="2" value="{{query.papers}}" />
+                <input type="number" id="papers" name="papers" size="24" maxlength="32" placeholder="2" value="{{query.papers}}" />
             </div>
 
         </div>
-        <button class="card-button"><a class="material-icon">search</a> search</button>
+        <button class="card-button" style="color:black"><a class="material-icon">search</a> search</button>
     </form>
 </div>
 
@@ -48,7 +48,7 @@
     {{#each univList}}
     <button class="college-item card column">
         <div class="college-item-header">
-            <p class="college-item-title">{{title}}</p>
+            <p class="college-item-title" style="color:black">{{title}}</p>
             <div class="college-item-rating material-align-center">
                 <p class="college-item-score">{{rating}}</p>
                 <a class="material-icon">star</a>

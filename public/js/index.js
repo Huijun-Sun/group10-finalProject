@@ -15,7 +15,7 @@ function refreshNav() {
     let selectNode = document.getElementById('search-college-name');
     selectNode.innerHTML = "";
     for (const name of collegeNames) {
-        console.log(name);
+      //  console.log(name);
         selectNode.innerHTML += `<option value="${name}">${name}</option>`;
     }
 }

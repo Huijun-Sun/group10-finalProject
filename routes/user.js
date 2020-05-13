@@ -67,7 +67,7 @@ router.get("/" ,async function(req,res){
         //   scripts: pageScripts,
         // });
       } catch (e) {
-        console.log(e)
+      //  console.log(e)
         res.render("introPage", {
           heading: "Finding a college should be easy.",
           showSearch: true,
@@ -82,9 +82,9 @@ router.get("/" ,async function(req,res){
     let formData = req.body;
     try{
         //Checking the validity of login credentials
-        console.log(`/login: user name: ${formData.username}`);
+        //console.log(`/login: user name: ${formData.username}`);
         let result = await userData.userValidation(formData.username, formData.password);
-        console.log(result);
+        //console.log(result);
         if(result === "Success"){
             //req.session.users = curr_user;
             //Setting the AuthCookie
@@ -100,8 +100,8 @@ router.get("/" ,async function(req,res){
             });
         }    
     }catch(e){
-      console.log(req.body);
-      console.log(`/login: ${e}`);
+    //  console.log(req.body);
+      //console.log(`/login: ${e}`);
 
       
         //When the user credentials are incorrect or does not exist
