@@ -33,8 +33,4 @@ function onClicked(id) {
 
 document.addEventListener('DOMContentLoaded', () => {
     initNav();
-    
-    if(initIntro != undefined) {
-        initIntro();
-    }
 });

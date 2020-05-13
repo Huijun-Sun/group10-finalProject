@@ -1,6 +1,5 @@
 # What is Business Administration
 
-![MBA](C:\Users\huiju\Desktop\546data\MBA.jpg)
 
 An MBA, or ‘Master of Business Administration’, is an elite qualification for **business professionals**. MBA courses focus on developing the leadership, initiative and individual excellence required for high-flying careers in management and entrepreneurship.
 

@@ -76,19 +76,22 @@ router.get("/" ,async function(req,res){
   router.post("/login", async (req, res)=>{
     let formData = req.body;
     try{
-       
+
         let result = await userData.userValidation(xss(formData.username), xss(formData.password));
+      if(result) {
         req.session.user=result.username;
         req.session.AuthCookie = req.sessionID;
         req.session.isloggedin = true;
         req.session.userid=result._id;
         req.session.userdata=result;
         res.status(200).render("intropage",{isloggedin:req.session.isloggedin,userid: req.session.userid,username:req.session.user});
+      }
 
     }catch(e){
    
         res.render("authPage", {
           showSearch: false, 
+          loggedOut: !req.session.isloggedin,
           loginError: "Usename/Password is invalid" 
         });
     }

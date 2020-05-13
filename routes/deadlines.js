@@ -6,6 +6,7 @@ const xss = require("xss");
 
 const pageScripts = [];
 
+
 function getPageConfig(req, univList, query, error) {
   let pageConfig = {
     heading: "Deadline Tracker",

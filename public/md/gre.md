@@ -1,6 +1,8 @@
+![](/public/img/guide_gre.jpg)
+
 # What is GRE?
 
-![](C:\Users\huiju\Desktop\546data\GRE.jpg)
+
 
 The Graduate Record Examination, or GRE, is an important step in the graduate school or business school application process. The GRE is a multiple-choice, computer-based, standardized exam that is often required for admission to graduate programs and graduate business programs (MBA) globally.
 

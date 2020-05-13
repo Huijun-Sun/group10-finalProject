@@ -1,6 +1,6 @@
 var collegeCollection = [];
 
-var initIntro = function () {
+function initIntro() {
     fetch('/universities/top').then(async function (response) {
         // The API call was successful!
         collegeCollection = await response.json();
@@ -11,13 +11,14 @@ var initIntro = function () {
     });
 }
 
-var refreshIntro = function () {
+function refreshIntro() {
     let listNode = document.getElementById('college-list');
     listNode.innerHTML = "";
     for (const college of collegeCollection) {
-      //  console.log(college);
-        listNode.innerHTML += `<button class="college-item card column">
-        <div class="college-item-header">
+         console.log(college);
+        listNode.innerHTML += `
+        <button class="college-item card column" id="${college._id}" onclick="onCollegeClicked(this.id)" style="width: 300px;">
+        <div class="college-item-header" style="width: 300px;">
             <h2 class="college-item-title">${college.title}</h2>
             <div class="college-item-rating material-align-center">
                 <p class="college-item-score">${college.rating}</p>
@@ -44,8 +45,16 @@ var refreshIntro = function () {
                     Location: ${college.location}
                 </p>
             </div>
-            <div class="college-item-spacer"></div>
         </div>
     </button>`;
     }
 }
+
+function onCollegeClicked(id) {
+    window.location.href = `/universities/id/${id}`;
+
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initIntro();
+});

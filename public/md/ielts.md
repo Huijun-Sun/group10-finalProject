@@ -1,6 +1,8 @@
+
+![ielts](/public/img/guide_ielts.jpg)
+
 # What is IELTS?
 
-![ielts](C:\Users\huiju\Desktop\546data\ielts.jpg)
 
 The International English Language Testing System or IELTS is a globally recognized english language proficiency test.
 

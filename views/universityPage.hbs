@@ -14,51 +14,81 @@
             <div class="search-filter-spacer"></div>
             <div class="search-filter">
                 <label class="search-title" for="score">GRE SCORE</label>
-                <input type="number" id="score" name="score" size="24" maxlength="32" placeholder="4.0" min="280" max="340"
-                    value="{{query.score}}" />
+                <input type="number" id="score" name="score" size="24" maxlength="32" placeholder="4.0" min="280"
+                    max="340" value="{{query.score}}" />
             </div>
             <div class="search-filter-spacer"></div>
 
             <div class="search-filter">
                 <label class="search-title" for="gpa">GPA</label>
-                <input type="number" id="gpa" name="gpa" size="24" maxlength="32" placeholder="4.0" step="0.1" min="0" max="4"
-                    value="{{query.gpa}}" />
+                <input type="number" id="gpa" name="gpa" size="24" maxlength="32" placeholder="4.0" step="0.1" min="0"
+                    max="4" value="{{query.gpa}}" />
             </div>
             <div class="search-filter-spacer"></div>
 
             <div class="search-filter">
                 <label class="search-title" for="exp">WORK EXP</label>
-                <input type="number" id="exp" name="exp" size="24" maxlength="32" placeholder="20" min="0" max="20" value="{{query.exp}}" />
+                <input type="number" id="exp" name="exp" size="24" maxlength="32" placeholder="20" min="0" max="20"
+                    value="{{query.exp}}" />
             </div>
             <div class="search-filter-spacer"></div>
             <div class="search-filter">
                 <label class="search-title" for="papers">PAPERS</label>
-                <input type="number" id="papers" name="papers" size="24" maxlength="32" placeholder="2" value="{{query.papers}}" />
+                <input type="number" id="papers" name="papers" size="24" maxlength="32" placeholder="2"
+                    value="{{query.papers}}" />
             </div>
 
         </div>
-        <button class="card-button" style="color:black"><a class="material-icon">search</a> search</button>
+        <button class="card-button"><a class="material-icon">search</a> search</button>
     </form>
 </div>
 
-<div id="college-list" class="college-list row">
+<div id="college-list" class="college-list column">
     {{#if error}}
     <h1 class="search-not-found">{{error}}</h1>
     {{/if}}
     {{#each univList}}
-    <button class="college-item card column">
+    <button class="college-item card column" id="{{title}}" onclick="onCollegeClicked(this.id)">
         <div class="college-item-header">
-            <p class="college-item-title" style="color:black">{{title}}</p>
+            <p class="college-item-title">{{title}}</p>
             <div class="college-item-rating material-align-center">
                 <p class="college-item-score">{{rating}}</p>
                 <a class="material-icon">star</a>
             </div>
         </div>
-        <div class="row">
-            <div class="college-item-detail column">
+        <div class="college-item-detail row  college-basic-info college-item-hidden">
+            <span>{{description}}</span>
+        </div>
+        <div class="basic-info row">
+            <div class="college-item-detail row  college-basic-info">
                 <p class="material-align-center">
                     <a class="material-icon">assessment</a>
                     Ranking: {{rank}}
+                </p>
+                <p class="material-align-center">
+                    <a class="material-icon">assignment</a>
+                    GRE Average: {{averagescore}}
+                </p>
+                <p class="material-align-center">
+                    <a class="material-icon">class</a>
+                    GPA: {{GPA}}
+                </p>
+
+                <p class="material-align-center">
+                    <a class="material-icon">work</a>
+                    Work Experience: {{workexp}}
+                </p>
+                <p class="material-align-center">
+                    <a class="material-icon">create</a>
+                    Papers: {{papers}}
+                </p>
+
+            </div>
+            <div class="college-item-spacer college-item-hidden"></div>
+            <div class="college-item-detail row  college-basic-info college-item-hidden">
+                <p class="material-align-center">
+                    <a class="material-icon">link</a>
+                    Website: <a href="https://{{websitelink}}">{{websitelink}}</a>
                 </p>
                 <p class="material-align-center">
                     <a class="material-icon">account_balance </a>
@@ -68,13 +98,23 @@
                     <a class="material-icon">monetization_on</a>
                     Tuition: {{tuitionfees}}
                 </p>
+                <p class="material-align-center">
+                    <a class="material-icon">monetization_on</a>
+                    Living Expense: {{livingexp}}
+                </p>
 
                 <p class="material-align-center">
                     <a class="material-icon">location_on</a>
                     Location: {{location}}
                 </p>
             </div>
-            <div class="college-item-spacer"></div>
+            <div class="college-item-spacer college-item-hidden"></div>
+            <div class="college-item-detail row  college-basic-info college-item-hidden">
+                <span class="material-align-center">
+                    <a class="material-icon">class</a>
+                    Courses: <br>{{courses}}
+                </span>
+            </div>
         </div>
     </button>
     {{/each}}

@@ -13,11 +13,11 @@ function init() {
 
 
 
-function onClicked(id) {
+function onCollegeClicked(id) {
     let cardNode = document.getElementById(id);
-    if (cardNode.classList.contains("event-item-expanded"))
-        cardNode.classList.remove("event-item-expanded")
-    else cardNode.classList.add("event-item-expanded")
+    if (cardNode.classList.contains("college-item-expanded"))
+        cardNode.classList.remove("college-item-expanded")
+    else cardNode.classList.add("college-item-expanded")
 
 }
 
