@@ -12,11 +12,12 @@ function initNav() {
 }
 
 function refreshNav() {
-    let selectNode = document.getElementById('search-college-name');
-    selectNode.innerHTML = "";
-    for (const name of collegeNames) {
-        console.log(name);
-        selectNode.innerHTML += `<option value="${name}">${name}</option>`;
+    let selectNodes = document.getElementsByClassName('college-name-select');
+    for (const node of selectNodes) {
+        node.innerHTML = "";
+        for (const name of collegeNames) {
+            node.innerHTML += `<option value="${name}">${name}</option>`;
+        }
     }
 }
 

@@ -8,6 +8,7 @@ const eventsRoutes = require("./events")
 //const userRoutes = require("./user");
 //const forumRoutes = require("./forum")
 const authRoutes = require("./user");
+const deadlinesRoutes = require("./deadlines");
 
 const constructorMethod = app => {
   app.use("/", introRoutes);
@@ -18,6 +19,7 @@ const constructorMethod = app => {
   app.use("/discussionTopic", dtRoutes);
   app.use("/discussionComment", dcRoutes);
   app.use("/auth", authRoutes);
+  app.use("/deadlines", deadlinesRoutes);
   app.use("*", (req, res) => {
   
     res.status(404).json({ error: "Not found" });
