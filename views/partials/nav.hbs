@@ -7,12 +7,16 @@
         <li><a href="/guides">Guides</a></li>
         <li><a href="/discussionTopic">Forum</a></li>
         <li><a href="/events">Events</a></li>
-        <li><a href="/events">Admits & Rejects</a></li>
+        <li><a href="/pastAdmitsreject">Admits & Rejects</a></li>
+         {{#if isloggedin}}
+        <li><a href="/userprofile/{{userid}}" style="color:deeppink">{{username}}</a></li>
+        {{/if}}
         {{#if loggedOut}}
         <li><a href="/auth">Log In</a></li>
         <li><a class="signup-btn" href="/#reg-card">Sign Up</a></li>
         {{else}}
         <li><a href="/auth/logout">Log Out</a></li>
         {{/if}}
+       
     </ul>
 </nav>

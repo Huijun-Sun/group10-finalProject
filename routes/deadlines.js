@@ -14,7 +14,7 @@ function getPageConfig(req, univList, query, error) {
     scripts: pageScripts,
     loggedOut: !req.session.isloggedin,
     univList: univList,
-    query: query,
+    query: query,isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid,
   }
 
   if (univList == [] || univList == undefined) {

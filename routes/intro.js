@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
         heading: "Finding a college should be easy.",
         showSearch: true,
         loggedOut: !req.session.isloggedin,
-        scripts: pageScripts,
+        scripts: pageScripts,isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid,
     });
 });
 

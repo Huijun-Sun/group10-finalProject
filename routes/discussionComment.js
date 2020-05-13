@@ -47,7 +47,7 @@ router.post("/", async (req, res) => {
    //   user='5eb735d2ed3b004d14543f5a';
      
     const { Comments,dtId} = dtDataa;
-    const newdt = await discussionData.addDiscussionComment(xss(Comments),xss(dtId),req.session.username);
+    const newdt = await discussionData.addDiscussionComment(xss(Comments),xss(dtId),req.session.user);
   
     res.status(200).redirect('/discussionTopic');
   } catch (e) {

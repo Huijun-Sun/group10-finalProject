@@ -292,8 +292,12 @@ async function getChances(title,score)
     if((typeof score != 'number') || (score<280 || score>320))
     throw "score must be number >280 and lessthan 320";
     
-    const universityCollection = await universities();  
-    const univ = await universityCollection.findOne({title: title});
+    
+    const universityCollection = await universities(); 
+    title1=title.toLowerCase(); 
+    const univ = await universityCollection.findOne({title: title1});
+    
+    
     if (univ.averagescore<=score)
     {
         return "Safe";

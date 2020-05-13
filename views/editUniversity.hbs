@@ -1,9 +1,11 @@
  <div class="reg-card signin-card">
         <form method="POST" action="/userprofile/edituniversity/{{userid}}" id="reg-form" class="column reg-form">
+       
             <div class="reg-logo">
                 <h2>Edit university Status</h2>
            </div>
            <h3>Please provide the university name and program you wish to update the status:</h3>
+           <div class="search-user"></br>
              <select name="uniName" value="{{uniName}}" required>
                     <option value=''>University</option>
                     <option value="Massachusetts Instituite of Technology">Massachusetts Instituite of Technology</option>
@@ -16,7 +18,8 @@
                     <option value="University of Illinois">University of Illinois</option>
                     <option value="Purdue">Purdue</option>
                     <option value="Carnegie Mellon">Carnegie Mellon</option>
-                </select>
+                </select></div>
+                <div class="search-user"></br>
                 <select name="uniProgram" value="{{uniProgram}}" required>
                      <option value=''>Course</option>
                     <option value="Computer Science">Computer Science</option>
@@ -25,8 +28,9 @@
                     <option value="Mechanical Engineering">Mechanical Engineering</option>
                     <option value="Business Intelligent & Analytics">Business intelligent & Analytics</option>
                     <option value="Construction Management">Construction Management</option>
-                </select> 
+                </select> </div>
            <h3>Please provide the status and comments:</h3>
+           <div class="search-user"></br>
             <select name="uniStatus" id="uniStatus">
                     <option value="Applied">Applied</option>
                     <option value="Admit">Admit</option>
@@ -35,16 +39,16 @@
               <script>
             document.getElementById("uniStatus").value = {{uniStatus}};
              </script>  
+           </div>
             <input class="card-input" type="text" name="comments" id="comments" size="24" maxlength="32" placeholder="Comments" />
-            <div class="row align-right reg-btn-group">
+          
                 <button type="submit"  class="card-highlight-btn card-button">Update</button>
-            </div>
+            
 
-
+  {{#if hasErrors}}
+      <h3 class="center-items">{{errors}}</h3>
+    {{/if}}
         </form>
     
 </div>
 
-  {{#if hasErrors}}
-      <h3 class="search-not-found">{{errors}}</h3>
-    {{/if}}

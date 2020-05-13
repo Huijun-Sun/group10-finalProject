@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
       scripts: scripts,
       showSearch: true,
       loggedOut: !req.session.isloggedin,
-      eventList: eventList,
+      eventList: eventList,isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid,
     });
   } catch (e) {
     res.render("eventsPage", {
@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
       showSearch: true,
       loggedOut: !req.session.isloggedin,
       eventList: [],
-      error: e
+      error: e,isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid
     });
   }
 });
@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
 router.get('/pastEvents', async (req, res) => {
   try {
     let eventList = await eventData.getPastEvents();
-    res.render('events', { eventList: eventList });
+    res.render('events', {isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid, eventList: eventList });
   } catch (e) {
     res.status(404).json({ error: 'past events not found' });
   }
@@ -41,7 +41,7 @@ router.get('/pastEvents', async (req, res) => {
 router.get('/all', async (req, res) => {
   try {
     let eventList = await eventData.getAllEvents();
-    res.render('events', { eventList: eventList });
+    res.render('events', { isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid,eventList: eventList });
   } catch (e) {
     res.status(404).json({ error: 'events not found' });
   }
@@ -50,7 +50,7 @@ router.get('/all', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     let eventList = await eventData.getUpcomingEvents();
-    res.render('events', { eventList: eventList });
+    res.render('events', { isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid,eventList: eventList });
   } catch (e) {
     res.status(404).json({ error: 'upcoming events not found' });
   }

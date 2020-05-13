@@ -13,7 +13,7 @@ function getPageConfig(req, univList) {
     scripts: pageScripts,
     loggedOut: !req.session.isloggedin,
     univList: univList,
-    query: req.body,
+    query: req.body,isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid,
   }
 //console.log(pageConfig);
   if(univList == [] || univList == undefined) {
@@ -45,13 +45,13 @@ router.get("/", async (req, res) => {
     showSearch: false,
     loggedOut: !req.session.isloggedin,
     univList: univList,
-    query: {course: "computer science", score:"315", exp:"3", gpa:"3.5", papers:"3"},
+    query: {course: "computer science", score:"315", exp:"3", gpa:"3.5", papers:"3"},isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid,
     
   });
 }
 catch(e)
 {
-res.status(400).render("error",{error: e});
+res.status(400).render("error",{isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid,error: e});
 }
 });
 
@@ -70,7 +70,7 @@ router.get("/top", async (req, res) => {
     res.json(univList);
 
   } catch (e) {
-    res.status(404).render("error",{ error: e });
+    res.status(404).render("error",{ isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid,error: e });
   }
 });
 router.post("/simpleSearch", async (req, res) => {
@@ -97,18 +97,19 @@ router.post("/search", async (req, res) => {
     res.render("universityPage", getPageConfig(req, []));
   }
 });
-router.get("/title/:title/score/:score", async (req, res) => {
+/* router.post("/", async (req, res) => {
+  console.log("inroute")
   try {
-    if(!req.params.score)
+    if(!req.body.score)
     throw "score is required";
-    if(!req.params.title)
+    if(!req.body.title)
     throw "Title is required";
-    const univch = await univData.getChances(xss(req.params.title),parseInt(xss(req.params.score)));
-    res.json(univch);
+    const univch = await univData.getChances(xss(req.body.title),parseInt(xss(req.body.score)));
+    res.json({"status":univch});
   } catch (e) {
     res.status(500).render("error",{error: e});
   }
-});
+}); */
 // router.get("/title/:title/course/:course/intake/:intake", async (req, res) => {
 //     try {
         

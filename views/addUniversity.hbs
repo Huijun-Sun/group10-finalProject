@@ -1,11 +1,11 @@
 
     <div class="reg-card signin-card">
+        
         <form method="POST" action="/userprofile/adduniversity/{{userid}}" id="reg-form" class="column reg-form">
             <div class="reg-logo">
                 <h2>Add interested/applied university</h2>
            </div>
-            
-             
+             <div class="search-user"></br>
              <select name="uniName" value="{{uniName}}" required>
                     <option value=''>University</option>
                     <option value="Massachusetts Instituite of Technology">Massachusetts Instituite of Technology</option>
@@ -19,6 +19,8 @@
                     <option value="Purdue">Purdue</option>
                     <option value="Carnegie Mellon">Carnegie Mellon</option>
                 </select>
+                </div>
+                  <div class="search-user"></br>
             <select name="uniProgram" value="{{uniProgram}}" required>
                      <option value=''>Course</option>
                     <option value="Computer Science">Computer Science</option>
@@ -28,27 +30,32 @@
                     <option value="Business Intelligent & Analytics">Business intelligent & Analytics</option>
                     <option value="Construction Management">Construction Management</option>
                 </select>
-
+                  </div>
+                    <div class="search-user"></br>
             <select name="uniStatus" id="uniStatus" required>
                     <option value=''>Status</option>
                     <option value="Interested">Interested</option>
                     <option value="Applied">Applied</option>
-                    <option value="Admit">Admit</option>
-                    <option value="Reject">Reject</option>
+                 <!--   <option value="Admit">Admit</option>
+                    <option value="Reject">Reject</option>-->
                 </select>
               <script>
             document.getElementById("uniStatus").value = {{uniStatus}};
-             </script>  
-            <input class="card-input" type="text" name="comments" id="comments" size="24" maxlength="32" placeholder="Comments"  />
-            <div class="row align-right reg-btn-group">
-                <button type="submit"  class="card-highlight-btn card-button">Add</button>
-            </div>
-
-
-        </form>
          
-
+             </script>  
+                    </div>
+            <input class="card-input" type="text" name="comments" id="comments" size="24" maxlength="32" placeholder="Comments"  />
+           
+                <button id="Add" type="submit" name="Add" class="card-highlight-btn card-button">Add</button>
+               {{#if isStatus}}
+               <h3 class="center-items">The added Universitity is a {{status}} for your profile</h3>
+               {{/if}}
+                 {{#if hasErrors}}
+        <h3 class="center-items">{{errors}}</h3>
+         {{/if}}
+          
+        </form>
+        
+   
 </div>
-   {{#if hasErrors}}
-      <h3 class="search-not-found">{{errors}}</h3>
-    {{/if}}
+  

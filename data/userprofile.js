@@ -1,6 +1,12 @@
+
 const mongodb = require("mongodb");
 const mongoCollections = require('../config/mongoCollections');
+const universities = mongoCollections.universities;
 const userprofile = mongoCollections.user_Profile;
+const user= require('./user');
+const univdatamodule= require('./universities');
+
+
 
 //Function to get a particular user profile
 async function getUserProfile(id) {
@@ -143,17 +149,28 @@ async function editIntAppUniversity(id, university, course, Status, Comments){
     if(!course) throw `Please provide the program name you wish to update status for:`;
     if(!Status) throw `Please provide the status of you application`;
     if(typeof Comments !== "string") thow `Comments should be of type string`;
-    if(typeof uniName !=="string" || typeof uniProgram !=="string" || typeof uniStatus !== "string"){
-        throw `Input for search should be of type string`;
-     } 
+    name=university.toLowerCase();
+    course1=course.toLowerCase();
+    const universityCollection = await universities();  
+    const univ = await universityCollection.find({courses: course1,title: name}).toArray();
+    if (univ === null || univ.length<1) throw 'The University and course combination does not exist';
+   // if(typeof uniName !=="string" || typeof uniProgram !=="string" || typeof uniStatus !== "string"){
+     //   throw `Input for search should be of type string`;
+     //} 
     //Checking whether the university and course exists in the profile  
+   
+   
     const userpro = await this.getUserProfile(obj_Id);
+   
        let found = 0;
        for(let each_intappUni of userpro.int_app_university){
-        if(each_intappUni.uniName == university && each_intappUni.uniProgram == course ){
+           console.log(each_intappUni.uniName);
+           console.log(each_intappUni.uniProgram);
+        if(each_intappUni.uniName === university && each_intappUni.uniProgram === course ){
              found = 1;
         }
     }
+   
     if(found === 0){
         throw `University and course not found in your profile. Please add it`;
     }
@@ -163,6 +180,7 @@ async function editIntAppUniversity(id, university, course, Status, Comments){
            
             for(let each_intappUni of userpro.int_app_university){
                 if(each_intappUni.uniName === university && each_intappUni.uniProgram === course ){
+                    
                 const updateStatus = {
 				  uniName: each_intappUni.uniName,
                   uniProgram: each_intappUni.uniProgram,
@@ -215,6 +233,22 @@ async function addIntAppUniversity (id, uniName, uniProgram, uniStatus, comments
     if(typeof uniName !=="string" || typeof uniProgram !=="string" || typeof uniStatus !== "string"){
         throw `Input for search should be of type string`;
      } 
+     name=uniName.toLowerCase();
+     course=uniProgram.toLowerCase();
+     const universityCollection = await universities();  
+     const univ = await universityCollection.find({courses: course,title: name}).toArray();
+     if (univ === null || univ.length<1) throw 'The University and course combination does not exist';
+     const userpro = await this.getUserProfile(obj_Id);
+     let found = 0;
+     for(let each_intappUni of userpro.int_app_university){
+      if(each_intappUni.uniName == uniName && each_intappUni.uniProgram == uniProgram ){
+           found = 1;
+      }
+  }
+  if(found === 1){
+      throw `University already exists in profile`;
+  }
+ 
     const userproCollection = await userprofile();
     const updateInfo = await userproCollection.updateOne(
         {userid: obj_Id},
@@ -225,10 +259,20 @@ async function addIntAppUniversity (id, uniName, uniProgram, uniStatus, comments
           throw `Could not add the university`;
       }
        
-      const userProUni = await this.getUserProfile(obj_Id);
+      let userProUni = await this.getUserProfile(obj_Id);
+      let gre,result_chances;
+            if(userProUni.greVerbal !== "NA" && userProUni.greQuant !== "NA"){
+        gre = parseInt(userProUni.greVerbal) + parseInt(userProUni.greQuant);
+        result_chances=await univdatamodule.getChances(uniName,gre);
+      //  userProUni.status=status;
+      // console.log(userProUni);
+      console.log(result_chances);
+        return result_chances;
+      }
+      
+     else{
       return userProUni;
-      //@MonishaCall your function here - %chances
-      //Return a statement about it 
+    }
 }
 
 
@@ -247,7 +291,12 @@ async function editUserProfile(id, intMastersMba,intProgram, intTerm, intYear, u
     if(!intProgram) throw `Program of interest required`;
     if(!intMastersMba) throw 'Interested degree required';
     if(!intYear) throw 'Interested to year to apply required';
-
+    if(greVerbal !=='' || greQuant !=='' || greAwa!=="NA") {
+        if(greQuant === '' || greAwa === "NA" || greVerbal === ''){
+          throw `You must provide provide all the three scores for Gre`;
+         
+        }
+      }
     const userproCollection = await userprofile();
     let updatedUserProfile = {
         intMastersMba: intMastersMba,
@@ -281,12 +330,19 @@ function isEmptyObject(obj) {
   }
 //Async function for past admits rejects   
 async function pastAdmitsRejects(university, course, status){
+    //console.log("here");
     if(!university) throw `University Name required`;
     if(!course) throw `Course required`;
     if(!status) throw `Status required`;
     if(typeof university !=="string" && typeof course !=="string" && typeof status !== "string"){
+       // console.log("hi"+univ);
        throw `Input for search should be of type string`;
     }   
+    name=university.toLowerCase();
+    course1=course.toLowerCase();
+    const universityCollection = await universities();  
+    const univ = await universityCollection.find({courses: course1,title: name}).toArray();
+    if (univ === null || univ.length<1) throw 'The University and course combination does not exist';
     const userproCollection = await userprofile();
     const userproList = await userproCollection.find({}).toArray();
     const all_userpro=[];
@@ -298,13 +354,16 @@ async function pastAdmitsRejects(university, course, status){
             }
             for(let each_intappUni of each_userpro.int_app_university){
                 if(each_intappUni.uniName === university && each_intappUni.uniProgram === course && each_intappUni.uniStatus=== status){
+                    let username=await user.getUser(each_userpro.userid);
                     const eachuser_data = {
                   id: each_userpro.userid,  
                   uniName: each_intappUni.uniName,
                   year:each_userpro.intYear,
                   status:each_intappUni.uniStatus,
                   gre:gre,
-                  toefl:each_userpro.toeflScore
+                  toefl:each_userpro.toeflScore,
+                  username: username.username
+                  
                 }
                 eachuser_info.push(eachuser_data);
              }  
