@@ -70,7 +70,7 @@ async function newUser (username, password, firstName, lastName, email){
      //Inserting the new user details into the database collection
      const insertInfo = await usercollection.insertOne(newuser);
      if (insertInfo.insertedCount === 0) throw 'Could not create user account';
-     let status = "User Account created successfully";
+     let status = await this.getUser(insertInfo.insertedId);
      return status;
 
 }
@@ -86,13 +86,13 @@ async function userValidation(username, password){
     const usercollection= await userData();
     const user= await usercollection.findOne({username:username})
     if(!user){
-        throw "Incorrect Username/password entered"
+        throw "Incorrect Username/password entered";
     }
     if(passwordhash.verify(password,user.password)){
-        return user
+        return user;
     }
     else{
-        throw "Incorrect Username/password entered"
+        throw "Incorrect Username/password entered";
     }
      
 }

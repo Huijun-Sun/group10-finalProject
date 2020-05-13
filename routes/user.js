@@ -2,19 +2,19 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 const userData = data.user;
-
+const xss=require("XSS");
 const pageScripts =  [{script: "/public/js/introPage.js"}];
 
 //Async function to check if a user is logged in
 router.get("/userlogin",async function(req,res){
     if(req.session.isloggedin===true){
         //Main Page of dream high
-        res.redirect()
+        res.redirect({isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid})
         return;
         
     }
     //sign up page i.e. user
-    res.status(200).render();
+    res.status(200).render({isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid});
     return;
 });
 
@@ -30,7 +30,7 @@ router.get("/" ,async function(req,res){
     res.render("authPage", {
       showSearch: false,
       loggedOut: !req.session.isloggedin,
-      hideRegBanner: true
+      hideRegBanner: true,isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid
     });
     return;    
 });
@@ -51,24 +51,18 @@ router.get("/" ,async function(req,res){
 
 //Async function to create a userprofile
   router.post("/signup", async (req, res) => {
-    const userInfo = req.body;
    
-  
-    if (!userInfo) {
-        res.status(400).json({error: 'You must provide data to to create user account'});
-        return;
-      }
       try {
-        const createdUser = await userData.newUser(userInfo.username, userInfo.password, userInfo.firstname, userInfo.lastname, userInfo.email);
-        res.redirect("/auth");
-        // res.render("introPage", {
-        //   heading: "Finding a college should be easy.",
-        //   showSearch: true,
-        //   loggedOut: !req.session.isloggedin,
-        //   scripts: pageScripts,
-        // });
+        const createdUser = await userData.newUser(xss(req.body.username), xss(req.body.password), xss(req.body.firstname),xss(req.body.lastname), xss(req.body.email));
+        req.session.user=createdUser.username;
+        req.session.AuthCookie = req.sessionID;
+        req.session.isloggedin = true;
+        req.session.userid=createdUser._id;
+        req.session.userdata=createdUser;
+        res.status(200).render("createUserProfile",{isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid});
+      
       } catch (e) {
-      //  console.log(e)
+      
         res.render("introPage", {
           heading: "Finding a college should be easy.",
           showSearch: true,
@@ -82,24 +76,17 @@ router.get("/" ,async function(req,res){
   router.post("/login", async (req, res)=>{
     let formData = req.body;
     try{
-        //Checking the validity of login credentials
-        //console.log(`/login: user name: ${formData.username}`);
-        let result = await userData.userValidation(formData.username, formData.password);
-
-    
-        //req.session.users = curr_user;
-        //Setting the AuthCookie
+       
+        let result = await userData.userValidation(xss(formData.username), xss(formData.password));
+        req.session.user=result.username;
         req.session.AuthCookie = req.sessionID;
         req.session.isloggedin = true;
-        //redirect to main page of dream high
-        res.status(200).redirect("/");
+        req.session.userid=result._id;
+        req.session.userdata=result;
+        res.status(200).render("intropage",{isloggedin:req.session.isloggedin,userid: req.session.userid,username:req.session.user});
 
     }catch(e){
-    //  console.log(req.body);
-      //console.log(`/login: ${e}`);
-
-      
-        //When the user credentials are incorrect or does not exist
+   
         res.render("authPage", {
           showSearch: false, 
           loginError: "Usename/Password is invalid" 
@@ -108,11 +95,16 @@ router.get("/" ,async function(req,res){
 });
 
 router.get("/logout", async (req, res) => {
+ // console.log(req.session.isloggedin);
+  //console.log('AuthCookie');
     //Deleting the Authcookie and informing the user of logout
     res.clearCookie('isloggedin');
     res.clearCookie('AuthCookie');
+    req.session.destroy();
     //Logout Path
-    res.redirect("/auth")
+    res.redirect("/auth");
+    
+ //   console.log('AuthCookie');
 });
 
      //Exporting the route module

@@ -4,7 +4,7 @@
     </div>
 -->    
 <div class="row center-items">
-    <form action="/userprofile/pastadmitreject/" method="POST" class="search-box card">
+    <form action="/pastAdmitsReject" method="POST" class="search-box card">
         <div class="search-area">
             <div class="search-filter">
                 <label class="search-title" for="university">university</label>
@@ -56,7 +56,7 @@
 
 <div id="college-list" class="college-list row">
     {{#if hasErrors}}
-    <h1 class="search-not-found">{{error}}</h1>
+    <h1 class="search-not-found">{{errors}}</h1>
     {{/if}}
     {{#if isEmpty}}
     <h1 class="search-not-found">Oops No Profile found</h1>
@@ -68,7 +68,7 @@
     <button class="college-item card column">
         <div class="college-item-header">
            <!-- <h3 class="college-item-title">{{this.username}}</h3>-->
-            <a href="/userprofile/{{id}}">{{username}}</h3>
+            <h3>{{username}}</h3>
             <div class="college-item-rating material-align-center">
             <h3>{{uniName}}</h3>
                

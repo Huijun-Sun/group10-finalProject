@@ -1,4 +1,4 @@
-<div class="parallax parallax-home" id="reg-card">
+<!--<div class="parallax parallax-home" id="reg-card">
   <div class="reg-card">
      <form class="column reg-form">
        <div class="reg-logo">
@@ -31,4 +31,74 @@
        </div>  
         
     </div>
-</div>  
+</div>  -->
+<!--<div class="parallax parallax-home" id="reg-card">-
+  <div class="reg-card">
+     <form class="reg-form">-->
+       <div class="reg-logo">
+                <a href="#">Profile Details </a>
+        </div>
+            <h3 class="center-items">
+        Welcome {{this.firstName}} {{this.lastName}}
+    
+        Interested to pursue {{userProInfo.intMastersMba}} in {{userProInfo.intProgram}} for {{userProInfo.intTerm}} {{userProInfo.intYear}}
+        Studied in {{userProInfo.underGradProgram}} at {{userProInfo.underGradCollege}}.
+         Entarnce Exams:
+        GRE Scores: Verbal: {{userProInfo.greVerbal}}  Quant: {{userProInfo.greQuant}}  AWA: {{userProInfo.greAwa}}
+        GMAT Scores: {{userProInfo.gmatScore}}
+        TOEFL Scores: {{userProInfo.toeflScore}}</h3>
+         <a href="/userprofile/edituserprofile/{{userProInfo.userid}}">Edit Profile Details </a>
+         </p>
+         </br></br>
+              <h2>Interested/Applied University</h2>
+           <a href="/userprofile/addUniversity/{{userProInfo.userid}}">Add University </a>
+             <a href="/userprofile/editUniversity/{{userProInfo.userid}}">Edit University </a> 
+       
+         <!--
+         {{#each intAppUniList}}
+         <label for="uniName">University: </label>
+            <h4>{{uniName}}</h4>
+          <label for="uniProgram">Program: </label>   
+            <h4>{{uniProgram}}</h4>
+          <label for="uniStatus">Status: </label>     
+             <h4>{{uniStatus}}</h4>
+           <label for="comments">Comments: </label>    
+             <h4>{{comments}}</h4>
+         {{/each}}    
+       </div>  -->
+ <div id="college-list" class="college-list row">
+  {{#if isEmpty}}
+    <h1 class="search-not-found">Oops No Profile found</h1>
+    {{/if}}      
+   {{#each intAppUniList}}
+ 
+    <button class="college-item card column">
+        <div class="college-item-header">
+           <!-- <h3 class="college-item-title">{{this.username}}</h3>-->
+            
+            <div class="college-item-rating material-align-center">
+                     <h3>{{uniName}}</h3>
+               
+            </div>
+        </div>
+        <div class="row">
+            <div class="college-item-detail column">
+                <p class="material-align-center">
+                    <a class="material-icon">assessment</a>
+                    Year: {{uniProgram}}
+                </p>
+                <p class="material-align-center">
+                    <a class="material-icon">account_balance </a>
+                    <a>Status: {{uniStatus}} </a>
+                </p>
+                <p class="material-align-center">
+                    <a class="material-icon">monetization_on</a>
+                    GRE: {{comments}}
+                </p>
+            </div>
+            <div class="college-item-spacer"></div>
+        </div>
+    </button>
+ {{/each}}
+        
+    

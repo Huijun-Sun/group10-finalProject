@@ -5,13 +5,13 @@ const pageScripts =  [{script: "/public/js/guidesPage.js"}];
 
 
 router.get('/', async (req, res) => {
-    console.log(!req.session.isloggedin);
+  //  console.log(!req.session.isloggedin);
 	res.render("guidesPage", {
         heading: "Guides",
         subHeading: "All you need to know, in one place.",
         showSearch: true,
         loggedOut: !req.session.isloggedin,
-        scripts: pageScripts,
+        scripts: pageScripts,isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid,
     });
 });
 
