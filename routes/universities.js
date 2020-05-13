@@ -8,6 +8,11 @@ const pageScripts =  [{script: "/public/js/universityPage.js"}];
 
 function getPageConfig(req, univList) {
   //console.log(univList[0]);
+  let coursesStr = "";
+  for (const course of univList.courses)
+    coursesStr += course + ", ";
+  univList.courses = coursesStr.substring(0, str.length - 2);
+  
   let pageConfig = {
     heading: "University Finder",
     subHeading: "Find your best college here!",

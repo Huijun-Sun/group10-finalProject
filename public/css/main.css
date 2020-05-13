@@ -314,7 +314,7 @@ input[type=text] {
     text-align: left;
     margin: 20px;
     padding: 0px;
-    width: 700px;
+    width: 750px;
     border-radius: 10px;
 }
 
@@ -322,7 +322,7 @@ input[type=text] {
     display: flex;
     justify-content: space-between;
     margin: 0px;
-    width: 700px;
+    width: 750px;
     height: 160px;
     border-radius: 10px 10px 0px 0px;
     font-size: 20px;
@@ -356,7 +356,7 @@ input[type=text] {
 .college-item-detail {
     margin: 0px;
     padding: 10px;
-    min-width: 200px;
+    /* min-width: 200px; */
 }
 
 .college-item-detail p {
@@ -379,7 +379,7 @@ input[type=text] {
     -webkit-flex: 0 1 0px;
     -ms-flex: 0 1 0px;
     flex: 0 1 0px;
-    padding: 0px 30px 0px 10px;
+    padding: 0px 0px 0px 0px;
     height: 160px;
 }
 
