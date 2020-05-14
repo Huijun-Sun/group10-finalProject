@@ -36,7 +36,7 @@ function closeOverlay() {
 }
 
 function openArticle(id) {
-    console.log("open" + id);
+    //console.log("open" + id);
     openOverlay();
 
 

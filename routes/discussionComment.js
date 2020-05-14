@@ -51,7 +51,7 @@ router.post("/", async (req, res) => {
   
     res.status(200).redirect('/discussionTopic');
   } catch (e) {
-    res.status(400).render("error",{error: e });
+    res.status(400).render("error",{error: e ,isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid, loggedOut: !req.session.isloggedin});
   }
 });
 

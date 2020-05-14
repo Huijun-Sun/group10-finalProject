@@ -89,8 +89,8 @@ router.post("/simpleSearch", async (req, res) => {
 router.post("/search", async (req, res) => {
   try {
     const univList = await univData.getUniversityFinder(xss(req.body.course),parseInt(xss(req.body.score)),parseInt(xss(req.body.exp)),parseFloat(xss(req.body.gpa)),parseInt(xss(req.body.papers)));
-    console.log("univList")
-    console.log(univList)
+   // console.log("univList")
+    //console.log(univList)
 
     res.render("universityPage", getPageConfig(req, univList));
   } catch (e) {
