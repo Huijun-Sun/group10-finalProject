@@ -2,11 +2,14 @@ const universities = require("../data/universities");
 const Discussion = require("../data/discussion");
 const connection = require('../config/mongoConnection');
 const data = require("../data");
+const { ObjectId } = require('mongodb');
+const userProf = require("../data/userprofile");
+const userData = require("../data/user");
 async function main() {
     try{
-       // var dt = {date: new Date(2020,05,07)};
-      let dt =new Date(2020,04,15);
-         await universities.addUniversity("massachusetts instituite of technology",["computer science","information systems"],"Private",["Masters","UnderGraduate","Graduate Certication"],
+       
+     let dt =new Date(2020,04,15);
+         await universities.addUniversity("massachusetts institute of technology",["computer science","information systems"],"Private",["Masters","UnderGraduate","Graduate Certication"],
          "Boston,MA",dt,"$50000",4.2,10,"$5500",300,"www.mit.edu",2,3.4,["spring","fall"],1,"Although it’ll no doubt be fascinating and highly inspiring to read about MIT, it could also give you a serious inferiority complex because Massachusetts Institute of Technology is perhaps the best overall college in the world. It makes sure its students are no less. To get into MIT, you need to be excellent in everything, and even that probably won’t be enough.MIT is absolutely top-notch in everything, from infrastructure to faculty to extracurriculars to placements to alumni. An interesting bit of trivia: the aggregated revenues of companies founded by MIT alumni would rank as the eleventh largest economy in the world. Now, that's MIT.We associate only one word with MIT USA - WOW.","GRE TOEFL/IELTS required");
 
           dt =new Date(2020,05,17);
@@ -19,7 +22,7 @@ async function main() {
         await universities.addUniversity("nyu",["computer science","information systems","financial engineering","business intelligent & analytics"],"Private",["Masters","UnderGraduate","Graduate Certication"],
         "New York,NY",dt,"$70000",4.5,4,"$7000",315,"www.Nyu.edu",3,3.5,["spring","fall"],3,"New York University is a private research university based in New York City. Founded in 1831 by Albert Gallatin as an institution to admit based upon merit rather than birthright or social class, NYU's historical campus is in Greenwich Village. NYU is the largest independent research university in the United States.","GRE TOEFL required");
        
-         dt =new Date(2020,04,27);
+         dt =new Date(2020,05,14);
         await universities.addUniversity("stevens institute of technology",["computer science","information systems","financial engineering","mechanical engineering"],"Private",["Masters","UnderGraduate","Graduate Certication"],
         "Hoboken,NJ",dt,"$40000",4.1,40,"$4000",300,"www.stevens.edu",1,2.9,["spring","fall"],1,"Stevens Institute of Technology is a private research university in Hoboken, New Jersey. Incorporated in 1870, it is one of the oldest technological universities in the United States and was the first college in America solely dedicated to mechanical engineering.","TOEFL Required");
        
@@ -27,7 +30,7 @@ async function main() {
         await universities.addUniversity("rutgers state university",["computer science","information systems","construction management"],"public",["Masters","UnderGraduate","Graduate Certication"],
         "New Brunswick,NJ",dt,"$20000",4.4,50,"$2000",308,"www.Rutgers.edu",1,3,["spring","fall"],1,"Rutgers, The State University of New Jersey, commonly referred to as Rutgers University, or RU, is an American public research university in New Jersey. It is the largest institution of higher education in New Jersey. Rutgers was originally chartered as Queen's College on November 10, 1766.","GMAT GRE TOEFL required");
        
-         dt =new Date(2020,06,04);
+         dt =new Date(2020,05,21);
         await universities.addUniversity("new jersey institute of technology",["computer science","information systems"],"public",["Masters","UnderGraduate","Graduate Certication"],
         "Newark,NJ",dt,"$25000",4.4,150,"$4000",298,"www.njit.edu",1,2.9,["spring","fall"],1,"The New Jersey Institute of Technology is a public research university in Newark, New Jersey. Founded in 1881 with the support of local industrialists and inventors especially Edward Weston, NJIT opened as Newark Technical School in 1885 with 88 students.","TOEFL/IELTS Required ");
        
@@ -47,16 +50,25 @@ async function main() {
         await universities.addUniversity("carnegie mellon",["computer science","information systems"],"public",["Masters","UnderGraduate","Graduate Certication"],
         "Pittsburg,pa",dt,"$40000",4.8,1,"$4000",320,"cambridge.edu",3,3.9,["spring","fall"],4,"Carnegie Mellon University is a private research university based in Pittsburgh, Pennsylvania. Founded in 1900 by Andrew Carnegie as the Carnegie Technical Schools, the university became the Carnegie Institute of Technology in 1912 and began granting four-year degrees.","GRE GMAT TOEFL IELTS any 3 needed");
         
-        console.log("done");
-        //console.log(await universities.getUniversity_finder("Computer Science",300,5,3.1,2));
-       // console.log(await universities.getDeadline("Stevens Instituite of Technology","Computer Science","fall"));
-        //console.log(await universities.getDeadline("Stevens Instituite of Technology","Computer Science"));
-        //console.log(await universities.getDeadline(null,"Computer Science"));
-      // await Discussion.addDiscussionTopic("What is the deadline for NYC?")
-       // console.log(await Discussion.addDiscussionComment("For fall?","5ea0cedce1aa145fc46a333e"));
-      //  console.log(await Discussion.addDiscussionComment("next week","5ea0cf5907a1306d146630ef"));
+        console.log("Universities data added");
+    
+    const dt1= await Discussion.addDiscussionTopic("What is the best residential place near NYU?","mselvamu");
+       await Discussion.addDiscussionComment("Manhattan downtown is amazing place ,its most happening place too",dt1._id.toString(),"thyagub");
+       await Discussion.addDiscussionComment("Jersey city is where most of the students live since its close by to groceries and affordable rents",dt1._id.toString(),"yeshub");
 
-     //cd    console.log(await Discussion.getAllTopics());
+       const dt2= await Discussion.addDiscussionTopic("How COVID will affect the international students?","thyagub");
+       await Discussion.addDiscussionComment("The F1 students wont be much affected as i heard from immigration attorneys",dt2._id.toString(),"mselvamu");
+       await Discussion.addDiscussionComment("You can differ your admints to spring/fall2021",dt2._id.toString(),"yeshub");
+       await Discussion.addDiscussionComment("You can also attend classes online staying back in country",dt2._id.toString(),"mselvamu");
+
+       const dt3= await Discussion.addDiscussionTopic("Culture and diversity in the campus","yeshub");
+       await Discussion.addDiscussionComment("Most of the colleges allow celebrations to happen for the important festivals",dt3._id.toString(),"mselvamu");
+       await Discussion.addDiscussionComment("Socializing is the key for survival in western countries",dt3._id.toString(),"thyagub");
+       
+       console.log("Discussion data added");
+       
+
+    
    
    // events seed start
    //const db = await dbConnection();
@@ -64,9 +76,9 @@ async function main() {
    
    const events = data.events;
    let date1=new Date();
-   //date1.setDate(date1.getDate()+2);
+   
    let date2=new Date();
-   //date2.setDate(date2.getDate()+4);
+   
    var hours;
    //event 1
    date1.setDate(9);
@@ -180,7 +192,9 @@ async function main() {
    let e=await events.addEvent(event5.title,event5.start_date,event5.end_date,event5.lasting_time,event5.address,event5.description,event5.event_link,event5.img_url);
    
    
-   //await db.serverConfig.close();
+   console.log("Events data added");
+
+
      
 }
     catch(e)
@@ -191,4 +205,38 @@ async function main() {
     }
 }
 
-main();
+//main();
+main1();
+
+async function main1(){
+    try{
+
+        const user = await userData.newUser("mselvamu", "12pass234word12", "Selvam", "Rajesh", "moni0810.selvam@gmail.com"); 
+        await userProf.createUserProfile(user._id, "MBA", "Financial Engineering", "Fall", "2021", "IIT Mumbai", "Business Management","NA","NA","NA","500","100"); 
+        await userProf.addIntAppUniversity(user._id, "Columbia University", "Financial Engineering", "Interested", "About to apply");
+        await userProf.addIntAppUniversity(user._id,"Stevens Institute of Technology", "Financial Engineering", "Applied", "Waiting for decision");
+       
+        const user1 = await userData.newUser("Anuja14", "12password12", "Anuja", "Phadnis", "anujaphadnis@gmail.com"); 
+       await userProf.createUserProfile(user1._id, "Masters", "Computer Science", "Fall", "2020", "Sri Sai Kiran University", "Computer Engineering","150","156","3.4","NA","100");
+       await userProf. addIntAppUniversity ( user1._id,"Columbia University", "Financial Engineering", "Interested", "Curious to know more");
+       await userProf.addIntAppUniversity ( user1._id, "Massachusetts Institute of Technology", "Computer Science", "Applied", "Waiting for decision");
+       await userProf.addIntAppUniversity(user1._id, "NYU", "Computer Science","Interested","About to apply");
+       
+       const user2 = await userData.newUser("thyagub", "12thyakigh12", "Thyab", "Harish", "thyagub@gmail.com"); 
+        await userProf.createUserProfile(user2._id, "Masters", "Information Systems", "Fall", "2020", "IIT Madras", "Business Management","145","155","3.5","NA","100");
+         await userProf.addIntAppUniversity(user2._id,"University of Illinois", "Information Systems", "Interested", "About to apply");
+         await userProf.addIntAppUniversity(user2._id,"Stevens Institute of Technology", "Information Systems", "Admit", "Recieved decision in a month");
+       
+         const user3 = await userData.newUser("yeshub", "12thyahjgfh12", "yesaru", "Marish", "masuri122@gmail.com"); 
+        await userProf.createUserProfile(user3._id, "Masters", "Mechanical Engineering", "Spring", "2021", "Bishop Cottons University", "Mechanical Engineering","156","155","3.4","NA","NA");
+         await userProf.addIntAppUniversity(user3._id,"Rutgers State University", "Construction Management", "Interested", "About to apply");
+        await userProf.addIntAppUniversity(user3._id,"Stevens Institute of Technology", "Mechanical Engineering", "Applied", "Waiting for decision");
+         console.log("User data added");
+    }
+    catch(e)
+    {
+        console.log(e);
+
+        //db.serverConfig.close();
+    }
+}

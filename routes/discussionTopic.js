@@ -20,9 +20,9 @@ router.get("/", async (req, res) => {
    
     const dtList = await discussionData.getAllTopics();
   //  res.render("forum_page",{dtList});isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid
-  res.render("forum_page",{dtList,isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid});
+  res.render("forum_page",{dtList,isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid, loggedOut: !req.session.isloggedin});
   } catch (e) {
-    res.status(500).render('error',{error: e});
+    res.status(500).render('error',{error: e,isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid, loggedOut: !req.session.isloggedin});
   }
 });
 
@@ -42,7 +42,7 @@ router.post("/", async (req, res) => {
     res.status(200).redirect('/discussionTopic');
   } catch (e) {
    
-    res.status(400).render('error',{ error: e });
+    res.status(400).render('error',{ error: e ,isloggedin:req.session.isloggedin,username:req.session.user,userid:req.session.userid, loggedOut: !req.session.isloggedin});
   }
 });
 

@@ -15,7 +15,7 @@ function refreshIntro() {
     let listNode = document.getElementById('college-list');
     listNode.innerHTML = "";
     for (const college of collegeCollection) {
-         console.log(college);
+      //   console.log(college);
         listNode.innerHTML += `
         <button class="college-item card column" id="${college._id}" onclick="onCollegeClicked(this.id)" style="width: 300px;">
         <div class="college-item-header" style="width: 300px;">

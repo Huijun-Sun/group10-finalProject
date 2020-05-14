@@ -77,12 +77,8 @@ async function createUserProfile(userid,intMastersMba,intProgram, intTerm, intYe
         greAwa: greAwa,
         gmatScore: gmatScore, 
         toeflScore: toeflScore,
-        int_app_university: [],
-        work_exp:[],
-        projects:[],
-        tech_papers:[],
-        extracurriculars:[],
-        blogs:[]
+        int_app_university: []
+       
     };
 
     
@@ -264,9 +260,7 @@ async function addIntAppUniversity (id, uniName, uniProgram, uniStatus, comments
             if(userProUni.greVerbal !== "NA" && userProUni.greQuant !== "NA"){
         gre = parseInt(userProUni.greVerbal) + parseInt(userProUni.greQuant);
         result_chances=await univdatamodule.getChances(uniName,gre);
-      //  userProUni.status=status;
-      // console.log(userProUni);
-      console.log(result_chances);
+   
         return result_chances;
       }
       
